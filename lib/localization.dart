@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -32,13 +31,6 @@ class AppLocalizations {
     });
     return true;
   }
-//  Future load()async{
-//    String jsonString =
-//      await rootBundle.loadString('lang/${locale.languageCode}.json');
-//    Map<String, dynamic> jsonMap = json.decode(jsonString);
-//    _localizedStrings = jsonMap.map((key, value)=> MapEntry(key,value.toString()));
-//
-//  }
 
   // This method will be called from every widget which needs a localized text
   String translate(String key) {
@@ -57,7 +49,7 @@ class _AppLocalizationsDelegate
   @override
   bool isSupported(Locale locale) {
     // Include all of your supported language codes here
-    return ['en', 'ar'].contains(locale.languageCode);
+    return ['en', 'ar','fr'].contains(locale.languageCode);
   }
 
   @override

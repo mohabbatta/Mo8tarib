@@ -5,6 +5,8 @@ import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
 
+import 'Screen/sign_up.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -71,7 +73,7 @@ class _MyAppState extends State<MyApp> {
           return supportedLocales.first;
         },
         debugShowCheckedModeBanner: false,
-        home: Login(),
+        home: SignUp(),
       );
     }
   }

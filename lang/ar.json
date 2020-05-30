@@ -7,5 +7,12 @@
   "Log In": "تسجيل الدخول",
   "Forgot password?": "نسيت الرقم السري؟",
   "Don't have an account?": "ليس لديك حساب؟",
-  "Sign up": "التسجيل"
+  "Sign up": "التسجيل",
+  "First Name":"الاسم الاول",
+  "Last Name": "أسم العائله",
+  "Email": "البريد الالكتروني",
+  "Password": "الرقم السري",
+  "By Signing Up You Agreed with our terms of Services and privacy polices": "تمت الموافقه على شروط الخدمة وسياسات الخصوصية",
+  "Already Have Account?": "لديك حساب بالفعل ؟"
+
 }

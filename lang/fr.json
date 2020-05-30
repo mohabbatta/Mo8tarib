@@ -8,6 +8,12 @@
   "Log In": "S'identifier",
   "Forgot password?": "mot de passe oublié?",
   "Don't have an account?": "Vous n'avez pas de compte?",
-  "Sign up": "S'inscrire"
+  "Sign up": "S'inscrire",
+  "First Name":"Prénom",
+  "Last Name": "Nom de famille",
+  "Email": "Email",
+  "Password": "Mot de passe",
+  "By Signing Up You Agreed with our terms of Services and privacy polices": "En vous inscrivant, vous acceptez nos conditions de services et nos politiques de confidentialité",
+  "Already Have Account?": "Vous avez déjà un compte?"
 
 }

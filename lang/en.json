@@ -6,5 +6,11 @@
   "Log In": "Log In",
   "Forgot password?": "Forgot password?",
   "Don't have an account?": "Don't have an account?",
-  "Sign up": "Sign up"
+  "Sign up": "Sign up",
+  "First Name":"First Name",
+  "Last Name": "Last Name",
+  "Email": "Email",
+  "Password": "Password",
+  "By Signing Up You Agreed with our terms of Services and privacy polices": "By Signing Up You Agreed with our terms of Services and privacy polices",
+  "Already Have Account?": "Already Have Account?"
 }

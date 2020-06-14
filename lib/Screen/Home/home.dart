@@ -5,25 +5,40 @@ import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/main.dart';
 import 'package:mo8tarib/model/language.dart';
 import 'package:mo8tarib/model/languageControler.dart';
+import 'package:mo8tarib/model/post.dart';
+import 'package:mo8tarib/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mo8tarib/Screen/Home/bloc/bloc.dart';
 
+User currentUser;
 
 class home extends StatefulWidget{
+ final User user;
 
   @override
   _homeState createState() =>_homeState();
+
+  home(this.user);
 
 }
 
 class _homeState extends State<home>{
 
- void _changeLanguage(language lang) async{
-  languageControler controler = new languageControler();
-  Locale _temp= await controler.SetLocale(lang.langCode);
+  post_bloc _bloc;
 
- MyApp.setLocale(context, _temp);
-    print(lang.name);
+@override
+  void initState() {
+    super.initState();
+    _bloc=new post_bloc();
+    _bloc.fetchAllPosts();
+    print(widget.user.email);
   }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _bloc.dispose();
+}
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +82,10 @@ class _homeState extends State<home>{
 
         ],
       ),
-
-
       bottomNavigationBar: new BottomNavigationBar(items:[
         new BottomNavigationBarItem(
             icon: new Icon(Icons.home),
-            title: new Text("home")
+            title: new Text("home"),
     ),
         new BottomNavigationBarItem(
           icon: new Icon(Icons.track_changes),
@@ -82,9 +95,49 @@ class _homeState extends State<home>{
       backgroundColor: color1,
       fixedColor: color2,
       unselectedItemColor: color2,),
+      drawer:Drawer(
+
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Center(child:Image.network('https://conceptdraw.com/a1753c3/p1/preview/640/pict--athletic-guy-people---vector-stencils-library.png--diagram-flowchart-example.png')),
+            )
+          ],
+        ),
+      ) ,
+      body:StreamBuilder<List<post>>(
+           stream: _bloc.streampost,
+         builder: (context, allpost) {
+             if(allpost.hasData){
+             return Center(
+
+               child: Text(
+                   allpost.data[0].key
+               ),
+             );}else{
+               return Center(
+
+                   child: Text(
+                   'no data'
+               ),
+           );
+             }
+
+         }
+      )
     );
 
   }
 
 
+
+
+  void _changeLanguage(language lang) async{
+    languageControler controler = new languageControler();
+    Locale _temp= await controler.SetLocale(lang.langCode);
+
+    MyApp.setLocale(context, _temp);
+    print(lang.name);
+  }
 }

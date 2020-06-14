@@ -10,6 +10,7 @@ class languageControler{
 
    return _locale(langCode);
   }
+
   Locale _locale (String langCode){
 
     Locale _temp;

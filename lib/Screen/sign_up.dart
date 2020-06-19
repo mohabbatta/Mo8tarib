@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'file:///E:/My%20Fuclty/4th/P_G/mo8tarib/lib/Screen/Home/home.dart';
 import 'package:mo8tarib/component/rounded_button.dart';
 import 'package:mo8tarib/model/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -169,11 +168,11 @@ class _SignUpState extends State<SignUp> {
                               'fname':_fnameController.text
                             });
                             print("الحمدلله الداتا اتحفظت كمان اهو");
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context)=>home(
-                                    new User('',0,{'fname':_fnameController.text,'lname':_fnameController.text},
-                                        'male',_passController.text,[],_emailController.text )
-                                )));
+//                            Navigator.push(context,
+//                                MaterialPageRoute(builder: (context)=>home(
+//                                    new User('',0,{'fname':_fnameController.text,'lname':_fnameController.text},
+//                                        'male',_passController.text,[],_emailController.text )
+//                                )));
                           }
                           setState(() {
                             showSpinner=false;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'file:///E:/My%20Fuclty/4th/P_G/mo8tarib/lib/Screen/Home/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Screen/home.dart';
 import 'Screen/sign_up.dart';
 import 'model/user.dart';
 
@@ -85,8 +85,9 @@ class _MyAppState extends State<MyApp> {
         },
         debugShowCheckedModeBanner: false,
 
-        home: getEmail() == false? SignUp():home(new User('',0,{'fname':'tata','lname':'nana'},
-            'male','',[],'tt')),
+        home: home()
+//        getEmail() == false? SignUp():home(new User('',0,{'fname':'tata','lname':'nana'},
+//            'male','',[],'tt')),
       );
     }
   }

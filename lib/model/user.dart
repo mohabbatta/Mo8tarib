@@ -1,12 +1,33 @@
-//import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
-  final int uid;
+  int uid=0;
   String uPassword;
   final String key;
-  //final DocumentReference schoolRef;
-  final String imageLink;
-  final String name;
+  final String email;
+  String gender=" ";
+  //final String imageLink;
+  Map<String,String> name;
+  List<int> phone=[];
 
-  User(this.imageLink, this.name, this.uid, this.uPassword, this.key);
+  User(this.key, this.uid, this.name, this.gender, this.uPassword, this.phone,this.email);
+
+  factory User.fromSnapshot(DocumentSnapshot snapshot) {
+
+    return User(
+        snapshot.documentID,
+        snapshot.data['id'],
+        snapshot.data['name'],
+        snapshot.data['gender'],
+        snapshot.data['uPassword'],
+        snapshot.data['phone'],
+        snapshot.data['email']
+    );
+  }
+  void addUser(String fname,String lname,String email,String password){
+
+
+
+  }
+
 }

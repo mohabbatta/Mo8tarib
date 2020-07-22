@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
         },
         debugShowCheckedModeBanner: false,
 
-        home: home()
+        home: EditUser()
 //        getEmail() == false? SignUp():home(new User('',0,{'fname':'tata','lname':'nana'},
 //            'male','',[],'tt')),
 

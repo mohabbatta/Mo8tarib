@@ -78,7 +78,6 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 TextField(
-                  obscureText: true,
                   textAlign: TextAlign.left,
                   decoration: KTextFieldDecoration.copyWith(
                       hintText: localization.translate("First Name")),
@@ -87,7 +86,6 @@ class _SignUpState extends State<SignUp> {
                   height: 24.0,
                 ),
                 TextField(
-                  obscureText: true,
                   textAlign: TextAlign.left,
                   decoration: KTextFieldDecoration.copyWith(
                       hintText: localization.translate("Last Name")),
@@ -96,7 +94,6 @@ class _SignUpState extends State<SignUp> {
                   height: 24.0,
                 ),
                 TextField(
-                  obscureText: true,
                   textAlign: TextAlign.left,
                   decoration: KTextFieldDecoration.copyWith(
                       hintText: localization.translate("Email")),
@@ -105,7 +102,6 @@ class _SignUpState extends State<SignUp> {
                   height: 24.0,
                 ),
                 TextField(
-                  obscureText: true,
                   textAlign: TextAlign.left,
                   decoration: KTextFieldDecoration.copyWith(
                       hintText: localization.translate("Password")),

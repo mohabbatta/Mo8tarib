@@ -13,6 +13,13 @@
   "Email": "البريد الالكتروني",
   "Password": "الرقم السري",
   "By Signing Up You Agreed with our terms of Services and privacy polices": "تمت الموافقه على شروط الخدمة وسياسات الخصوصية",
-  "Already Have Account?": "لديك حساب بالفعل ؟"
+  "Already Have Account?": "لديك حساب بالفعل ؟",
+  "Edit Profile": "الصفحة الشخصيه",
+  "Done": "تم",
+  "Change profile photo": "تعديل الصوره الشخصيه" ,
+  "Username":"اسم المستخدم",
+  "phone": "الهاتف",
+  "Date Of Birth": "تاريخ الميلاد",
+  "Location": "الموقع"
 
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/Screen/dashboard.dart';
 import 'package:mo8tarib/Screen/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
+import 'package:mo8tarib/Screen/edit_user.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
 
@@ -73,7 +75,7 @@ class _MyAppState extends State<MyApp> {
           return supportedLocales.first;
         },
         debugShowCheckedModeBanner: false,
-        home: SignUp(),
+        home: EditUser(),
       );
     }
   }

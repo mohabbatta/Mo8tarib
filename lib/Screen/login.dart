@@ -44,7 +44,7 @@ class _LoginState extends State<Login> {
               textAlign: TextAlign.center,
               keyboardType: TextInputType.emailAddress,
               decoration: KTextFieldDecoration.copyWith(
-                  hintText: localization.translate("Enter your email.")),
+                  hintText: localization.translate("Enter_your_email.")),
             ),
             SizedBox(
               height: 8.0,
@@ -53,14 +53,14 @@ class _LoginState extends State<Login> {
               obscureText: true,
               textAlign: TextAlign.center,
               decoration: KTextFieldDecoration.copyWith(
-                  hintText: localization.translate("Enter your password.")),
+                  hintText: localization.translate("Enter_your_password.")),
             ),
             SizedBox(
               height: 24.0,
             ),
             new RoundedButton(
               colour: Colors.lightBlueAccent,
-              title: localization.translate("Log In"),
+              title: localization.translate("Log_In"),
             ),
             RawMaterialButton(
               onPressed: () {
@@ -68,7 +68,7 @@ class _LoginState extends State<Login> {
               },
               //color: Colors.lightBlue,
               child: Text(
-                localization.translate("Forgot password?"),
+                localization.translate("Forgot_password?"),
                 style: TextStyle(color: Colors.lightBlue),
               ),
             ),
@@ -76,7 +76,7 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  localization.translate("Don't have an account?"),
+                  localization.translate("Don't_have_an_account?"),
                   style: TextStyle(fontSize: 16),
                 ),
                 RawMaterialButton(
@@ -84,7 +84,7 @@ class _LoginState extends State<Login> {
                     print('mohaned');
                   },
                   child: Text(
-                    localization.translate("Sign up"),
+                    localization.translate("Sign_up"),
                     style:
                         TextStyle(fontSize: 18, color: Colors.lightBlueAccent),
                   ),

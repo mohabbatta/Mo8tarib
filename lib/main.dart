@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
+import 'package:mo8tarib/Screen/edit_user.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -88,6 +89,7 @@ class _MyAppState extends State<MyApp> {
         home: home()
 //        getEmail() == false? SignUp():home(new User('',0,{'fname':'tata','lname':'nana'},
 //            'male','',[],'tt')),
+
       );
     }
   }

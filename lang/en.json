@@ -11,6 +11,15 @@
   "Last_Name": "Last Name",
   "Email": "Email",
   "Password": "Password",
+
+  "Edit Profile": "Edit Profile",
+  "Done": "Done",
+  "Change profile photo": "Change profile photo" ,
+  "Username":"Username",
+  "phone": "phone",
+  "Date Of Birth": "Date Of Birth",
+  "Location": "Location"
+
   "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "By Signing Up You Agreed with our terms of Services and privacy polices",
   "Already_Have_Account?": "Already Have Account?"
 }

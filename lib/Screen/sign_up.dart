@@ -111,8 +111,52 @@ class _SignUpState extends State<SignUp> {
                     decoration: KTextFieldDecoration.copyWith(
                         hintText: localization.translate("First_Name")),
                   ),
-                  SizedBox(
-                    height: 24.0,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("First Name")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("Last Name")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("Email")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("Password")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                new RoundedButton(
+                  title: localization.translate("Sign up"),
+                  colour: Colors.lightBlueAccent,
+                  onPressed: null,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    localization.translate(
+                        "By Signing Up You Agreed with our terms of Services and privacy polices"),
+                    style: TextStyle(),
+                    textAlign: TextAlign.center,
+
                   ),
                   TextField(
                     controller: _lnameController,

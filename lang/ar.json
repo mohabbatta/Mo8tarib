@@ -20,6 +20,12 @@
   "Username":"اسم المستخدم",
   "phone": "الهاتف",
   "Date Of Birth": "تاريخ الميلاد",
-  "Location": "الموقع"
+  "Location": "الموقع",
+  "DashBoard": "الرئسيه",
+  "profile": "الحساب",
+  "Flat": "الشقه",
+  "Reservation": "الحجز",
+  "about": "عنا",
+  "connect Us": "للتواصل"
 
 }

@@ -20,6 +20,12 @@
   "Username":"Nom d'utilisateur",
   "phone": "téléphone",
   "Date Of Birth": "Date de naissance",
-  "Location": "Emplacement"
+  "Location": "Emplacement",
+  "DashBoard": "bord",
+  "profile": "profil",
+  "Flat": "Plat",
+  "Reservation": "Réservation",
+  "about": "à propos",
+  "connect Us": "nous connecter"
 
 }

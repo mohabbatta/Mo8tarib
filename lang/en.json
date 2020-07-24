@@ -19,5 +19,11 @@
   "Username":"Username",
   "phone": "phone",
   "Date Of Birth": "Date Of Birth",
-  "Location": "Location"
+  "Location": "Location",
+  "DashBoard": "DashBoard",
+  "profile": "profile",
+  "Flat": "Flat",
+  "Reservation": "Reservation",
+  "about": "about",
+  "connect Us": "connect Us"
 }

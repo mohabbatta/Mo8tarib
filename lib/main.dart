@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
       );
     } else {
       return MaterialApp(
+        showSemanticsDebugger: false,
         title: "Mo8tarib",
         locale: _locale,
         supportedLocales: [
@@ -75,7 +76,7 @@ class _MyAppState extends State<MyApp> {
           return supportedLocales.first;
         },
         debugShowCheckedModeBanner: false,
-        home: EditUser(),
+        home: DashBoard(),
       );
     }
   }

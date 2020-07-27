@@ -3,13 +3,21 @@ import 'package:mo8tarib/Screen/dashboard.dart';
 import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/Screen/dashboard/home1.dart';
 import 'package:mo8tarib/Screen/home.dart';
+ master
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
+
 import 'Screen/sign_up.dart';
 import 'Screen/sign_up_2.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'Screen/home.dart';
+import 'Screen/sign_up.dart';
+import 'model/user.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,6 +38,15 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _locale = locale;
     });
+  }
+  static Future<bool>getEmail()async{
+
+    SharedPreferences _shard=await SharedPreferences.getInstance();
+    String email= _shard.getString("email");
+    if(email==null){
+      return false;
+    }else {return true;}
+
   }
 
   @override
@@ -85,6 +102,7 @@ class _MyAppState extends State<MyApp> {
           '/signup': (context) => SignUp2(),
           '/home': (context) => DashBoardLayout(),
         },
+
       );
     }
   }

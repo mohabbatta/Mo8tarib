@@ -1,18 +1,17 @@
 {
   "tata": "tata",
   "nana": "nana 😉",
-  "Enter your email.": "Enter your email.",
-  "Enter your password.": "Enter your password.",
-  "Log In": "Log In",
-  "Forgot password?": "Forgot password?",
-  "Don't have an account?": "Don't have an account?",
-  "Sign up": "Sign up",
-  "First Name":"First Name",
-  "Last Name": "Last Name",
+  "Enter_your_email.": "Enter your email.",
+  "Enter_your_password.": "Enter your password.",
+  "Log_In": "Log In",
+  "Forgot_password?": "Forgot password?",
+  "Don't_have_an_account?": "Don't have an account?",
+  "Sign_up": "Sign up",
+  "First_Name":"First Name",
+  "Last_Name": "Last Name",
   "Email": "Email",
   "Password": "Password",
-  "By Signing Up You Agreed with our terms of Services and privacy polices": "By Signing Up You Agreed with our terms of Services and privacy polices",
-  "Already Have Account?": "Already Have Account?",
+
   "Edit Profile": "Edit Profile",
   "Done": "Done",
   "Change profile photo": "Change profile photo" ,
@@ -27,4 +26,9 @@
   "about": "about",
   "connect Us": "connect Us",
   "Home": "Home"
+
+
+  "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "By Signing Up You Agreed with our terms of Services and privacy polices",
+  "Already_Have_Account?": "Already Have Account?"
+
 }

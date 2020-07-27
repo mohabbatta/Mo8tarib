@@ -19,6 +19,13 @@ dependencies:
   font_awesome_flutter: ^8.8.1
   flutter_awesome_buttons: ^0.1.0
   flutter_bloc: ^2.1.1
+  firebase_core: ^0.4.4+3
+  firebase_auth: ^0.16.0
+  cloud_firestore: ^0.13.5
+  modal_progress_hud: ^0.1.3
+  flutter_svg: ^0.18.0
+  cached_network_image: ^2.2.0+1
+  provider: ^4.3.1
 
 dev_dependencies:
   flutter_test:
@@ -32,7 +39,8 @@ flutter:
     - lang/ar.json
     - lang/en.json
     - lang/fr.json
-    - images/
+    - assets/icons/
+    - assets/images/
 
 
   fonts:

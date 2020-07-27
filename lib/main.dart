@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/Screen/dashboard.dart';
+import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
+import 'package:mo8tarib/Screen/dashboard/home1.dart';
+import 'package:mo8tarib/Screen/home.dart';
+ master
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
+
+import 'Screen/sign_up.dart';
+import 'Screen/sign_up_2.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Screen/home.dart';
@@ -61,6 +70,7 @@ class _MyAppState extends State<MyApp> {
       );
     } else {
       return MaterialApp(
+        showSemanticsDebugger: false,
         title: "Mo8tarib",
         locale: _locale,
         supportedLocales: [
@@ -85,10 +95,13 @@ class _MyAppState extends State<MyApp> {
           return supportedLocales.first;
         },
         debugShowCheckedModeBanner: false,
-
-        home: EditUser()
-//        getEmail() == false? SignUp():home(new User('',0,{'fname':'tata','lname':'nana'},
-//            'male','',[],'tt')),
+        //home: SignUp2(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Login(),
+          '/signup': (context) => SignUp2(),
+          '/home': (context) => DashBoardLayout(),
+        },
 
       );
     }

@@ -6,12 +6,12 @@ import 'package:mo8tarib/component/social_icon.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/localization.dart';
 
-class Login extends StatefulWidget {
+class SignUp2 extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<SignUp2> {
   double screenWidth, screenHeight;
   @override
   void initState() {
@@ -25,13 +25,14 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-//    Size size = MediaQuery.of(context).size;
-//    screenWidth = size.width;
-//    screenHeight = size.height;
+    String email;
+    String password;
+
+    Size size = MediaQuery.of(context).size;
+    screenWidth = size.width;
+    screenHeight = size.height;
     var localization = AppLocalizations.of(context);
     return Scaffold(
-      //resizeToAvoidBottomPadding: true,
-      // resizeToAvoidBottomInset: true,
       body: Stack(
         children: <Widget>[
           Container(
@@ -60,7 +61,7 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Login",
+                        "Sign Up",
                         textAlign: TextAlign.center,
                         style:
                             TextStyle(fontSize: 25, fontFamily: "VareaRound"),
@@ -92,6 +93,9 @@ class _LoginState extends State<Login> {
                       decoration: KTextFieldDecoration.copyWith(
                         hintText: localization.translate("Enter your email."),
                       ),
+                      onChanged: (value) {
+                        email = value;
+                      },
                     ),
                     SizedBox(
                       height: 8.0,
@@ -102,40 +106,34 @@ class _LoginState extends State<Login> {
                       decoration: KTextFieldDecoration.copyWith(
                           hintText:
                               localization.translate("Enter your password.")),
+                      onChanged: (value) {
+                        password = value;
+                      },
                     ),
                     SizedBox(
                       height: 24.0,
                     ),
                     new RoundButton(
                       colour: foregroundColor,
-                      title: localization.translate("Log In"),
+                      title: localization.translate("Sign up"),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                        print(email);
+                        print(password);
                       },
-                    ),
-                    RawMaterialButton(
-                      onPressed: () {
-                        print("anythin");
-                      },
-                      //color: Colors.lightBlue,
-                      child: Text(
-                        localization.translate("Forgot password?"),
-                        style: TextStyle(color: backgroundColor2),
-                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          localization.translate("Don't have an account?"),
+                          localization.translate("Already Have Account?"),
                           style: TextStyle(fontSize: 16),
                         ),
                         RawMaterialButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/signup');
+                            Navigator.pop(context);
                           },
                           child: Text(
-                            localization.translate("Sign up"),
+                            localization.translate("Log In"),
                             style:
                                 TextStyle(fontSize: 18, color: foregroundColor),
                           ),

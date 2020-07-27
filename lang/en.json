@@ -19,7 +19,16 @@
   "phone": "phone",
   "Date Of Birth": "Date Of Birth",
   "Location": "Location",
+  "DashBoard": "DashBoard",
+  "profile": "profile",
+  "Flat": "Flat",
+  "Reservation": "Reservation",
+  "about": "about",
+  "connect Us": "connect Us",
+  "Home": "Home"
+
 
   "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "By Signing Up You Agreed with our terms of Services and privacy polices",
   "Already_Have_Account?": "Already Have Account?"
+
 }

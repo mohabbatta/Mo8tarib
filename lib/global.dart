@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 const color1 = const Color(0xff000000);
 const color2 = const Color(0xffffa41b);
 
+const Color backgroundColor1 = Color(0xf000000);
+const Color backgroundColor2 = Color(0xff141418);
+const Color foregroundColor = Color(0xffFFA41B);
+
 const kSendButtonTextStyle = TextStyle(
   color: Colors.lightBlueAccent,
   fontWeight: FontWeight.bold,
@@ -28,11 +32,11 @@ const KTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+    borderSide: BorderSide(color: backgroundColor2, width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    borderSide: BorderSide(color: backgroundColor2, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/Screen/dashboard.dart';
+import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/Screen/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
@@ -76,7 +77,7 @@ class _MyAppState extends State<MyApp> {
           return supportedLocales.first;
         },
         debugShowCheckedModeBanner: false,
-        home: DashBoard(),
+        home: DashBoardLayout(),
       );
     }
   }

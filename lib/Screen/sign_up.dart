@@ -109,7 +109,7 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: 24.0,
                 ),
-                new RoundedButton(
+                new RoundButton(
                   title: localization.translate("Sign up"),
                   colour: Colors.lightBlueAccent,
                   onPressed: null,

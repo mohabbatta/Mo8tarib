@@ -18,7 +18,15 @@
   "Username":"اسم المستخدم",
   "phone": "الهاتف",
   "Date Of Birth": "تاريخ الميلاد",
-  "Location": "الموقع"
+
+  "Location": "الموقع",
+  "DashBoard": "الرئسيه",
+  "profile": "الحساب",
+  "Flat": "الشقه",
+  "Reservation": "الحجز",
+  "about": "عنا",
+  "connect Us": "للتواصل",
+  "Home": "الرئسيه"
   "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "تمت الموافقه على شروط الخدمة وسياسات الخصوصية",
   "Already_Have_Account?": "لديك حساب بالفعل ؟"
 

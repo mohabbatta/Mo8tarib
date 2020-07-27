@@ -242,8 +242,45 @@ class _SignUpState extends State<SignUp> {
                 Text( localization.translate("Already_Have_Account?"),
                   textAlign: TextAlign.center,
                 ),
-                FlatButton(
-                  onPressed: () {},
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("First Name")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("Last Name")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("Email")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                TextField(
+                  textAlign: TextAlign.left,
+                  decoration: KTextFieldDecoration.copyWith(
+                      hintText: localization.translate("Password")),
+                ),
+                SizedBox(
+                  height: 24.0,
+                ),
+                new RoundButton(
+                  title: localization.translate("Sign up"),
+                  colour: Colors.lightBlueAccent,
+                  onPressed: null,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     localization.translate("Log_In"),
                     style: TextStyle(

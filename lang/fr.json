@@ -8,8 +8,14 @@
   "Username":"Nom d'utilisateur",
   "phone": "téléphone",
   "Date Of Birth": "Date de naissance",
-  "Location": "Emplacement"
-  "login": "تسجيل الدخول",
+  "Location": "Emplacement",
+  "DashBoard": "bord",
+  "profile": "profil",
+  "Flat": "Plat",
+  "Reservation": "Réservation",
+  "about": "à propos",
+  "connect Us": "nous connecter",
+  "Home": "bord"
   "Enter_your_email.": "Entrer Votre Email",
   "Enter_your_password.": "Tapez votre mot de passe.",
   "Log_In": "S'identifier",

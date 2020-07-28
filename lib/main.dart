@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/Screen/dashboard.dart';
 import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
+import 'package:mo8tarib/Screen/dashboard/home1.dart';
 import 'package:mo8tarib/Screen/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
-
 import 'Screen/sign_up.dart';
+import 'Screen/sign_up_2.dart';
 
 void main() => runApp(MyApp());
 
@@ -77,7 +78,13 @@ class _MyAppState extends State<MyApp> {
           return supportedLocales.first;
         },
         debugShowCheckedModeBanner: false,
-        home: DashBoardLayout(),
+        //home: SignUp2(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Login(),
+          '/signup': (context) => SignUp2(),
+          '/home': (context) => DashBoardLayout(),
+        },
       );
     }
   }

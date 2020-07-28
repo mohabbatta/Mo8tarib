@@ -26,6 +26,8 @@ class _DashBoardState extends State<DashBoardLayout>
   Animation<double> menuScaleAnimation;
   Animation<Offset> slideAnimation;
 
+  //BorderRadiusGeometry borderRadius;
+
   @override
   void initState() {
     controller = AnimationController(vsync: this, duration: duration);
@@ -33,6 +35,7 @@ class _DashBoardState extends State<DashBoardLayout>
     menuScaleAnimation = Tween<double>(begin: 0, end: 1).animate(controller);
     slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0))
         .animate(controller);
+    // borderRadius = BorderRadius.circular(0);
     super.initState();
   }
 
@@ -49,6 +52,7 @@ class _DashBoardState extends State<DashBoardLayout>
       else
         controller.reverse();
       isCollapsed = !isCollapsed;
+      // borderRadius = BorderRadius.circular(40);
     });
   }
 
@@ -58,6 +62,7 @@ class _DashBoardState extends State<DashBoardLayout>
     });
 
     isCollapsed = !isCollapsed;
+    // borderRadius = BorderRadius.circular(0);
   }
 
   @override
@@ -84,6 +89,7 @@ class _DashBoardState extends State<DashBoardLayout>
             scaleAnimation: scaleAnimation,
             screenHeight: screenHeight,
             screenWidth: screenWidth,
+            // borderRadius: borderRadius,
             child: BlocBuilder<NavigationBloc, NavigationStates>(builder: (
               context,
               NavigationStates navigationState,

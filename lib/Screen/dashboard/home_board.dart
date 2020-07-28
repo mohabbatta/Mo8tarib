@@ -9,17 +9,20 @@ class HomeBoard extends StatelessWidget {
   final Function onMenuTap;
   final Widget child;
 
-  const HomeBoard(
-      {Key key,
-      this.isCollapsed,
-      this.screenWidth,
-      this.screenHeight,
-      this.duration,
-      this.controller,
-      this.scaleAnimation,
-      this.onMenuTap,
-      this.child})
-      : super(key: key);
+  //final BorderRadiusGeometry borderRadius;
+
+  const HomeBoard({
+    Key key,
+    this.isCollapsed,
+    this.screenWidth,
+    this.screenHeight,
+    this.duration,
+    this.controller,
+    this.scaleAnimation,
+    this.onMenuTap,
+    this.child,
+    //this.borderRadius
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class HomeBoard extends StatelessWidget {
         scale: scaleAnimation,
         child: Material(
           animationDuration: duration,
-          //borderRadius: BorderRadius.all(Radius.circular(20)),
+          //borderRadius: borderRadius,
           elevation: 4,
           child: child,
         ),

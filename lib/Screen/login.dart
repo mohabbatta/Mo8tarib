@@ -6,6 +6,8 @@ import 'package:mo8tarib/component/social_icon.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/localization.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -13,6 +15,11 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   double screenWidth, screenHeight;
+
+  final _auth = FirebaseAuth.instance;
+  String email;
+  String password;
+
   @override
   void initState() {
     super.initState();
@@ -92,6 +99,9 @@ class _LoginState extends State<Login> {
                       decoration: KTextFieldDecoration.copyWith(
                         hintText: localization.translate("Enter your email."),
                       ),
+                      onChanged: (value) {
+                        email = value;
+                      },
                     ),
                     SizedBox(
                       height: 8.0,
@@ -102,6 +112,9 @@ class _LoginState extends State<Login> {
                       decoration: KTextFieldDecoration.copyWith(
                           hintText:
                               localization.translate("Enter your password.")),
+                      onChanged: (value) {
+                        password = value;
+                      },
                     ),
                     SizedBox(
                       height: 24.0,
@@ -109,8 +122,19 @@ class _LoginState extends State<Login> {
                     new RoundButton(
                       colour: foregroundColor,
                       title: localization.translate("Log In"),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/home');
+                      onPressed: () async {
+                        try {
+                          final _user = await _auth.signInWithEmailAndPassword(
+                              email: email, password: password);
+                          print("check user");
+                          if (_user != null) {
+                            print("loggin");
+                            Navigator.pushNamed(context, '/home');
+                          }
+                        } catch (e) {
+                          print("ex");
+                          print(e);
+                        }
                       },
                     ),
                     RawMaterialButton(

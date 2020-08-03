@@ -73,31 +73,33 @@ class _DashBoardState extends State<DashBoardLayout>
 
     return BlocProvider(
       create: (context) => NavigationBloc(onMenuTap),
-      child: Stack(
-        children: <Widget>[
-          BlocBuilder<NavigationBloc, NavigationStates>(
-            builder: (context, NavigationStates navigationState) {
-              return Menu(menuScaleAnimation, slideAnimation,
-                  findSelectedIndex(navigationState), onMenuItemClicked);
-            },
-          ),
-          HomeBoard(
-            duration: duration,
-            controller: controller,
-            isCollapsed: isCollapsed,
-            onMenuTap: onMenuTap,
-            scaleAnimation: scaleAnimation,
-            screenHeight: screenHeight,
-            screenWidth: screenWidth,
-            // borderRadius: borderRadius,
-            child: BlocBuilder<NavigationBloc, NavigationStates>(builder: (
-              context,
-              NavigationStates navigationState,
-            ) {
-              return navigationState as Widget;
-            }),
-          ),
-        ],
+      child: Material(
+        child: Stack(
+          children: <Widget>[
+            BlocBuilder<NavigationBloc, NavigationStates>(
+              builder: (context, NavigationStates navigationState) {
+                return Menu(menuScaleAnimation, slideAnimation,
+                    findSelectedIndex(navigationState), onMenuItemClicked);
+              },
+            ),
+            HomeBoard(
+              duration: duration,
+              controller: controller,
+              isCollapsed: isCollapsed,
+              onMenuTap: onMenuTap,
+              scaleAnimation: scaleAnimation,
+              screenHeight: screenHeight,
+              screenWidth: screenWidth,
+              // borderRadius: borderRadius,
+              child: BlocBuilder<NavigationBloc, NavigationStates>(builder: (
+                context,
+                NavigationStates navigationState,
+              ) {
+                return navigationState as Widget;
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }

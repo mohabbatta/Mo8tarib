@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:mo8tarib/Screen/dashboard.dart';
 import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/Screen/dashboard/home1.dart';
+import 'package:mo8tarib/Screen/dashboard/insidehome/find.dart';
 import 'package:mo8tarib/Screen/home.dart';
- master
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
+import 'package:mo8tarib/Screen/property/add_property.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
+import 'package:mo8tarib/test.dart';
+import 'package:mo8tarib/test_user.dart';
+import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/bloc/barbloc/ui.dart';
 
 import 'Screen/sign_up.dart';
 import 'Screen/sign_up_2.dart';
@@ -39,14 +43,15 @@ class _MyAppState extends State<MyApp> {
       _locale = locale;
     });
   }
-  static Future<bool>getEmail()async{
 
-    SharedPreferences _shard=await SharedPreferences.getInstance();
-    String email= _shard.getString("email");
-    if(email==null){
+  static Future<bool> getEmail() async {
+    SharedPreferences _shard = await SharedPreferences.getInstance();
+    String email = _shard.getString("email");
+    if (email == null) {
       return false;
-    }else {return true;}
-
+    } else {
+      return true;
+    }
   }
 
   @override
@@ -96,13 +101,15 @@ class _MyAppState extends State<MyApp> {
         },
         debugShowCheckedModeBanner: false,
         //home: SignUp2(),
-        initialRoute: '/',
+        initialRoute: '/home',
         routes: {
           '/': (context) => Login(),
           '/signup': (context) => SignUp2(),
           '/home': (context) => DashBoardLayout(),
+          '/edituser': (context) => EditUser(),
+          //'/user': (context) => TestUser(),
+          '/addprperty': (context) => AddProperty(),
         },
-
       );
     }
   }

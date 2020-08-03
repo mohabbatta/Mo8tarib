@@ -14,15 +14,15 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 40,vertical: 10),
-      height: size.height*0.09,
+      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+      height: size.height * 0.09,
       color: color1,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          BottomNavItem(size: size,icon: Icons.home, isActive: true,),
-          BottomNavItem(size: size,icon: Icons.search),
-          BottomNavItem(size: size,icon: Icons.person)
+          BottomNavItem(size: size, icon: Icons.home, isActive: true),
+          BottomNavItem(size: size, icon: Icons.search),
+          BottomNavItem(size: size, icon: Icons.person)
         ],
       ),
     );

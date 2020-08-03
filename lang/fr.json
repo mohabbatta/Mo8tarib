@@ -15,18 +15,20 @@
   "Reservation": "Réservation",
   "about": "à propos",
   "connect Us": "nous connecter",
-  "Home": "bord"
-  "Enter_your_email.": "Entrer Votre Email",
-  "Enter_your_password.": "Tapez votre mot de passe.",
-  "Log_In": "S'identifier",
-  "Forgot_password?": "mot de passe oublié?",
-  "Don't_have_an_account?": "Vous n'avez pas de compte?",
-  "Sign_up": "S'inscrire",
-  "First_Name":"Prénom",
-  "Last_Name": "Nom de famille",
+  "Home": "bord",
+  "Enter your email.": "Entrer Votre Email",
+  "Enter your password.": "Tapez votre mot de passe.",
+  "Log In": "S'identifier",
+  "Forgot password?": "mot de passe oublié?",
+  "Don't have an account?": "Vous n'avez pas de compte?",
+  "Sign up": "S'inscrire",
+  "First Name":"Prénom",
+  "Last Name": "Nom de famille",
   "Email": "Email",
   "Password": "Mot de passe",
   "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "En vous inscrivant, vous acceptez nos conditions de services et nos politiques de confidentialité",
-  "Already_Have_Account?": "Vous avez déjà un compte?"
+  "Already Have Account?": "Vous avez déjà un compte?",
+  "LogOut": "Logout"
+
 
 }

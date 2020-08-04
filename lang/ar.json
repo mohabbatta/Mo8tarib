@@ -18,7 +18,6 @@
   "Username":"اسم المستخدم",
   "phone": "الهاتف",
   "Date Of Birth": "تاريخ الميلاد",
-
   "Location": "الموقع",
   "DashBoard": "الرئسيه",
   "profile": "الحساب",
@@ -27,9 +26,9 @@
   "about": "عنا",
   "connect Us": "للتواصل",
   "Home": "الرئسيه",
+  "Location": "الموقع",
   "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "تمت الموافقه على شروط الخدمة وسياسات الخصوصية",
   "Already Have Account?": "لديك حساب بالفعل ؟",
   "LogOut": "خروج"
-
 
 }

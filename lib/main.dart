@@ -7,21 +7,16 @@ import 'package:mo8tarib/Screen/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
-import 'package:mo8tarib/Screen/property/add_property.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
-import 'package:mo8tarib/test.dart';
-import 'package:mo8tarib/test_user.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/bloc/barbloc/ui.dart';
-
 import 'Screen/sign_up.dart';
 import 'Screen/sign_up_2.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Screen/home.dart';
 import 'Screen/sign_up.dart';
 import 'model/user.dart';
+import 'Screen/sign_up.dart';
+import 'Screen/sign_up_2.dart';
 
 void main() => runApp(MyApp());
 
@@ -107,9 +102,17 @@ class _MyAppState extends State<MyApp> {
           '/signup': (context) => SignUp2(),
           '/home': (context) => DashBoardLayout(),
           '/edituser': (context) => EditUser(),
-          //'/user': (context) => TestUser(),
-          '/addprperty': (context) => AddProperty(),
         },
+
+    //    home: EditUser(),
+//        getEmail() == false? SignUp():home(new User('',0,{'fname':'tata','lname':'nana'},
+//            'male','',[],'tt')),
+        //home: SignUp2()
+//        routes: {
+//          '/': (context) => Login(),
+//          '/signup': (context) => SignUp2(),
+//          '/home': (context) => DashBoardLayout(),
+//        },
       );
     }
   }

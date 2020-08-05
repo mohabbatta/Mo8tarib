@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mo8tarib/bloc/navigation_bottom.dart';
 
 class Find extends StatefulWidget {
   @override
@@ -9,21 +8,19 @@ class Find extends StatefulWidget {
 class _FindState extends State<Find> {
   @override
   Widget build(BuildContext context) {
-    String name = 'ali';
+    int height = 60;
     return Container(
-      child: Column(
-        children: <Widget>[
-          Text('$name'),
-          RaisedButton(
-            onPressed: () {
-              setState(() {
-                name = 'hussen';
-              });
-            },
-            child: Text('press'),
-          ),
-        ],
-      ),
+      width: 200,
+      height: 200,
+      child: Slider(
+          value: height.toDouble(),
+          min: 0,
+          max: 220,
+          onChanged: (double newValue) {
+            setState(() {
+              height = newValue.round();
+            });
+          }),
     );
   }
   // @override

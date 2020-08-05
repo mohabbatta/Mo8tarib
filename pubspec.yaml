@@ -18,6 +18,7 @@ dependencies:
   flare_flutter: ^2.0.1
   font_awesome_flutter: ^8.8.1
   flutter_bloc: ^6.0.1
+  flutter_awesome_buttons: ^0.1.0
   firebase_core: ^0.4.4+3
   firebase_auth: ^0.16.0
   cloud_firestore: ^0.13.5
@@ -25,6 +26,7 @@ dependencies:
   flutter_svg: ^0.17.0
   cached_network_image: ^2.2.0+1
   provider: ^4.3.1
+
   flutter_facebook_login: ^1.2.0
   google_sign_in: ^4.5.1
   bubble_bottom_bar: ^1.2.0
@@ -32,6 +34,7 @@ dependencies:
   bloc: ^6.0.0  # https://pub.dev/packages/bloc
   equatable: ^1.2.3  # https://pub.dev/packages/equatable
   meta: ^1.1.6  # https://pub.dev/packages/meta
+
 
 dev_dependencies:
   flutter_test:

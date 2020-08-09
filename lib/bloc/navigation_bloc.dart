@@ -37,7 +37,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         break;
       case NavigationEvents.ProfileClickEvent:
         yield Profile(
-          onMenuTap: onMenuTap,
+           onMenuTap
         );
         break;
       case NavigationEvents.FlatClickEvent:

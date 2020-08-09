@@ -11,8 +11,8 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:mo8tarib/localization.dart';
 
 import 'package:provider/provider.dart';
-
 import 'insidehome/GoHome.dart';
+import 'insidehome/allChats.dart';
 import 'insidehome/find.dart';
 import 'insidehome/messages.dart';
 import 'insidehome/search.dart';
@@ -198,7 +198,7 @@ class _HomeDasState extends State<HomeDas> {
                   ?
                   //currentPage
                   Search()
-                  : Messages(),
+                  : AllChats(),
     );
   }
 

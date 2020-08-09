@@ -7,6 +7,23 @@ const color2 = const Color(0xffffa41b);
 const Color backgroundColor1 = Color(0xf000000);
 const Color backgroundColor2 = Color(0xff141418);
 const Color foregroundColor = Color(0xffFFA41B);
+const kAskScreenPrimary = Color(0xff3F51B5);
+const kGreyLabelTextStyle = TextStyle(
+  color: Colors.grey,
+  fontFamily: 'STC',
+);
+const kMessageContainerDecoration = BoxDecoration(
+  border: Border(
+    top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+  ),
+);
+
+const kUsernameTextStyle = TextStyle(
+  fontFamily: 'STC',
+  color: Colors.white,
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+);
 
 const kSendButtonTextStyle = TextStyle(
   color: Colors.lightBlueAccent,
@@ -20,11 +37,6 @@ const kMessageTextFieldDecoration = InputDecoration(
   border: InputBorder.none,
 );
 
-const kMessageContainerDecoration = BoxDecoration(
-  border: Border(
-    top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-  ),
-);
 const KTextFieldDecoration = InputDecoration(
   hintText: 'Enter your value.',
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),

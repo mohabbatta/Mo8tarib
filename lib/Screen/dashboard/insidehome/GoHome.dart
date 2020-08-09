@@ -7,18 +7,16 @@ import 'package:mo8tarib/component/allHomeComponent/imageFlatWidget.dart';
 import '../../../global.dart';
 import '../../../localization.dart';
 
-
 class GoHome extends StatefulWidget {
   final Size size;
   final String name;
 
-  const GoHome( {Key key, this.size,this.name}) : super(key: key);
+  const GoHome({Key key, this.size, this.name}) : super(key: key);
   @override
   _GoHomeState createState() => _GoHomeState();
 }
 
 class _GoHomeState extends State<GoHome> {
-
   List<String> image = [
     "https://media.gettyimages.com/photos/hotel-room-in-the-new-hotel-complex-in-moscow-picture-id871617622?s=612x612",
     "https://q-cf.bstatic.com/images/hotel/max1024x768/222/222713113.jpg",
@@ -32,14 +30,12 @@ class _GoHomeState extends State<GoHome> {
   @override
   void initState() {
     super.initState();
-    name=widget.name;
-    size=widget.size;
+    name = widget.name;
+    size = widget.size;
   }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Container(
       color: Colors.white70,
       child: ListView.builder(
@@ -52,7 +48,8 @@ class _GoHomeState extends State<GoHome> {
             aspectRatio: 0.8,
             child: GestureDetector(
               onTap: () {
-                print('home');
+                print('go to details');
+                Navigator.pushNamed(context, '/postdetails');
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -69,21 +66,20 @@ class _GoHomeState extends State<GoHome> {
                                 radius: 20,
                                 image: NetworkImage(
                                     'https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg')
-                              //AssetImage('images/person.png')
-                              // CachedNetworkImageProvider('https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg'),
-                            ),
+                                //AssetImage('images/person.png')
+                                // CachedNetworkImageProvider('https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg'),
+                                ),
                             SizedBox(width: size.width * .03),
                             Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('$name',
-                                    style: TextStyle(
-                                        color: color1, fontSize: 18)),
+                                    style:
+                                        TextStyle(color: color1, fontSize: 18)),
                                 SizedBox(height: size.height * .007),
                                 Text('since 2m',
-                                    style: TextStyle(
-                                        color: color1, fontSize: 15)),
+                                    style:
+                                        TextStyle(color: color1, fontSize: 15)),
                               ],
                             ),
                             Expanded(child: SizedBox()),
@@ -104,8 +100,7 @@ class _GoHomeState extends State<GoHome> {
                           indent: size.width * .2,
                         ),
                         Padding(
-                          padding:
-                          const EdgeInsets.symmetric(vertical: 8),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Text(
                             "Spaical Room",
                             style: TextStyle(fontSize: 25),
@@ -113,15 +108,13 @@ class _GoHomeState extends State<GoHome> {
                         ),
                         Expanded(
                           child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
                               Expanded(
                                 child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceAround,
                                   children: <Widget>[
                                     Row(
                                       children: <Widget>[
@@ -132,8 +125,7 @@ class _GoHomeState extends State<GoHome> {
                                         SizedBox(width: 5),
                                         Text(
                                           "Cairo",
-                                          style:
-                                          TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 18),
                                         )
                                       ],
                                     ),
@@ -146,8 +138,7 @@ class _GoHomeState extends State<GoHome> {
                                         SizedBox(width: 5),
                                         Text(
                                           "room(2)",
-                                          style:
-                                          TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 18),
                                         )
                                       ],
                                     ),
@@ -160,8 +151,7 @@ class _GoHomeState extends State<GoHome> {
                                         SizedBox(width: 5),
                                         Text(
                                           "100M",
-                                          style:
-                                          TextStyle(fontSize: 18),
+                                          style: TextStyle(fontSize: 18),
                                         )
                                       ],
                                     ),
@@ -172,8 +162,8 @@ class _GoHomeState extends State<GoHome> {
                                       allowHalfRating: true,
                                       itemCount: 5,
                                       itemSize: 20,
-                                      itemPadding: EdgeInsets.symmetric(
-                                          horizontal: 2.0),
+                                      itemPadding:
+                                          EdgeInsets.symmetric(horizontal: 2.0),
                                       itemBuilder: (context, _) => Icon(
                                         Icons.star,
                                         color: Colors.amber,
@@ -196,8 +186,7 @@ class _GoHomeState extends State<GoHome> {
                                         style: TextStyle(fontSize: 30)),
                                     RaisedButton(
                                       shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(20),
                                       ),
                                       color: Colors.indigo,
                                       onPressed: () {
@@ -213,8 +202,7 @@ class _GoHomeState extends State<GoHome> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10),
+                            padding: const EdgeInsets.symmetric(vertical: 10),
                             child: SizedBox(
                               height: 150,
                               child: ListView.builder(
@@ -224,8 +212,8 @@ class _GoHomeState extends State<GoHome> {
                                 itemCount: image.length,
                                 itemBuilder: (context, index) =>
                                     imageFlatWidget(
-                                      image: NetworkImage(image[index]),
-                                    ),
+                                  image: NetworkImage(image[index]),
+                                ),
                               ),
                             ),
                           ),
@@ -239,17 +227,16 @@ class _GoHomeState extends State<GoHome> {
                                   radius: 20,
                                   image: NetworkImage(
                                       'https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg')
-                                //AssetImage('images/person.png')
-                                // CachedNetworkImageProvider('https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg'),
-                              ),
+                                  //AssetImage('images/person.png')
+                                  // CachedNetworkImageProvider('https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg'),
+                                  ),
                               SizedBox(
                                 width: 5,
                               ),
                               Expanded(
                                 child: TextField(
                                   textAlign: TextAlign.center,
-                                  decoration:
-                                  KTextFieldDecoration.copyWith(
+                                  decoration: KTextFieldDecoration.copyWith(
                                     hintText: "Comment",
                                   ),
                                 ),
@@ -271,7 +258,5 @@ class _GoHomeState extends State<GoHome> {
         ),
       ),
     );
-
   }
-
 }

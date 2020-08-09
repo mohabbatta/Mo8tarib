@@ -1,36 +1,26 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mo8tarib/component/resuable_edit_user.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/localization.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart';
-import 'package:image_downloader/image_downloader.dart';
 
-class EditUser extends StatefulWidget {
+class AddINf extends StatefulWidget {
   @override
-  _EditUserState createState() => _EditUserState();
+  _AddINfState createState() => _AddINfState();
 }
 
-class _EditUserState extends State<EditUser> {
+class _AddINfState extends State<AddINf> {
   final _fireStore = Firestore.instance;
   FirebaseUser loggedInUser;
   final _auth = FirebaseAuth.instance;
-
-  DocumentSnapshot _currentDocument;
-
-  _updateData(TextEditingController controller) async {
-    await _fireStore
-        .collection('info')
-        .document(_currentDocument.documentID)
-        .updateData({'age': controller.text});
-  }
-  //  _currentDocument.reference.updateData({'age': value});
 
   void getCurrentUser() async {
     try {
@@ -38,7 +28,7 @@ class _EditUserState extends State<EditUser> {
       if (user != null) {
         loggedInUser = user;
         print(user.email);
-        getData();
+//        getData();
       }
     } catch (e) {
       print(e);
@@ -74,7 +64,6 @@ class _EditUserState extends State<EditUser> {
     phoneController = TextEditingController(text: phoneText);
 
     getCurrentUser();
-    //print(loggedInUser.email);
     // getData();
     //loadImage();
 
@@ -85,14 +74,12 @@ class _EditUserState extends State<EditUser> {
 
   @override
   void dispose() {
-//    userNameController.dispose();
     firstNameController.dispose();
     midNameController.dispose();
     lastNameController.dispose();
-//    ageController.dispose();
-//    emailController.dispose();
-//    phoneNameController.dispose();
-//    locationNameController.dispose();
+    ageController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
     super.dispose();
   }
 
@@ -107,53 +94,27 @@ class _EditUserState extends State<EditUser> {
   @override
   Widget build(BuildContext context) {
     var localization = AppLocalizations.of(context);
-//    var onPressed;
-//
-//    if (enable) {
-//      onPressed = () {
-//        print('mohamed');
-//      };
-//    }
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           centerTitle: true,
           title: Text(
-            localization.translate("Edit Profile"),
+            localization.translate("Add Information"),
             style: TextStyle(
               color: foregroundColor,
             ),
           ),
-          leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                size: 30,
-                color: foregroundColor,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/home');
-              }),
-          actions: <Widget>[
-//            Padding(
-//              padding: const EdgeInsets.all(16.0),
-//              child: Theme(
-//                data: ThemeData(
-//                    // splashColor: Colors.transparent,
-//                    //highlightColor: Colors.transparent,
-//                    ),
-//                child: InkWell(
-//                  onTap: null,
-//                  child: Center(
-//                    child: Text(
-//                      localization.translate("Done"),
-//                      style: TextStyle(color: foregroundColor, fontSize: 20),
-//                    ),
-//                  ),
-//                ),
+//          leading: IconButton(
+//              icon: Icon(
+//                Icons.arrow_back,
+//                size: 30,
+//                color: foregroundColor,
 //              ),
-//            )
+//              onPressed: () {
+//                Navigator.pushNamed(context, '/home');
+//              }),
+          actions: <Widget>[
             Theme(
               data: ThemeData(
                 splashColor: Colors.transparent,
@@ -162,37 +123,27 @@ class _EditUserState extends State<EditUser> {
               child: Builder(
                 builder: (context) => FlatButton(
                   onPressed: () {
-                    _currentDocument.reference
-                        .updateData({'name.first': firstNameController.text});
-                    _currentDocument.reference
-                        .updateData({'name.mid': midNameController.text});
-                    _currentDocument.reference
-                        .updateData({'name.last': lastNameController.text});
-                    _currentDocument.reference
-                        .updateData({'age': ageController.text});
-                    _currentDocument.reference
-                        .updateData({'phone': phoneController.text});
-//                    _fireStore.collection('user').add(
-//                      {
-//                        'name': {
-//                          'first': firstNameText,
-//                          'mid': midNameText,
-//                          'last': lastNameText,
-//                        },
-//                        'age': ageText,
-//                        'email': emailText,
-//                        'phone': phoneText,
-//                        'url': url,
-//                        'address': currentAddress,
-//                        'location': GeoPoint(
-//                            currentPosition.latitude, currentPosition.longitude)
-//                      },
-//                    );
+                    _fireStore.collection('user').add(
+                      {
+                        'name': {
+                          'first': firstNameText,
+                          'mid': midNameText,
+                          'last': lastNameText,
+                        },
+                        'age': ageText,
+                        'email': emailText,
+                        'phone': phoneText,
+                        'url': url,
+                        'address': currentAddress,
+                        'location': GeoPoint(
+                            currentPosition.latitude, currentPosition.longitude)
+                      },
+                    );
 
-//                    Navigator.pushNamed(context, '/home');
+                    Navigator.pushNamed(context, '/home');
                   },
                   child: Text(
-                    'Update',
+                    'Done',
                     style: TextStyle(fontSize: 22),
                   ),
                   color: Colors.white,
@@ -213,7 +164,6 @@ class _EditUserState extends State<EditUser> {
                   padding: EdgeInsets.symmetric(vertical: 20),
                   child: CircleAvatar(
                     backgroundImage: image == null ? null : FileImage(image),
-                    //AssetImage('images/avater.png'),
                     radius: 60,
                   ),
                 ),
@@ -235,17 +185,6 @@ class _EditUserState extends State<EditUser> {
                     ),
                   ),
                 ),
-
-//                Builder(
-//                  builder: (context){
-//                    return InkWell(
-//                    onTap: uploadImage(context),
-//                    child: Text(
-//                      localization.translate("Change profile photo"),
-//                      style: TextStyle(color: foregroundColor),
-//                    ),
-//                  ),}
-//                ),
                 ReusableEditUser(
                   hint: localization.translate("Username"),
                   textFieldName: localization.translate("Username"),
@@ -287,7 +226,6 @@ class _EditUserState extends State<EditUser> {
                   textFieldName: localization.translate("Age"),
                   getText: (value) {
                     ageText = value;
-                    //  _updateData(ageController);
                   },
                 ),
                 SizedBox(child: Divider(color: Colors.black)),
@@ -317,18 +255,6 @@ class _EditUserState extends State<EditUser> {
                         fontSize: 18,
                       ),
                     ),
-//                    Expanded(
-//                      child: TextField(
-//                        style: TextStyle(
-//                          fontSize: 20,
-//                        ),
-//                        controller: locationNameController,
-//                        textAlign: TextAlign.end,
-//                        decoration: InputDecoration(border: InputBorder.none),
-//
-//                        // onChanged: getText,
-//                      ),
-//                    ),
                     Expanded(
                       child: Text(
                         locationText,
@@ -340,9 +266,7 @@ class _EditUserState extends State<EditUser> {
                           Icons.location_on,
                           color: foregroundColor,
                         ),
-                        onPressed: () {}
-                        //getCurrentLocation()
-                        )
+                        onPressed: getCurrentLocation())
                   ],
                 ),
               ],
@@ -401,14 +325,12 @@ class _EditUserState extends State<EditUser> {
 
   void getData() async {
     print('xxxxxxxxxxxxxxxxxxxxxx');
-    //  getCurrentUser();
     _fireStore
         .collection('user')
         .where("email", isEqualTo: loggedInUser.email)
         .snapshots()
         .listen((data) => data.documents.forEach((doc) {
               setState(() {
-                _currentDocument = doc;
                 url = doc['url'];
                 map1 = doc['name'];
                 firstNameText = map1['first'];
@@ -432,48 +354,43 @@ class _EditUserState extends State<EditUser> {
                 print(emailText);
                 print(phoneText);
               });
-
               loadImage(url);
-
-//              print(doc["location"]);
-//              geoPoint = doc['location'];
-//              print(geoPoint.longitude);
             }));
     print('xxxxxxxxxxxxxxxxxxxxxx');
   }
 
-//  getCurrentLocation() {
-//    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-//
-//    geolocator
-//        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-//        .then((Position position) {
-//      print(position);
-//      setState(() {
-//        currentPosition = position;
-//      });
-//      _getAddressFromLatLng();
-//    }).catchError((e) {
-//      print(e);
-//    });
-//  }
-//
-//  _getAddressFromLatLng() async {
-//    try {
-//      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-//          currentPosition.latitude, currentPosition.longitude);
-//
-//      Placemark place = p[0];
-//
-//      setState(() {
-////        currentAddress =
-////            "${place.locality}, ${place.postalCode}, ${place.country}";
-//        locationText = place.name + " " + place.locality + " " + place.country;
-//        TextEditingController(text: locationText);
-//        print(place.name + place.locality + place.postalCode + place.country);
-//      });
-//    } catch (e) {
-//      print(e);
-//    }
-//  }
+  getCurrentLocation() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) {
+      print(position);
+      setState(() {
+        currentPosition = position;
+      });
+      _getAddressFromLatLng();
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
+  _getAddressFromLatLng() async {
+    try {
+      List<Placemark> p = await geolocator.placemarkFromCoordinates(
+          currentPosition.latitude, currentPosition.longitude);
+
+      Placemark place = p[0];
+
+      setState(() {
+//        currentAddress =
+//            "${place.locality}, ${place.postalCode}, ${place.country}";
+        locationText = place.name + " " + place.locality + " " + place.country;
+        TextEditingController(text: locationText);
+        print(place.name + place.locality + place.postalCode + place.country);
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 }

@@ -10,23 +10,18 @@ class _MessagesState extends State<Messages> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('My number is: '),
+    return Container(
+      color: Colors.blueAccent,
+      child: Column(
+        children: <Widget>[
+          RaisedButton(onPressed: () {
+            setState(() {
+              height = 20;
+            });
+          }),
+          Text(height.toString())
+        ],
       ),
     );
-//    return Container(
-//      color: Colors.blueAccent,
-//      child: Column(
-//        children: <Widget>[
-//          RaisedButton(onPressed: () {
-//            setState(() {
-//              height = 20;
-//            });
-//          }),
-//          Text(height.toString())
-//        ],
-//      ),
-//    );
   }
 }

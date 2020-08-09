@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mo8tarib/Screen/dashboard/insidehome/discover.dart';
 import 'package:mo8tarib/bloc/navigation_bloc.dart';
 import 'package:mo8tarib/component/allHomeComponent/AvatarWidget.dart';
 import 'package:mo8tarib/component/allHomeComponent/imageFlatWidget.dart';
@@ -13,7 +14,6 @@ import 'package:mo8tarib/localization.dart';
 import 'package:provider/provider.dart';
 
 import 'insidehome/GoHome.dart';
-import 'insidehome/find.dart';
 import 'insidehome/messages.dart';
 import 'insidehome/search.dart';
 //
@@ -60,17 +60,16 @@ class _HomeDasState extends State<HomeDas> {
   int currentIndex;
 
   String ali = 'ali';
-  int height = 60;
-
-  RangeValues priceValues = RangeValues(400, 600);
-  RangeLabels priceLabels = RangeLabels('400', '600');
-
-  RangeValues sizeValues = RangeValues(400, 600);
-  RangeLabels sizeLabels = RangeLabels('400', '600');
+//  int height = 60;
+//
+//  RangeValues priceValues = RangeValues(400, 600);
+//  RangeLabels priceLabels = RangeLabels('400', '600');
+//
+//  RangeValues sizeValues = RangeValues(400, 600);
+//  RangeLabels sizeLabels = RangeLabels('400', '600');
 
   @override
   void initState() {
-    // TODO: implement initState
     currentIndex = 0;
     super.initState();
   }
@@ -117,12 +116,7 @@ class _HomeDasState extends State<HomeDas> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            ali = 'mohamed';
-          });
-          print("mohab");
-        },
+        onPressed: () {},
         child: Icon(Icons.add),
         backgroundColor: Colors.red,
       ),
@@ -159,7 +153,7 @@ class _HomeDasState extends State<HomeDas> {
                 Icons.near_me,
                 color: Colors.deepPurple,
               ),
-              title: Text("$ali")),
+              title: Text("Discover")),
           BubbleBottomBarItem(
               backgroundColor: Colors.indigo,
               icon: Icon(
@@ -170,7 +164,7 @@ class _HomeDasState extends State<HomeDas> {
                 Icons.search,
                 color: Colors.indigo,
               ),
-              title: Text("Find")),
+              title: Text("Search")),
           BubbleBottomBarItem(
               backgroundColor: Colors.green,
               icon: Icon(
@@ -187,13 +181,244 @@ class _HomeDasState extends State<HomeDas> {
       body: (currentIndex == 0)
           ?
           //GoHome()
-
-          GoHome(size:size, name: name,)
+          GoHome(size: size, name: name)
+//          Container(
+//              color: Colors.white70,
+//              child: ListView.builder(
+//                padding: EdgeInsets.all(4),
+//                shrinkWrap: true,
+//                itemCount: 3,
+//                itemBuilder: (context, index) => Padding(
+//                  padding: EdgeInsets.all(5),
+//                  child: AspectRatio(
+//                    aspectRatio: 0.8,
+//                    child: GestureDetector(
+//                      onTap: () {
+//                        print('home');
+//                      },
+//                      child: Container(
+//                        decoration: BoxDecoration(
+//                            color: Colors.blueGrey.withOpacity(0.2),
+//                            borderRadius: BorderRadius.circular(30)),
+//                        child: Padding(
+//                          padding: EdgeInsets.all(6),
+//                          child: Column(
+//                              crossAxisAlignment: CrossAxisAlignment.start,
+//                              children: [
+//                                Row(
+//                                  children: [
+//                                    AvatarWidget(
+//                                        radius: 20,
+//                                        image: NetworkImage(
+//                                            'https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg')
+//                                        //AssetImage('images/person.png')
+//                                        // CachedNetworkImageProvider('https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg'),
+//                                        ),
+//                                    SizedBox(width: size.width * .03),
+//                                    Column(
+//                                      crossAxisAlignment:
+//                                          CrossAxisAlignment.start,
+//                                      children: [
+//                                        Text('$name',
+//                                            style: TextStyle(
+//                                                color: color1, fontSize: 18)),
+//                                        SizedBox(height: size.height * .007),
+//                                        Text('since 2m',
+//                                            style: TextStyle(
+//                                                color: color1, fontSize: 15)),
+//                                      ],
+//                                    ),
+//                                    Expanded(child: SizedBox()),
+//                                    IconButton(
+//                                      icon: Icon(Icons.favorite_border),
+//                                      onPressed: () {
+//                                        setState(() {
+//                                          name = 'hussen';
+//                                        });
+//                                        print('object');
+//                                      },
+//                                    )
+//                                  ],
+//                                ),
+//                                Divider(
+//                                  color: color1,
+//                                  endIndent: size.width * .2,
+//                                  indent: size.width * .2,
+//                                ),
+//                                Padding(
+//                                  padding:
+//                                      const EdgeInsets.symmetric(vertical: 8),
+//                                  child: Text(
+//                                    "Spaical Room",
+//                                    style: TextStyle(fontSize: 25),
+//                                  ),
+//                                ),
+//                                Expanded(
+//                                  child: Row(
+//                                    mainAxisAlignment:
+//                                        MainAxisAlignment.spaceAround,
+//                                    children: <Widget>[
+//                                      Expanded(
+//                                        child: Column(
+//                                          crossAxisAlignment:
+//                                              CrossAxisAlignment.start,
+//                                          mainAxisAlignment:
+//                                              MainAxisAlignment.spaceAround,
+//                                          children: <Widget>[
+//                                            Row(
+//                                              children: <Widget>[
+//                                                Icon(
+//                                                  FontAwesomeIcons.mapMarkerAlt,
+//                                                  size: 20,
+//                                                ),
+//                                                SizedBox(width: 5),
+//                                                Text(
+//                                                  "Cairo",
+//                                                  style:
+//                                                      TextStyle(fontSize: 18),
+//                                                )
+//                                              ],
+//                                            ),
+//                                            Row(
+//                                              children: <Widget>[
+//                                                Icon(
+//                                                  FontAwesomeIcons.building,
+//                                                  size: 20,
+//                                                ),
+//                                                SizedBox(width: 5),
+//                                                Text(
+//                                                  "room(2)",
+//                                                  style:
+//                                                      TextStyle(fontSize: 18),
+//                                                )
+//                                              ],
+//                                            ),
+//                                            Row(
+//                                              children: <Widget>[
+//                                                Icon(
+//                                                  FontAwesomeIcons.squarespace,
+//                                                  size: 20,
+//                                                ),
+//                                                SizedBox(width: 5),
+//                                                Text(
+//                                                  "100M",
+//                                                  style:
+//                                                      TextStyle(fontSize: 18),
+//                                                )
+//                                              ],
+//                                            ),
+//                                            RatingBar(
+//                                              initialRating: 3,
+//                                              minRating: 1,
+//                                              direction: Axis.horizontal,
+//                                              allowHalfRating: true,
+//                                              itemCount: 5,
+//                                              itemSize: 20,
+//                                              itemPadding: EdgeInsets.symmetric(
+//                                                  horizontal: 2.0),
+//                                              itemBuilder: (context, _) => Icon(
+//                                                Icons.star,
+//                                                color: Colors.amber,
+//                                                size: 10,
+//                                              ),
+//                                              onRatingUpdate: (rating) {
+//                                                print(rating);
+//                                              },
+//                                            ),
+//                                            Text(' 80 review'),
+//                                          ],
+//                                        ),
+//                                      ),
+//                                      Expanded(
+//                                        child: Column(
+//                                          children: <Widget>[
+//                                            Text('price',
+//                                                style: TextStyle(fontSize: 20)),
+//                                            Text('200\$',
+//                                                style: TextStyle(fontSize: 30)),
+//                                            RaisedButton(
+//                                              shape: RoundedRectangleBorder(
+//                                                borderRadius:
+//                                                    BorderRadius.circular(20),
+//                                              ),
+//                                              color: Colors.indigo,
+//                                              onPressed: () {
+//                                                print('object');
+//                                              },
+//                                              child: Text('Book'),
+//                                            )
+//                                          ],
+//                                        ),
+//                                      ),
+//                                    ],
+//                                  ),
+//                                ),
+//                                Expanded(
+//                                  child: Padding(
+//                                    padding: const EdgeInsets.symmetric(
+//                                        vertical: 10),
+//                                    child: SizedBox(
+//                                      height: 150,
+//                                      child: ListView.builder(
+//                                        shrinkWrap: true,
+//                                        scrollDirection: Axis.horizontal,
+//                                        physics: ClampingScrollPhysics(),
+//                                        itemCount: image.length,
+//                                        itemBuilder: (context, index) =>
+//                                            imageFlatWidget(
+//                                          image: NetworkImage(image[index]),
+//                                        ),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                ),
+//                                Padding(
+//                                  padding: const EdgeInsets.symmetric(
+//                                      horizontal: 15, vertical: 5),
+//                                  child: Row(
+//                                    children: <Widget>[
+//                                      AvatarWidget(
+//                                          radius: 20,
+//                                          image: NetworkImage(
+//                                              'https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg')
+//                                          //AssetImage('images/person.png')
+//                                          // CachedNetworkImageProvider('https://greendestinations.org/wp-content/uploads/2019/05/avatar-exemple.jpg'),
+//                                          ),
+//                                      SizedBox(
+//                                        width: 5,
+//                                      ),
+//                                      Expanded(
+//                                        child: TextField(
+//                                          textAlign: TextAlign.center,
+//                                          decoration:
+//                                              KTextFieldDecoration.copyWith(
+//                                            hintText: "Comment",
+//                                          ),
+//                                        ),
+//                                      ),
+//                                      IconButton(
+//                                          icon: Icon(
+//                                            Icons.send,
+//                                            color: Colors.blueAccent,
+//                                          ),
+//                                          onPressed: () {})
+//                                    ],
+//                                  ),
+//                                )
+//                              ]),
+//                        ),
+//                      ),
+//                    ),
+//                  ),
+//                ),
+//              ),
+//            )
           : (currentIndex == 1)
               // ? Discover()
               ?
               //currentPage
-              Find()
+              //Find()
+              Discover()
               : (currentIndex == 2)
                   ?
                   //currentPage
@@ -202,128 +427,117 @@ class _HomeDasState extends State<HomeDas> {
     );
   }
 
-  Container search() {
-    return Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "property type",
-                            style: TextStyle(
-                                fontSize: 24, fontFamily: 'VarelaRound'),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
-                                  color: Colors.indigo,
-                                  child: Text('Any'),
-                                  onPressed: () {}),
-                              RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
-                                  color: Colors.grey,
-                                  child: Text('House'),
-                                  onPressed: () {}),
-                              RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
-                                  color: Colors.grey,
-                                  child: Text('flat'),
-                                  onPressed: () {}),
-                              RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10)),
-                                  color: Colors.grey,
-                                  child: Text('Room'),
-                                  onPressed: () {})
-                            ],
-                          ),
-                          Container(
-                            child: Column(
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text("Price daily",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontFamily: 'VarelaRound')),
-                                    Text(
-                                        "${priceValues.start.round()}\$ - ${priceValues.end.round()}\$",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontFamily: 'VarelaRound')),
-                                  ],
-                                ),
-                                RangeSlider(
-                                  min: 100,
-                                  max: 1000,
-                                  divisions: 9000,
-                                  values: priceValues,
-                                  labels: priceLabels,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      priceValues = value;
-                                      priceLabels = RangeLabels(
-                                          '${value.start.toInt().toString()}\$',
-                                          '${value.end.toInt().toString()}\$');
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            child: Column(
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text("Property Size",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontFamily: 'VarelaRound')),
-                                    Text(
-                                        "${sizeValues.start.round()}m - ${sizeValues.end.round()}m",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontFamily: 'VarelaRound')),
-                                  ],
-                                ),
-                                RangeSlider(
-                                  min: 100,
-                                  max: 1000,
-                                  divisions: 9000,
-                                  values: sizeValues,
-                                  labels: sizeLabels,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      sizeValues = value;
-                                      sizeLabels = RangeLabels(
-                                          '${value.start.toInt().toString()}\$',
-                                          '${value.end.toInt().toString()}\$');
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-  }
+//  Container search() {
+//    return Container(
+//      child: Padding(
+//        padding: const EdgeInsets.all(12.0),
+//        child: Column(
+//          crossAxisAlignment: CrossAxisAlignment.start,
+//          children: <Widget>[
+//            Text(
+//              "property type",
+//              style: TextStyle(fontSize: 24, fontFamily: 'VarelaRound'),
+//            ),
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.spaceAround,
+//              children: <Widget>[
+//                RaisedButton(
+//                    shape: RoundedRectangleBorder(
+//                        borderRadius: BorderRadius.circular(10)),
+//                    color: Colors.indigo,
+//                    child: Text('Any'),
+//                    onPressed: () {}),
+//                RaisedButton(
+//                    shape: RoundedRectangleBorder(
+//                        borderRadius: BorderRadius.circular(10)),
+//                    color: Colors.grey,
+//                    child: Text('House'),
+//                    onPressed: () {}),
+//                RaisedButton(
+//                    shape: RoundedRectangleBorder(
+//                        borderRadius: BorderRadius.circular(10)),
+//                    color: Colors.grey,
+//                    child: Text('flat'),
+//                    onPressed: () {}),
+//                RaisedButton(
+//                    shape: RoundedRectangleBorder(
+//                        borderRadius: BorderRadius.circular(10)),
+//                    color: Colors.grey,
+//                    child: Text('Room'),
+//                    onPressed: () {})
+//              ],
+//            ),
+//            Container(
+//              child: Column(
+//                children: <Widget>[
+//                  Row(
+//                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                    children: <Widget>[
+//                      Text("Price daily",
+//                          style: TextStyle(
+//                              fontSize: 20, fontFamily: 'VarelaRound')),
+//                      Text(
+//                          "${priceValues.start.round()}\$ - ${priceValues.end.round()}\$",
+//                          style: TextStyle(
+//                              fontSize: 20, fontFamily: 'VarelaRound')),
+//                    ],
+//                  ),
+//                  RangeSlider(
+//                    min: 100,
+//                    max: 1000,
+//                    divisions: 9000,
+//                    values: priceValues,
+//                    labels: priceLabels,
+//                    onChanged: (value) {
+//                      setState(() {
+//                        priceValues = value;
+//                        priceLabels = RangeLabels(
+//                            '${value.start.toInt().toString()}\$',
+//                            '${value.end.toInt().toString()}\$');
+//                      });
+//                    },
+//                  ),
+//                ],
+//              ),
+//            ),
+//            Container(
+//              child: Column(
+//                children: <Widget>[
+//                  Row(
+//                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                    children: <Widget>[
+//                      Text("Property Size",
+//                          style: TextStyle(
+//                              fontSize: 20, fontFamily: 'VarelaRound')),
+//                      Text(
+//                          "${sizeValues.start.round()}m - ${sizeValues.end.round()}m",
+//                          style: TextStyle(
+//                              fontSize: 20, fontFamily: 'VarelaRound')),
+//                    ],
+//                  ),
+//                  RangeSlider(
+//                    min: 100,
+//                    max: 1000,
+//                    divisions: 9000,
+//                    values: sizeValues,
+//                    labels: sizeLabels,
+//                    onChanged: (value) {
+//                      setState(() {
+//                        sizeValues = value;
+//                        sizeLabels = RangeLabels(
+//                            '${value.start.toInt().toString()}\$',
+//                            '${value.end.toInt().toString()}\$');
+//                      });
+//                    },
+//                  ),
+//                ],
+//              ),
+//            )
+//          ],
+//        ),
+//      ),
+//    );
+//  }
 
 //  Container find() {
 //    return Container(

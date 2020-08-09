@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mo8tarib/Screen/dashboard.dart';
+import 'package:mo8tarib/Screen/add_inf.dart';
 import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/Screen/dashboard/home1.dart';
-import 'package:mo8tarib/Screen/dashboard/insidehome/find.dart';
+import 'package:mo8tarib/Screen/forget_password.dart';
 import 'package:mo8tarib/Screen/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
+import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/Screen/post_details.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
 import 'Screen/sign_up.dart';
@@ -102,9 +103,12 @@ class _MyAppState extends State<MyApp> {
           '/signup': (context) => SignUp2(),
           '/home': (context) => DashBoardLayout(),
           '/edituser': (context) => EditUser(),
+          '/postdetails': (context) => PostDetails(),
+          '/addinf': (context) => AddINf(),
+          '/forgetpassword': (context) => ForgetPassword(),
         },
 
-    //    home: EditUser(),
+        //    home: EditUser(),
 //        getEmail() == false? SignUp():home(new User('',0,{'fname':'tata','lname':'nana'},
 //            'male','',[],'tt')),
         //home: SignUp2()

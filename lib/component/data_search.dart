@@ -35,7 +35,6 @@ class DataSearch extends SearchDelegate<String> {
         child: Text(query),
       ),
     );
-//    // TODO: implement buildResults
 //    throw UnimplementedError();
   }
 

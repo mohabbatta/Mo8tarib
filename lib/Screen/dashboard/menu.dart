@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:mo8tarib/bloc/navigation_bloc.dart';
 import 'package:mo8tarib/component/menu_item.dart';
 import '../../global.dart';
@@ -20,31 +24,75 @@ class Menu extends StatefulWidget {
   _MenuState createState() => _MenuState();
 }
 
-final _auth = FirebaseAuth.instance;
-GoogleSignIn _googleSignIn = new GoogleSignIn();
-
-FirebaseUser loggedInUser;
-
-void getCurrentUser() async {
-  try {
-    final user = await _auth.currentUser();
-
-    if (user != null) {
-      loggedInUser = user;
-      print(loggedInUser.email);
-    }
-  } catch (e) {
-    print("error in menu");
-  }
-}
-
-Future<void> googleSignOut() async {
-  await _auth.signOut().then((onValue) {
-    _googleSignIn.signOut();
-  });
-}
-
 class _MenuState extends State<Menu> {
+  final _auth = FirebaseAuth.instance;
+  GoogleSignIn _googleSignIn = new GoogleSignIn();
+  FirebaseUser loggedInUser;
+  final _fireStore = Firestore.instance;
+
+  String url;
+  String firstNameText;
+  String lastNameText;
+  File image;
+  Map<String, dynamic> map1 = {'first': 'ali', 'mid': 'ali', 'last': 'ali'};
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.email);
+        getData();
+      }
+    } catch (e) {
+      print("error in menu");
+    }
+  }
+
+  void getData() async {
+    _fireStore
+        .collection('user')
+        .where("email", isEqualTo: loggedInUser.email)
+        .snapshots()
+        .listen((data) => data.documents.forEach((doc) {
+              setState(() {
+                url = doc['url'];
+                map1 = doc['name'];
+                firstNameText = map1['first'];
+                lastNameText = map1['last'];
+
+                print(url);
+                print(map1['first']);
+                print(map1['last']);
+              });
+
+              loadImage(url);
+            }));
+  }
+
+  void loadImage(String url1) async {
+    var imageId = await ImageDownloader.downloadImage(url1);
+    var path = await ImageDownloader.findPath(imageId);
+    File image1 = File(path);
+    setState(() {
+      image = image1;
+    });
+  }
+
+  Future<void> googleSignOut() async {
+    await _auth.signOut().then((onValue) {
+      _googleSignIn.signOut();
+    });
+  }
+
+  @override
+  void initState() {
+    getCurrentUser();
+//    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SlideTransition(
@@ -71,13 +119,14 @@ class _MenuState extends State<Menu> {
                           children: <Widget>[
                             CircleAvatar(
                               radius: 50.0,
-                              backgroundImage: AssetImage("images/avater.png"),
+                              backgroundImage:
+                                  image == null ? null : FileImage(image),
                             ),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              "mohab batta",
+                              "$firstNameText $lastNameText",
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 20,
@@ -86,14 +135,19 @@ class _MenuState extends State<Menu> {
                                 color: foregroundColor,
                               ),
                             ),
-                            Text(
-                              "Edit Profile",
-                              style: TextStyle(
-                                decoration: TextDecoration.none,
-                                fontSize: 16,
-                                fontFamily: "VarelaRound",
-                                fontWeight: FontWeight.normal,
-                                color: foregroundColor,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/edituser');
+                              },
+                              child: Text(
+                                "Edit Profile",
+                                style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontSize: 16,
+                                  fontFamily: "VarelaRound",
+                                  fontWeight: FontWeight.normal,
+                                  color: foregroundColor,
+                                ),
                               ),
                             )
                           ],
@@ -126,7 +180,7 @@ class _MenuState extends State<Menu> {
                       ),
                       SizedBox(height: 10),
                       MenuItem(
-                        itemName: "Flat",
+                        itemName: "My Property",
                         function: () {
                           BlocProvider.of<NavigationBloc>(context)
                               .add(NavigationEvents.FlatClickEvent);
@@ -189,7 +243,7 @@ class _MenuState extends State<Menu> {
                         print("googleout");
                         _auth.signOut();
                         print("fireout");
-                        Navigator.pop(context);
+                        Navigator.pushNamed(context, '/');
                       },
                     ),
                   )

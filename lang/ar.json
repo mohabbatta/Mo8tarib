@@ -9,6 +9,7 @@
   "Don't have an account?": "ليس لديك حساب؟",
   "Sign up": "التسجيل",
   "First Name":"الاسم الاول",
+  "Mid Name": "الاسم الاوسط",
   "Last Name": "أسم العائله",
   "Email": "البريد الالكتروني",
   "Password": "الرقم السري",
@@ -17,7 +18,7 @@
   "Change profile photo": "تعديل الصوره الشخصيه" ,
   "Username":"اسم المستخدم",
   "phone": "الهاتف",
-  "Date Of Birth": "تاريخ الميلاد",
+  "Age": "العمر",
   "Location": "الموقع",
   "DashBoard": "الرئسيه",
   "profile": "الحساب",
@@ -26,9 +27,11 @@
   "about": "عنا",
   "connect Us": "للتواصل",
   "Home": "الرئسيه",
-  "Location": "الموقع",
   "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "تمت الموافقه على شروط الخدمة وسياسات الخصوصية",
   "Already Have Account?": "لديك حساب بالفعل ؟",
-  "LogOut": "خروج"
+  "LogOut": "خروج",
+  "Add Information": "اضافه معلومات",
+  "Reset Password": "تعديل كلمه المرور",
+  "My Property": "املاكي"
 
 }

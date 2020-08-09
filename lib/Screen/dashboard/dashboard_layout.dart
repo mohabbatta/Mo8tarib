@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mo8tarib/Screen/dashboard/about.dart';
 import 'package:mo8tarib/Screen/dashboard/connect_us.dart';
-import 'package:mo8tarib/Screen/dashboard/flat.dart';
+import 'package:mo8tarib/Screen/dashboard/my_property.dart';
 import 'package:mo8tarib/Screen/dashboard/home1.dart';
 import 'package:mo8tarib/Screen/dashboard/home_board.dart';
 import 'package:mo8tarib/Screen/dashboard/menu.dart';
@@ -110,7 +110,7 @@ int findSelectedIndex(NavigationStates navigationState) {
     return 0;
   } else if (navigationState is Profile) {
     return 1;
-  } else if (navigationState is Flat) {
+  } else if (navigationState is MyProperty) {
     return 2;
   } else if (navigationState is Reservation) {
     return 3;

@@ -8,6 +8,7 @@
   "Don't have an account?": "Don't have an account?",
   "Sign up": "Sign up",
   "First Name":"First Name",
+  "Mid Name": "Mid Name",
   "Last Name": "Last Name",
   "Email": "Email",
   "Password": "Password",
@@ -16,7 +17,7 @@
   "Change profile photo": "Change profile photo" ,
   "Username":"Username",
   "phone": "phone",
-  "Date Of Birth": "Date Of Birth",
+  "Age": "Age",
   "Location": "Location",
   "DashBoard": "DashBoard",
   "profile": "profile",
@@ -27,5 +28,8 @@
   "Home": "Home",
   "By_Signing_Up_You_Agreed_with_our_terms_of_Services_and_privacy_polices": "By Signing Up You Agreed with our terms of Services and privacy polices",
   "Already Have Account?": "Already Have Account?",
-  "LogOut": "Logout"
+  "LogOut": "Logout",
+  "Add Information": "Add Information",
+  "Reset Password": "Reset Password",
+  "My Property": "My Property"
 }

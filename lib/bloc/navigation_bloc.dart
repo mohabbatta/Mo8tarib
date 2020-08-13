@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-//import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mo8tarib/Screen/dashboard/about.dart';
 import 'package:mo8tarib/Screen/dashboard/connect_us.dart';
 import 'package:mo8tarib/Screen/dashboard/my_property.dart';
@@ -24,11 +23,6 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
 
   NavigationBloc(this.onMenuTap) : super(HomeDas(onMenuTap));
 
-//  @override
-//  NavigationStates get initialState => HomeDas(
-//        onMenuTap: onMenuTap,
-//      );
-
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
     switch (event) {
@@ -36,9 +30,7 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield HomeDas(onMenuTap);
         break;
       case NavigationEvents.ProfileClickEvent:
-        yield Profile(
-           onMenuTap
-        );
+        yield Profile(onMenuTap);
         break;
       case NavigationEvents.FlatClickEvent:
         yield MyProperty(

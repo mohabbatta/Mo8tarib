@@ -54,8 +54,7 @@ class DataSearch extends SearchDelegate<String> {
                   text: suggest[index].substring(0, query.length),
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold),
-                  children: [
-                TextSpan(
+                  children: [TextSpan(
                     text: suggest[index].substring(query.length),
                     style: TextStyle(color: Colors.grey))
               ]))),

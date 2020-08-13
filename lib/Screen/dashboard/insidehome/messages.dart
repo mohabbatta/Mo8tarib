@@ -7,14 +7,15 @@ import '../../../global.dart';
 
 final _firestore =Firestore.instance;
 FirebaseUser loggedInUser;
+String id;
+String rece;
 
 class Messages extends StatefulWidget {
 
-  User curr;
-  User receiver;
+ String id, receiver,name;
 
 
-  Messages(this.curr, this.receiver);
+ Messages(this.name,this.id, this.receiver);
 
   @override
   _MessagesState createState() => _MessagesState();
@@ -25,13 +26,15 @@ class _MessagesState extends State<Messages> {
   final massageTextContrller= TextEditingController();
   String massageText;
   final _auth =FirebaseAuth.instance;
-  User rece,current;
+
   @override
   void initState() {
     super.initState();
     getCurrentUser();
     rece=widget.receiver;
-    current=widget.curr;
+    id=widget.receiver;
+    add(id, rece);
+
   }
   void getCurrentUser()async{
     try{
@@ -39,6 +42,13 @@ class _MessagesState extends State<Messages> {
       if(user != null){
         loggedInUser=user;
         print(loggedInUser.email);
+//        var documents=_firestore.collection('user')
+//    .where("email", isEqualTo: loggedInUser.email)
+//    ..snapshots()
+//        .listen((data) => data.documents.forEach((doc) {
+//          id=doc.documentID;
+//        }));
+
       }}catch(e){print(e);}
 
   }
@@ -55,13 +65,23 @@ class _MessagesState extends State<Messages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.black,
+          title: Text(
+            widget.name,
+            style: TextStyle(
+              color: foregroundColor,
+            ),
+          ),),
+      body:
+
+      SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            MassagesStream(rece,current),
-
+            MassagesStream(),
             Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: Container(
@@ -87,8 +107,7 @@ class _MessagesState extends State<Messages> {
                          'text':massageText,
                          'sender':loggedInUser.email,
                          'time':_currentTime,
-                         'user receiver':'0TIsUhY1r66ipNK5Xwif',
-                          'user sender':'1PzYDowdcBrefvuQtPTG'
+                         'users':add(id, rece),
 
                         });
 //                      setState(() {
@@ -109,26 +128,34 @@ class _MessagesState extends State<Messages> {
       ),
     );
   }
+
 }
+String add(String s1,String s2){
+  List<int>a=[];
+  int sum=0;
+  for(int i=0;i<s1.length;i++){
+    sum=(s1.codeUnitAt(i)+s2.codeUnitAt(i))%97;
+    a.add(sum);
+  }
+  print(a);
+  print(new String.fromCharCodes(a));
+  return new String.fromCharCodes(a);
+}
+
 int i;
 class MassagesStream extends StatelessWidget {
-  User rece,curr;
-
-
-  MassagesStream(this.rece, this.curr);
-
+ String users =add(id,rece);
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore.collection('massages')
-           .where("user receiver",whereIn:["0TIsUhY1r66ipNK5Xwif","1PzYDowdcBrefvuQtPTG"])
-         // .where("user sender",isEqualTo: "0TIsUhY1r66ipNK5Xwif")
-          .where("user sender", isEqualTo:"1PzYDowdcBrefvuQtPTG")
+           .where("users",isEqualTo: users).orderBy('time')
           .snapshots(),
       builder: (context,snapshot){
 
         if(!snapshot.hasData){
 
+          print([id , rece]);
           print('no data');
           return Center(
             child: CircularProgressIndicator(
@@ -151,7 +178,7 @@ class MassagesStream extends StatelessWidget {
             (
             text: massage.data['text'],
             sender: massage.data['sender'],
-          //  isMe: currentUser==massageSender,
+            isMe: loggedInUser.email==massage.data['sender'],
                 );
           massageWidgets.add(massageWidget);
        x++; }
@@ -187,7 +214,7 @@ class MassageBubble extends StatelessWidget{
           Text(sender,
             style: TextStyle(
                 fontSize: 12.0,
-                color: Colors.black45
+                color: color2
             ),),
           Material(
             borderRadius:isMe? BorderRadius.only(
@@ -201,7 +228,7 @@ class MassageBubble extends StatelessWidget{
                 bottomRight: Radius.circular(30.0)
             ),
             elevation: 5.0,
-            color: isMe?Colors.lightBlueAccent:Colors.white,
+            color: isMe?color2:Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
               child: Text(text ,

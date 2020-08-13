@@ -14,7 +14,7 @@ const kGreyLabelTextStyle = TextStyle(
 );
 const kMessageContainerDecoration = BoxDecoration(
   border: Border(
-    top: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    top: BorderSide(color: color2, width: 2.0),
   ),
 );
 
@@ -26,7 +26,7 @@ const kUsernameTextStyle = TextStyle(
 );
 
 const kSendButtonTextStyle = TextStyle(
-  color: Colors.lightBlueAccent,
+  color: color2,
   fontWeight: FontWeight.bold,
   fontSize: 18.0,
 );

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-
 class SearchRaisedButton extends StatelessWidget {
   final Color color;
   final Color textColor;
   final String title;
   final Function function;
-
   const SearchRaisedButton(
       {Key key, this.color, this.textColor, this.title, this.function})
       : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return RaisedButton(

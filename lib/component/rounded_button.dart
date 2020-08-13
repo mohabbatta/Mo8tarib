@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 class RoundButton extends StatelessWidget {
   RoundButton({this.colour, this.title, @required this.onPressed});
   final Color colour;
   final String title;
   final Function onPressed;
-
   @override
   Widget build(BuildContext context) {
     return Padding(

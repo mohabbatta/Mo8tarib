@@ -76,12 +76,6 @@ class _EditUserState extends State<EditUser> {
     phoneController = TextEditingController(text: phoneText);
 
     getCurrentUser();
-    //print(loggedInUser.email);
-    // getData();
-    //loadImage();
-
-    // getMessage();
-    //print('////////////////////////////// $currentAddress');
     super.initState();
   }
 
@@ -91,10 +85,6 @@ class _EditUserState extends State<EditUser> {
     firstNameController.dispose();
     midNameController.dispose();
     lastNameController.dispose();
-//    ageController.dispose();
-//    emailController.dispose();
-//    phoneNameController.dispose();
-//    locationNameController.dispose();
     super.dispose();
   }
 
@@ -109,13 +99,6 @@ class _EditUserState extends State<EditUser> {
   @override
   Widget build(BuildContext context) {
     var localization = AppLocalizations.of(context);
-//    var onPressed;
-//
-//    if (enable) {
-//      onPressed = () {
-//        print('mohamed');
-//      };
-//    }
 
     return SafeArea(
       child: Scaffold(

@@ -13,6 +13,7 @@ import 'Screen/dashboard/insidehome/map_marker.dart';
 import 'Screen/dashboard/my_property.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
+import 'Screen/post_details.dart';
 import 'Screen/sign_up.dart';
 import 'Screen/sign_up_2.dart';
 import 'package:shared_preferences/shared_preferences.dart';

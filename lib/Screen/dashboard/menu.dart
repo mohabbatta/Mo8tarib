@@ -34,6 +34,8 @@ class _MenuState extends State<Menu> {
   String firstNameText;
   String lastNameText;
   File image;
+  var image1;
+
   Map<String, dynamic> map1 = {'first': 'ali', 'mid': 'ali', 'last': 'ali'};
 
   void getCurrentUser() async {
@@ -72,12 +74,23 @@ class _MenuState extends State<Menu> {
   }
 
   void loadImage(String url1) async {
-    var imageId = await ImageDownloader.downloadImage(url1);
-    var path = await ImageDownloader.findPath(imageId);
-    File image1 = File(path);
+    //    var imageId = await ImageDownloader.downloadImage(url1);
+//    var path = await ImageDownloader.findPath(imageId);
+//    File image1 = File(path);
+//    setState(() {
+//      image = image1;
+//    });
     setState(() {
-      image = image1;
+      image1 = NetworkImage(url1);
     });
+
+//    ///
+//    var imageId = await ImageDownloader.downloadImage(url1);
+//    var path = await ImageDownloader.findPath(imageId);
+//    File image1 = File(path);
+//    setState(() {
+//      image = image1;
+//    });
   }
 
   Future<void> googleSignOut() async {
@@ -119,8 +132,8 @@ class _MenuState extends State<Menu> {
                           children: <Widget>[
                             CircleAvatar(
                               radius: 50.0,
-                              backgroundImage:
-                                  image == null ? null : FileImage(image),
+                              backgroundImage: image1,
+                              //backgroundImage: image == null ? null : FileImage(image),
                             ),
                             SizedBox(
                               height: 5,

@@ -49,7 +49,7 @@ class _LoginState extends State<Login> {
         showSpinner = false;
       });
       print(e);
-      final snackBar = SnackBar(content: Text('Email or Password are missid '));
+      final snackBar = SnackBar(content: Text(e.message));
       Scaffold.of(context).showSnackBar(snackBar);
     }
   }

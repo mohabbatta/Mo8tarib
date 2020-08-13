@@ -249,7 +249,7 @@ class _SearchState extends State<Search> {
                     Container(
                       height: 200,
                       width: 300,
-                      color: Colors.red,
+                      //  color: Colors.red,
                     )
                   ],
                 ),

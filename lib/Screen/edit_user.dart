@@ -54,6 +54,8 @@ class _EditUserState extends State<EditUser> {
 
   bool enable = false;
   File image;
+  var image1;
+
   String url;
   String userNameText;
   String firstNameText;
@@ -212,7 +214,8 @@ class _EditUserState extends State<EditUser> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
                   child: CircleAvatar(
-                    backgroundImage: image == null ? null : FileImage(image),
+                    backgroundImage: image1,
+                    //backgroundImage: image == null ? null : FileImage(image),
                     //AssetImage('images/avater.png'),
                     radius: 60,
                   ),
@@ -391,12 +394,23 @@ class _EditUserState extends State<EditUser> {
   }
 
   void loadImage(String url1) async {
-    var imageId = await ImageDownloader.downloadImage(url1);
-    var path = await ImageDownloader.findPath(imageId);
-    File image1 = File(path);
+    //    var imageId = await ImageDownloader.downloadImage(url1);
+//    var path = await ImageDownloader.findPath(imageId);
+//    File image1 = File(path);
+//    setState(() {
+//      image = image1;
+//    });
     setState(() {
-      image = image1;
+      image1 = NetworkImage(url1);
     });
+
+//    ///
+//    var imageId = await ImageDownloader.downloadImage(url1);
+//    var path = await ImageDownloader.findPath(imageId);
+//    File image1 = File(path);
+//    setState(() {
+//      image = image1;
+//    });
   }
 
   void getData() async {

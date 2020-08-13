@@ -12,6 +12,12 @@ import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:path/path.dart';
 
+//firebase.auth()
+//.signInWithEmailAndPassword('you@domain.com', 'correcthorsebatterystaple')
+//.then(function(userCredential) {
+//  userCredential.user.updateEmail('newyou@domain.com')
+//})
+
 class AddINf extends StatefulWidget {
   @override
   _AddINfState createState() => _AddINfState();
@@ -35,23 +41,60 @@ class _AddINfState extends State<AddINf> {
     }
   }
 
+  void addData(BuildContext context) {
+    if (int.parse(ageText) < 17) {
+      final snackBar =
+          SnackBar(content: Text('you can\'t go   with your age under 18'));
+      Scaffold.of(context).showSnackBar(snackBar);
+    } else {
+      if (url == null) {
+        final snackBar = SnackBar(content: Text('Please Complete your data'));
+        Scaffold.of(context).showSnackBar(snackBar);
+      } else {
+        _fireStore.collection('user').add(
+          {
+            'name': {
+              'first': firstNameText,
+              'mid': midNameText,
+              'last': lastNameText,
+            },
+            'age': ageText,
+            'email': emailText,
+            'phone': phoneText,
+            'gender': genderController.text,
+            'url': url,
+            'address': locationText,
+          },
+        );
+        Navigator.pushNamed(context, '/home');
+      }
+    }
+//    final snackBar =
+//    SnackBar(content: Text('Information add'));
+//    Scaffold.of(context).showSnackBar(snackBar);
+    // Navigator.pushNamed(context, '/home');
+  }
+
   TextEditingController firstNameController;
   TextEditingController midNameController;
   TextEditingController lastNameController;
   TextEditingController ageController;
   TextEditingController emailController;
   TextEditingController phoneController;
+  TextEditingController genderController;
 
   bool enable = false;
   File image;
+  var image1;
+
   String url;
-  String userNameText;
   String firstNameText;
   String midNameText;
   String lastNameText;
-  String ageText;
+  String ageText = '0';
   String emailText;
   String phoneText;
+  String genderText;
   String locationText = 'press button';
 
   @override
@@ -62,13 +105,9 @@ class _AddINfState extends State<AddINf> {
     ageController = TextEditingController(text: ageText);
     emailController = TextEditingController(text: emailText);
     phoneController = TextEditingController(text: phoneText);
+    genderController = TextEditingController(text: genderText);
 
     getCurrentUser();
-    // getData();
-    //loadImage();
-
-    // getMessage();
-    //print('////////////////////////////// $currentAddress');
     super.initState();
   }
 
@@ -80,6 +119,7 @@ class _AddINfState extends State<AddINf> {
     ageController.dispose();
     emailController.dispose();
     phoneController.dispose();
+    genderController.dispose();
     super.dispose();
   }
 
@@ -90,7 +130,7 @@ class _AddINfState extends State<AddINf> {
 
   String currentAddress;
 
-  Map<String, dynamic> map1 = {'first': 'ali', 'mid': 'ali', 'last': 'ali'};
+  //Map<String, dynamic> map1 = {'first': 'name', 'mid': 'name', 'last': 'name'};
   @override
   Widget build(BuildContext context) {
     var localization = AppLocalizations.of(context);
@@ -123,24 +163,24 @@ class _AddINfState extends State<AddINf> {
               child: Builder(
                 builder: (context) => FlatButton(
                   onPressed: () {
-                    _fireStore.collection('user').add(
-                      {
-                        'name': {
-                          'first': firstNameText,
-                          'mid': midNameText,
-                          'last': lastNameText,
-                        },
-                        'age': ageText,
-                        'email': emailText,
-                        'phone': phoneText,
-                        'url': url,
-                        'address': currentAddress,
-                        'location': GeoPoint(
-                            currentPosition.latitude, currentPosition.longitude)
-                      },
-                    );
-
-                    Navigator.pushNamed(context, '/home');
+//                    _fireStore.collection('user').add(
+//                      {
+//                        'name': {
+//                          'first': firstNameText,
+//                          'mid': midNameText,
+//                          'last': lastNameText,
+//                        },
+//                        'age': ageText,
+//                        'email': emailText,
+//                        'phone': phoneText,
+//                        'gender': genderController.text,
+//                        'url': url,
+//                        'address': currentAddress,
+//                      },
+//                    );
+//
+//                    Navigator.pushNamed(context, '/home');
+                    addData(context);
                   },
                   child: Text(
                     'Done',
@@ -163,6 +203,7 @@ class _AddINfState extends State<AddINf> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
                   child: CircleAvatar(
+                    // backgroundImage: image1,
                     backgroundImage: image == null ? null : FileImage(image),
                     radius: 60,
                   ),
@@ -184,13 +225,6 @@ class _AddINfState extends State<AddINf> {
                       color: Colors.white,
                     ),
                   ),
-                ),
-                ReusableEditUser(
-                  hint: localization.translate("Username"),
-                  textFieldName: localization.translate("Username"),
-                  getText: (value) {
-                    userNameText = value;
-                  },
                 ),
                 SizedBox(child: Divider(color: Colors.black)),
                 ReusableEditUser(
@@ -247,10 +281,19 @@ class _AddINfState extends State<AddINf> {
                   },
                 ),
                 SizedBox(child: Divider(color: Colors.black)),
+                ReusableEditUser(
+                  controller: genderController,
+                  hint: localization.translate("Gender"),
+                  textFieldName: localization.translate("Gender"),
+                  getText: (value) {
+                    genderText = value;
+                  },
+                ),
+                SizedBox(child: Divider(color: Colors.black)),
                 Row(
                   children: <Widget>[
                     Text(
-                      'location',
+                      'address',
                       style: TextStyle(
                         fontSize: 18,
                       ),
@@ -278,12 +321,12 @@ class _AddINfState extends State<AddINf> {
   }
 
   ///
-  void pickImage() async {
-    var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      image = imageUP;
-    });
-  }
+//  void pickImage() async {
+//    var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
+//    setState(() {
+//      image = imageUP;
+//    });
+//  }
 
   void uploadImage(context) async {
     ///pick image from gallery
@@ -314,50 +357,62 @@ class _AddINfState extends State<AddINf> {
     }
   }
 
-  void loadImage(String url1) async {
-    var imageId = await ImageDownloader.downloadImage(url1);
-    var path = await ImageDownloader.findPath(imageId);
-    File image1 = File(path);
-    setState(() {
-      image = image1;
-    });
-  }
+//  void loadImage(String url1) async {
+//    var imageId = await ImageDownloader.downloadImage(url1);
+//    var path = await ImageDownloader.findPath(imageId);
+//    File image1 = File(path);
+//    setState(() {
+//      image = image1;
+//    });
+//
+////    setState(() {
+////      image1 = NetworkImage(url1);
+////    });
+//
+////    ///
+////    var imageId = await ImageDownloader.downloadImage(url1);
+////    var path = await ImageDownloader.findPath(imageId);
+////    File image1 = File(path);
+////    setState(() {
+////      image = image1;
+////    });
+//  }
 
-  void getData() async {
-    print('xxxxxxxxxxxxxxxxxxxxxx');
-    _fireStore
-        .collection('user')
-        .where("email", isEqualTo: loggedInUser.email)
-        .snapshots()
-        .listen((data) => data.documents.forEach((doc) {
-              setState(() {
-                url = doc['url'];
-                map1 = doc['name'];
-                firstNameText = map1['first'];
-                midNameText = map1['mid'];
-                lastNameText = map1['last'];
-                ageText = doc['age'];
-                emailText = doc['email'];
-                phoneText = doc['phone'];
-                //  locationText = doc['address'];
-                firstNameController.text = firstNameText;
-                midNameController.text = midNameText;
-                lastNameController.text = lastNameText;
-                ageController.text = ageText;
-                emailController.text = emailText;
-                phoneController.text = phoneText;
-                print(url);
-                print(map1['first']);
-                print(map1['mid']);
-                print(map1['last']);
-                print(ageText);
-                print(emailText);
-                print(phoneText);
-              });
-              loadImage(url);
-            }));
-    print('xxxxxxxxxxxxxxxxxxxxxx');
-  }
+//  void getData() async {
+//    print('xxxxxxxxxxxxxxxxxxxxxx');
+//    _fireStore
+//        .collection('user')
+//        .where("email", isEqualTo: loggedInUser.email)
+//        .snapshots()
+//        .listen((data) => data.documents.forEach((doc) {
+//              setState(() {
+//                url = doc['url'];
+//                map1 = doc['name'];
+//                firstNameText = map1['first'];
+//                midNameText = map1['mid'];
+//                lastNameText = map1['last'];
+//                ageText = doc['age'];
+//                emailText = doc['email'];
+//                phoneText = doc['phone'];
+//                //  locationText = doc['address'];
+//                firstNameController.text = firstNameText;
+//                midNameController.text = midNameText;
+//                lastNameController.text = lastNameText;
+//                ageController.text = ageText;
+//                emailController.text = emailText;
+//                phoneController.text = phoneText;
+//                print(url);
+//                print(map1['first']);
+//                print(map1['mid']);
+//                print(map1['last']);
+//                print(ageText);
+//                print(emailText);
+//                print(phoneText);
+//              });
+//              loadImage(url);
+//            }));
+//    print('xxxxxxxxxxxxxxxxxxxxxx');
+//  }
 
   getCurrentLocation() {
     final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
@@ -379,13 +434,17 @@ class _AddINfState extends State<AddINf> {
     try {
       List<Placemark> p = await geolocator.placemarkFromCoordinates(
           currentPosition.latitude, currentPosition.longitude);
-
       Placemark place = p[0];
-
       setState(() {
-//        currentAddress =
-//            "${place.locality}, ${place.postalCode}, ${place.country}";
-        locationText = place.name + " " + place.locality + " " + place.country;
+        locationText = place.name +
+            " " +
+            place.subLocality +
+            " " +
+            place.locality +
+            " " +
+            place.administrativeArea +
+            " " +
+            place.country;
         TextEditingController(text: locationText);
         print(place.name + place.locality + place.postalCode + place.country);
       });

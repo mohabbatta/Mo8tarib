@@ -7,8 +7,7 @@ import 'package:mo8tarib/bloc/navigation_bloc.dart';
 import 'package:mo8tarib/component/allHomeComponent/imageFlatWidget.dart';
 import 'package:mo8tarib/global.dart';
 
-
-class Profile extends StatefulWidget with NavigationStates{
+class Profile extends StatefulWidget with NavigationStates {
   final Function onMenuTap;
 
   const Profile(this.onMenuTap);
@@ -17,7 +16,6 @@ class Profile extends StatefulWidget with NavigationStates{
 }
 
 class _ProfileState extends State<Profile> {
-
   List<String> image = [
     "https://media.gettyimages.com/photos/hotel-room-in-the-new-hotel-complex-in-moscow-picture-id871617622?s=612x612",
     "https://q-cf.bstatic.com/images/hotel/max1024x768/222/222713113.jpg",
@@ -35,7 +33,9 @@ class _ProfileState extends State<Profile> {
     _randomChildren ??= List.generate(3, (index) {
       final height = randHeight.clamp(
         50.0,
-        MediaQuery.of(context).size.width, // simply using MediaQuery to demonstrate usage of context
+        MediaQuery.of(context)
+            .size
+            .width, // simply using MediaQuery to demonstrate usage of context
       );
       return Container(
         color: Colors.primaries[index],
@@ -51,33 +51,37 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Persistent AppBar that never scrolls
-      body:
-      DefaultTabController(
+      body: DefaultTabController(
         length: 2,
         child: NestedScrollView(
           // allows you to build a list of elements that would be scrolled away till the body reached the top
-        headerSliverBuilder: (context, _){
-          return[
-            SliverAppBar(
+          headerSliverBuilder: (context, _) {
+            return [
+              SliverAppBar(
                 flexibleSpace: FlexibleSpaceBar(
-
-                  title:Text('Profile', style: TextStyle(color: color2)),
+                  title: Text('Profile', style: TextStyle(color: color2)),
                   centerTitle: true,
-
                 ),
-                expandedHeight:150,
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    size: 30,
+                    color: foregroundColor,
+                  ),
+                  onPressed: widget.onMenuTap,
+                ),
+                expandedHeight: 150,
                 pinned: true,
                 //floating: true,
                 backgroundColor: color1,
                 elevation: 5,
-
-           )
+              )
 //          SliverPersistentHeader(
 //            pinned: true,
 //            delegate: ,
 //
 //          )
-          ];
+            ];
           },
 
           // You tab view goes here
@@ -86,44 +90,34 @@ class _ProfileState extends State<Profile> {
               HeaderSection(),
               TabBar(
                 indicatorColor: color1,
-
                 tabs: [
+                  Tab(child: Text('All Flat', style: TextStyle(color: color2))),
                   Tab(
-
                       child:
-                  Text('All Flat', style: TextStyle(color: color2))
-                  ),
-                  Tab(
-                      child: Text('Posts Save', style: TextStyle(color: color2))
-                  ),
+                          Text('Posts Save', style: TextStyle(color: color2))),
                 ],
               ),
               Expanded(
                 child: TabBarView(
                   children: [
                     GridView.count(
-                      padding: EdgeInsets.zero,
-                      crossAxisCount: 3,
-                      children:<Widget>[
-                        for(int i=0;i<image.length;i++)
-                          imageFlatWidget(
-                            image: NetworkImage(image[i]),
-                          ),
-
-                        ]
-                    ),
-                    GridView.count(
                         padding: EdgeInsets.zero,
                         crossAxisCount: 3,
-                        children:<Widget>[
-                          for(int i=0;i<image.length;i++)
+                        children: <Widget>[
+                          for (int i = 0; i < image.length; i++)
                             imageFlatWidget(
                               image: NetworkImage(image[i]),
                             ),
-
-                        ]
-                    )
-
+                        ]),
+                    GridView.count(
+                        padding: EdgeInsets.zero,
+                        crossAxisCount: 3,
+                        children: <Widget>[
+                          for (int i = 0; i < image.length; i++)
+                            imageFlatWidget(
+                              image: NetworkImage(image[i]),
+                            ),
+                        ])
                   ],
                 ),
               ),
@@ -132,11 +126,10 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
-
   }
 }
-class HeaderSection extends StatelessWidget {
 
+class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -148,34 +141,32 @@ class HeaderSection extends StatelessWidget {
             width: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
-              image: DecorationImage(image: AssetImage('images/avater.png'), fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: AssetImage('images/avater.png'), fit: BoxFit.cover),
             ),
           ),
-          SizedBox(height:5),
+          SizedBox(height: 5),
           Container(
             alignment: Alignment.center,
             child: Text(
               'Tata',
               textAlign: TextAlign.center,
-              style: TextStyle(color: color2,fontWeight: FontWeight.w600, fontSize: 20),
+              style: TextStyle(
+                  color: color2, fontWeight: FontWeight.w600, fontSize: 20),
             ),
           ),
-          SizedBox(height:2),
+          SizedBox(height: 2),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             alignment: Alignment.center,
-            child: Text(
-              'FCI',
-              textAlign: TextAlign.center,
-                style: TextStyle(color: color2)
-            ),
+            child: Text('FCI',
+                textAlign: TextAlign.center, style: TextStyle(color: color2)),
           ),
           SizedBox(height: 5),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 16),
             child: Padding(
-
-              padding: EdgeInsets.only(left: 60,right: 50),
+              padding: EdgeInsets.only(left: 60, right: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -183,22 +174,20 @@ class HeaderSection extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         '4',
-                        style: TextStyle(color: color2,fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            color: color2, fontWeight: FontWeight.w600),
                       ),
-                      Text('Flat',
-                        style: TextStyle(color: color2)
-                      )
+                      Text('Flat', style: TextStyle(color: color2))
                     ],
                   ),
                   Column(
                     children: <Widget>[
                       Text(
                         '4',
-                        style: TextStyle(color: color2,fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            color: color2, fontWeight: FontWeight.w600),
                       ),
-                      Text('Saved',
-                        style: TextStyle(color: color2)
-                      )
+                      Text('Saved', style: TextStyle(color: color2))
                     ],
                   ),
                 ],
@@ -210,5 +199,4 @@ class HeaderSection extends StatelessWidget {
       ),
     );
   }
-
 }

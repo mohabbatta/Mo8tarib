@@ -7,7 +7,10 @@ import 'package:mo8tarib/Screen/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/Screen/post_details.dart';
+import 'package:mo8tarib/Screen/post_details.dart';
+import 'package:mo8tarib/Screen/search_map.dart';
+import 'Screen/dashboard/insidehome/map_marker.dart';
+import 'Screen/dashboard/my_property.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/model/languageControler.dart';
 import 'Screen/sign_up.dart';
@@ -97,7 +100,7 @@ class _MyAppState extends State<MyApp> {
         },
         debugShowCheckedModeBanner: false,
         //home: SignUp2(),
-        initialRoute: '/home',
+        initialRoute: '/',
         routes: {
           '/': (context) => Login(),
           '/signup': (context) => SignUp2(),
@@ -106,6 +109,9 @@ class _MyAppState extends State<MyApp> {
           '/postdetails': (context) => PostDetails(),
           '/addinf': (context) => AddINf(),
           '/forgetpassword': (context) => ForgetPassword(),
+          '/addproperty': (context) => MyProperty(),
+          '/searchmap': (context) => SearchMap(),
+          '/mapmarker': (context) => MapMarker(),
         },
 
         //    home: EditUser(),

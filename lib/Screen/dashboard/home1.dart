@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mo8tarib/Screen/dashboard/insidehome/discover.dart';
+import 'package:mo8tarib/Screen/dashboard/insidehome/map_marker.dart';
 import 'package:mo8tarib/bloc/navigation_bloc.dart';
 import 'package:mo8tarib/component/allHomeComponent/AvatarWidget.dart';
 import 'package:mo8tarib/component/allHomeComponent/imageFlatWidget.dart';
@@ -14,7 +15,6 @@ import 'package:mo8tarib/localization.dart';
 import 'package:provider/provider.dart';
 import 'insidehome/GoHome.dart';
 import 'insidehome/allChats.dart';
-import 'insidehome/find.dart';
 import 'insidehome/messages.dart';
 import 'insidehome/search.dart';
 //
@@ -419,7 +419,7 @@ class _HomeDasState extends State<HomeDas> {
               ?
               //currentPage
               //Find()
-              Discover()
+              MapMarker()
               : (currentIndex == 2)
                   ?
                   //currentPage

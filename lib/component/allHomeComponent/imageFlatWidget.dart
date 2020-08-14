@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 class imageFlatWidget extends StatelessWidget {
   final ImageProvider image;
-
-
-  imageFlatWidget({ this.image = const AssetImage('images/person.png')});
-
+  imageFlatWidget({this.image = const AssetImage('images/person.png')});
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -17,7 +14,6 @@ class imageFlatWidget extends StatelessWidget {
         ),
         child: Image(
           image: image,
-
         ),
       ),
     );

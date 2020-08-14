@@ -13,7 +13,6 @@ class User {
   User(this.key, this.uid, this.name, this.gender, this.uPassword, this.phone,this.email);
 
   factory User.fromSnapshot(DocumentSnapshot snapshot) {
-
     return User(
         snapshot.documentID,
         snapshot.data['id'],
@@ -22,8 +21,8 @@ class User {
         snapshot.data['uPassword'],
         snapshot.data['phone'],
         snapshot.data['email']
-    );
-  }
+    );}
+
   void addUser(String fname,String lname,String email,String password){
 
 

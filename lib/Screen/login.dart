@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/component/rounded_button.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -19,6 +21,9 @@ class _LoginState extends State<Login> {
   bool showSpinner = false;
 
   final _auth = FirebaseAuth.instance;
+  GoogleSignIn _googleSignIn = new GoogleSignIn();
+  FirebaseUser _user;
+
   String email;
   String password;
 
@@ -54,14 +59,59 @@ class _LoginState extends State<Login> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
+  void signInWithFacebook() async {
+    final facebookLogin = FacebookLogin();
+    final result = await facebookLogin.logInWithReadPermissions(['email']);
+    //FacebookAccessToken facebookAccessToken = result.accessToken;
+
+    final AuthCredential credential = FacebookAuthProvider.getCredential(
+      accessToken: result.accessToken.token,
+    );
+    final FirebaseUser user =
+        (await _auth.signInWithCredential(credential)).user;
+    assert(user.email != null);
+    assert(user.displayName != null);
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
+
+    final FirebaseUser currentUser = await _auth.currentUser();
+    assert(user.uid == currentUser.uid);
+    setState(() {
+      if (user != null) {
+        print('Successfully signed in with Facebook. ' + user.email);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DashBoardLayout(),
+            ));
+      } else {
+        print('Failed to sign in with Facebook. ');
+      }
+    });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Future<void> signInWithGoogle() async {
+    print("start");
+    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+    GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount.authentication;
+
+    print("google done");
+
+    AuthCredential credential = GoogleAuthProvider.getCredential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken);
+
+    AuthResult result = (await _auth.signInWithCredential(credential));
+
+    _user = result.user;
+
+    print(_user.displayName);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DashBoardLayout(),
+        ));
   }
 
   @override
@@ -113,11 +163,15 @@ class _LoginState extends State<Login> {
                           SocialIcon(
                               icon: FontAwesomeIcons.facebook,
                               color: Colors.indigo,
-                              socialFunction: () {}),
+                              socialFunction: () {
+                                signInWithFacebook();
+                              }),
                           SocialIcon(
                               icon: FontAwesomeIcons.googlePlus,
                               color: Colors.red,
-                              socialFunction: () {}),
+                              socialFunction: () {
+                                signInWithGoogle();
+                              }),
                         ],
                       ),
                       SizedBox(

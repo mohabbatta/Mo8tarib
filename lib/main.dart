@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:mo8tarib/Screen/add_inf.dart';
 import 'package:mo8tarib/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/Screen/dashboard/home1.dart';
+import 'package:mo8tarib/Screen/dashboard/insidehome/search.dart';
+import 'package:mo8tarib/Screen/dashboard/profile.dart';
 import 'package:mo8tarib/Screen/forget_password.dart';
 import 'package:mo8tarib/Screen/home.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/Screen/login.dart';
 import 'package:mo8tarib/Screen/edit_user.dart';
 import 'package:mo8tarib/Screen/post_details.dart';
+import 'package:mo8tarib/Screen/rent.dart';
 import 'package:mo8tarib/Screen/search_map.dart';
 import 'Screen/dashboard/insidehome/map_marker.dart';
 import 'Screen/dashboard/my_property.dart';
@@ -113,6 +116,7 @@ class _MyAppState extends State<MyApp> {
           '/addproperty': (context) => MyProperty(),
           '/searchmap': (context) => SearchMap(),
           '/mapmarker': (context) => MapMarker(),
+          '/rent': (context) => Rent(),
         },
 
         //    home: EditUser(),

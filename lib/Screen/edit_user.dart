@@ -232,13 +232,7 @@ class _EditUserState extends State<EditUser> {
 //                    ),
 //                  ),}
 //                ),
-                ReusableEditUser(
-                  hint: localization.translate("Username"),
-                  textFieldName: localization.translate("Username"),
-                  getText: (value) {
-                    userNameText = value;
-                  },
-                ),
+
                 SizedBox(child: Divider(color: Colors.black)),
                 ReusableEditUser(
                   controller: firstNameController,

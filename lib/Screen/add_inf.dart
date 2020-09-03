@@ -341,6 +341,7 @@ class _AddINfState extends State<AddINf> {
         content: Text('success'),
       ));
       String getUrl = await taskSnapshot.ref.getDownloadURL();
+      print(getUrl);
       print('url $getUrl');
       setState(() {
         url = getUrl;
@@ -431,15 +432,8 @@ class _AddINfState extends State<AddINf> {
           currentPosition.latitude, currentPosition.longitude);
       Placemark place = p[0];
       setState(() {
-        locationText = place.name +
-            " " +
-            place.subLocality +
-            " " +
-            place.locality +
-            " " +
-            place.administrativeArea +
-            " " +
-            place.country;
+        locationText =
+            place.name + " " + place.subLocality + " " + place.locality;
         TextEditingController(text: locationText);
         print(place.name + place.locality + place.postalCode + place.country);
       });

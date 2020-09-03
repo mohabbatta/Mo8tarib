@@ -103,7 +103,7 @@ class _LoginState extends State<SignUp2> {
     print(_user.displayName);
 //    Navigator.push(
 //        context, MaterialPageRoute(builder: (context) => DashBoardLayout()));
-    Navigator.pushNamed(context, '/addinfo');
+    Navigator.pushNamed(context, '/addinf');
   }
 
   void submit() {

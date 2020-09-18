@@ -47,27 +47,22 @@ class _AddINfState extends State<AddINf> {
           SnackBar(content: Text('you can\'t go   with your age under 18'));
       Scaffold.of(context).showSnackBar(snackBar);
     } else {
-      if (url == null) {
-        final snackBar = SnackBar(content: Text('Please Complete your data'));
-        Scaffold.of(context).showSnackBar(snackBar);
-      } else {
-        _fireStore.collection('user').add(
-          {
-            'name': {
-              'first': firstNameText,
-              'mid': midNameText,
-              'last': lastNameText,
-            },
-            'age': ageText,
-            'email': emailText,
-            'phone': phoneText,
-            'gender': genderController.text,
-            'url': url,
-            'address': locationText,
+      _fireStore.collection('user').add(
+        {
+          'name': {
+            'first': firstNameText,
+            'mid': midNameText,
+            'last': lastNameText,
           },
-        );
-        Navigator.pushNamed(context, '/home');
-      }
+          'age': ageText,
+          'email': emailText,
+          'phone': phoneText,
+          'gender': genderController.text,
+          'url': url,
+          'address': locationText,
+        },
+      );
+      Navigator.pushNamed(context, '/home');
     }
 //    final snackBar =
 //    SnackBar(content: Text('Information add'));
@@ -346,6 +341,7 @@ class _AddINfState extends State<AddINf> {
         content: Text('success'),
       ));
       String getUrl = await taskSnapshot.ref.getDownloadURL();
+      print(getUrl);
       print('url $getUrl');
       setState(() {
         url = getUrl;
@@ -436,15 +432,8 @@ class _AddINfState extends State<AddINf> {
           currentPosition.latitude, currentPosition.longitude);
       Placemark place = p[0];
       setState(() {
-        locationText = place.name +
-            " " +
-            place.subLocality +
-            " " +
-            place.locality +
-            " " +
-            place.administrativeArea +
-            " " +
-            place.country;
+        locationText =
+            place.name + " " + place.subLocality + " " + place.locality;
         TextEditingController(text: locationText);
         print(place.name + place.locality + place.postalCode + place.country);
       });

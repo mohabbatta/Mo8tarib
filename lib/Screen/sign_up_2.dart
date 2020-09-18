@@ -77,7 +77,7 @@ class _LoginState extends State<SignUp2> {
     setState(() {
       if (user != null) {
         print('Successfully signed in with Facebook. ' + user.email);
-        Navigator.pushNamed(context, '/edituser');
+        Navigator.pushNamed(context, '/addinf');
       } else {
         print('Failed to sign in with Facebook. ');
       }
@@ -103,7 +103,7 @@ class _LoginState extends State<SignUp2> {
     print(_user.displayName);
 //    Navigator.push(
 //        context, MaterialPageRoute(builder: (context) => DashBoardLayout()));
-    Navigator.pushNamed(context, '/edituser');
+    Navigator.pushNamed(context, '/addinf');
   }
 
   void submit() {

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:mo8tarib/Screen/post_details.dart';
+import 'package:mo8tarib/Screen/rent.dart';
 import 'package:mo8tarib/bloc/bloc.dart';
 import 'package:mo8tarib/component/allHomeComponent/AvatarWidget.dart';
 import 'package:mo8tarib/component/allHomeComponent/imageFlatWidget.dart';
@@ -117,305 +119,361 @@ class _GoHomeState extends State<GoHome> {
                             .snapshots(),
                         builder: (context, data) {
                           if (data.hasData) {
-                          return Padding(
-                            padding: EdgeInsets.all(5),
-                            child: AspectRatio(
-                              aspectRatio: 0.8,
-                              child: GestureDetector(
-                                onTap: () {
-                                  print('go to details');
-                                  Navigator.pushNamed(context, '/postdetails');
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.blueGrey.withOpacity(0.2),
-                                      borderRadius: BorderRadius.circular(30)),
-                                  child: StreamBuilder<DocumentSnapshot>(
-                                      stream:
-                                      _fireStore
+                            return Padding(
+                              padding: EdgeInsets.all(5),
+                              child: AspectRatio(
+                                aspectRatio: 0.8,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PostDetails(
+                                            flatDocId:
+                                                '${allpost.data[index].flat.documentID}',
+                                            userDocId:
+                                                '${allpost.data[index].user.documentID}',
+                                          ),
+                                        ));
+                                    print('go to details');
+//                                    Navigator.pushNamed(
+//                                        context, '/postdetails');
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.blueGrey.withOpacity(0.2),
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                    child: StreamBuilder<DocumentSnapshot>(
+                                      stream: _fireStore
                                           .collection('user')
                                           .document(
-                                          '${allpost.data[index].user.documentID}')
+                                              '${allpost.data[index].user.documentID}')
                                           .snapshots(),
-                                    builder: (context, d) {
-                                      if (d.hasData) {
-                                      return Padding(
-                                        padding: EdgeInsets.all(6),
-                                        child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
+                                      builder: (context, d) {
+                                        if (d.hasData) {
+                                          return Padding(
+                                            padding: EdgeInsets.all(6),
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  AvatarWidget(
-                                                      radius: 20,
-                                                      image:
-                                                d.data['url'] != ''
-                                                   ? NetworkImage(
-                                                        '${d.data['url']}')
-                                                    : AssetImage('images/person.png')
-                                                  ),
-                                                  //  SizedBox(width: size.width * .03),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                  Row(
                                                     children: [
-                                                      Text(
-                                                           '${d.data['name']['first']}',
-                                                          style: TextStyle(
-                                                              color: color1,
-                                                              fontSize: 18)),
-                                                      //  SizedBox(height: size.height * .007),
-                                                      Text('since ${new DateFormat.yMMMd().format(allpost.data[index].time.toDate())}  m',
-                                                          style: TextStyle(
-                                                              color: color1,
-                                                              fontSize: 15)),
+                                                      AvatarWidget(
+                                                          radius: 20,
+                                                          image: d.data[
+                                                                      'url'] !=
+                                                                  ''
+                                                              ? NetworkImage(
+                                                                  '${d.data['url']}')
+                                                              : AssetImage(
+                                                                  'images/person.png')),
+                                                      //  SizedBox(width: size.width * .03),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal:
+                                                                    8.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                '${d.data['name']['first']} ${d.data['name']['last']}',
+                                                                style: TextStyle(
+                                                                    color:
+                                                                        color1,
+                                                                    fontSize:
+                                                                        18)),
+//                                                            SizedBox(width: 2),
+//                                                            Text(
+//                                                                '${d.data['name']['last']}',
+//                                                                style: TextStyle(
+//                                                                    color:
+//                                                                        color1,
+//                                                                    fontSize:
+//                                                                        18)),
+                                                            Text(
+                                                                'since ${new DateFormat.yMMMd().format(allpost.data[index].time.toDate())}  m',
+                                                                style: TextStyle(
+                                                                    color:
+                                                                        color1,
+                                                                    fontSize:
+                                                                        15)),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                          child: SizedBox()),
+                                                      IconButton(
+                                                        icon: Icon(Icons
+                                                            .favorite_border),
+                                                        onPressed: () {},
+                                                      )
                                                     ],
                                                   ),
-                                                  Expanded(child: SizedBox()),
-                                                  IconButton(
-                                                    icon: Icon(
-                                                        Icons.favorite_border),
-                                                    onPressed: () {},
-                                                  )
-                                                ],
-                                              ),
-                                              Divider(
-                                                color: color1,
+                                                  Divider(
+                                                    color: color1,
 //                                          endIndent: size.width * .2,
 //                                          indent: size.width * .2,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 8),
-                                                child: Text(
-                                                  // 'tata',
-                                                  "${data.data['category']}",
-                                                  style:
-                                                      TextStyle(fontSize: 25),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: <Widget>[
-                                                    Expanded(
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceAround,
-                                                        children: <Widget>[
-                                                          Row(
-                                                            children: <Widget>[
-                                                              Icon(
-                                                                FontAwesomeIcons
-                                                                    .mapMarkerAlt,
-                                                                size: 20,
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 5),
-                                                              Text(
-                                                                // "Cairo",
-                                                                "${data.data['location']}",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        18),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            children: <Widget>[
-                                                              Icon(
-                                                                FontAwesomeIcons
-                                                                    .building,
-                                                                size: 20,
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 5),
-                                                              Text(
-                                                                // 'tata',
-                                                                "room(${data.data['rooms']})",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        18),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          Row(
-                                                            children: <Widget>[
-                                                              Icon(
-                                                                FontAwesomeIcons
-                                                                    .squarespace,
-                                                                size: 20,
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 5),
-                                                              Text(
-                                                                "${data.data['size']}M",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        18),
-                                                              )
-                                                            ],
-                                                          ),
-                                                          RatingBar(
-                                                            initialRating: 3,
-                                                            minRating: 1,
-                                                            direction:
-                                                                Axis.horizontal,
-                                                            allowHalfRating:
-                                                                true,
-                                                            itemCount: 5,
-                                                            itemSize: 20,
-                                                            itemPadding: EdgeInsets
-                                                                .symmetric(
-                                                                    horizontal:
-                                                                        2.0),
-                                                            itemBuilder:
-                                                                (context, _) =>
-                                                                    Icon(
-                                                              Icons.star,
-                                                              color:
-                                                                  Colors.amber,
-                                                              size: 10,
-                                                            ),
-                                                            onRatingUpdate:
-                                                                (rating) {
-                                                              print(rating);
-                                                            },
-                                                          ),
-                                                          Text(' 80 review'),
-                                                        ],
-                                                      ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(vertical: 2),
+                                                    child: Text(
+                                                      // 'tata',
+                                                      "${data.data['category']}",
+                                                      style: TextStyle(
+                                                          fontSize: 25),
                                                     ),
-                                                    Expanded(
-                                                      child: Column(
-                                                        children: <Widget>[
-                                                          Text('price',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      20)),
-                                                          Text(
-                                                              '${data.data['price']}\$',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      30)),
-                                                          RaisedButton(
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20),
-                                                            ),
-                                                            color:
-                                                                Colors.indigo,
-                                                            onPressed: () {
-                                                              print('object');
-                                                            },
-                                                            child: Text('Book'),
-                                                          )
-                                                        ],
-                                                      ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: <Widget>[
+                                                        Expanded(
+                                                          child: Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceAround,
+                                                            children: <Widget>[
+                                                              Row(
+                                                                children: <
+                                                                    Widget>[
+                                                                  Icon(
+                                                                    FontAwesomeIcons
+                                                                        .mapMarkerAlt,
+                                                                    size: 16,
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width: 3),
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      // "Cairo",
+                                                                      "${data.data['address']}",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              16),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                children: <
+                                                                    Widget>[
+                                                                  Icon(
+                                                                    FontAwesomeIcons
+                                                                        .building,
+                                                                    size: 20,
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width: 5),
+                                                                  Text(
+                                                                    // 'tata',
+                                                                    "room(${data.data['rooms']})",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            18),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              Row(
+                                                                children: <
+                                                                    Widget>[
+                                                                  Icon(
+                                                                    FontAwesomeIcons
+                                                                        .squarespace,
+                                                                    size: 20,
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width: 5),
+                                                                  Text(
+                                                                    "${data.data['size']}M",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            18),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              RatingBar(
+                                                                initialRating:
+                                                                    3,
+                                                                minRating: 1,
+                                                                direction: Axis
+                                                                    .horizontal,
+                                                                allowHalfRating:
+                                                                    true,
+                                                                itemCount: 5,
+                                                                itemSize: 20,
+                                                                itemPadding: EdgeInsets
+                                                                    .symmetric(
+                                                                        horizontal:
+                                                                            2.0),
+                                                                itemBuilder:
+                                                                    (context,
+                                                                            _) =>
+                                                                        Icon(
+                                                                  Icons.star,
+                                                                  color: Colors
+                                                                      .amber,
+                                                                  size: 10,
+                                                                ),
+                                                                onRatingUpdate:
+                                                                    (rating) {
+                                                                  print(rating);
+                                                                },
+                                                              ),
+//                                                              Text(
+//                                                                  ' 80 review'),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Text('price',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          20)),
+                                                              Text(
+                                                                  '${data.data['price']}\$',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          30)),
+                                                              RaisedButton(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20),
+                                                                ),
+                                                                color: Colors
+                                                                    .indigo,
+                                                                onPressed: () {
+                                                                  Navigator.push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                Rent(
+                                                                          flatDocId:
+                                                                              '${allpost.data[index].flat.documentID}',
+                                                                          userDocId:
+                                                                              '${allpost.data[index].user.documentID}',
+                                                                        ),
+                                                                      ));
+                                                                },
+                                                                child: Text(
+                                                                    'Rent'),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(vertical: 10),
-                                                  child: SizedBox(
-                                                    height: 150,
-                                                    child: ListView.builder(
-                                                      shrinkWrap: true,
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      physics:
-                                                          ClampingScrollPhysics(),
-                                                      itemCount: data
-                                                          .data['imagesUrl']
-                                                          .length,
-                                                      itemBuilder:
-                                                          (context, index) =>
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10),
+                                                      child: SizedBox(
+                                                        height: 150,
+                                                        child: ListView.builder(
+                                                          shrinkWrap: true,
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          physics:
+                                                              ClampingScrollPhysics(),
+                                                          itemCount: data
+                                                              .data['imagesUrl']
+                                                              .length,
+                                                          itemBuilder: (context,
+                                                                  index) =>
                                                               imageFlatWidget(
-                                                        image: NetworkImage(
-                                                            data.data[
-                                                                    'imagesUrl']
-                                                                [index]),
+                                                            image: NetworkImage(
+                                                                data.data[
+                                                                        'imagesUrl']
+                                                                    [index]),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
                                                         horizontal: 15,
                                                         vertical: 5),
-                                                child: Row(
-                                                  children: <Widget>[
-                                                    AvatarWidget(
-                                                        radius: 20,
-                                                        image:  d.data['url'] != ''
-                                                            ? NetworkImage(
-                                                            '${d.data['url']}')
-                                                            : AssetImage('images/person.png')
+                                                    child: Row(
+                                                      children: <Widget>[
+                                                        AvatarWidget(
+                                                            radius: 20,
+                                                            image: d.data[
+                                                                        'url'] !=
+                                                                    ''
+                                                                ? NetworkImage(
+                                                                    '${d.data['url']}')
+                                                                : AssetImage(
+                                                                    'images/person.png')),
+                                                        SizedBox(
+                                                          width: 5,
                                                         ),
-                                                    SizedBox(
-                                                      width: 5,
+                                                        Expanded(
+                                                          child: TextField(
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            decoration:
+                                                                KTextFieldDecoration
+                                                                    .copyWith(
+                                                              hintText:
+                                                                  "Comment",
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        IconButton(
+                                                            icon: Icon(
+                                                              Icons.send,
+                                                              color: Colors
+                                                                  .blueAccent,
+                                                            ),
+                                                            onPressed: () {})
+                                                      ],
                                                     ),
-                                                    Expanded(
-                                                      child: TextField(
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        decoration:
-                                                            KTextFieldDecoration
-                                                                .copyWith(
-                                                          hintText: "Comment",
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    IconButton(
-                                                        icon: Icon(
-                                                          Icons.send,
-                                                          color:
-                                                              Colors.blueAccent,
-                                                        ),
-                                                        onPressed: () {})
-                                                  ],
-                                                ),
-                                              )
-                                            ]),
-                                      );
-                                    }else {
-                                        return Container(
-                                          child: Center(
-                                            child: CircularProgressIndicator(),
-                                          ),
-                                        );
-                                      }
+                                                  )
+                                                ]),
+                                          );
+                                        } else {
+                                          return Container(
+                                            child: Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            ),
+                                          );
+                                        }
                                       },
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                         else {
+                            );
+                          } else {
                             return Container(
                               child: Center(
                                 child: CircularProgressIndicator(),
                               ),
                             );
-                          }},
+                          }
+                        },
                       ));
 
 //              Center(

@@ -8,13 +8,17 @@ class ConnectUs extends StatelessWidget with NavigationStates {
   const ConnectUs({Key key, this.onMenuTap}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        //  borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Colors.blueAccent,
-      ),
-      child: Center(
-        child: IconButton(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: Text(
+          "About us",
+          style: TextStyle(
+            color: foregroundColor,
+          ),
+        ),
+        leading: IconButton(
           icon: Icon(
             Icons.menu,
             size: 30,
@@ -22,6 +26,22 @@ class ConnectUs extends StatelessWidget with NavigationStates {
           ),
           onPressed: onMenuTap,
         ),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          //  borderRadius: BorderRadius.all(Radius.circular(20)),
+          color: Colors.white,
+        ),
+//        child: Center(
+//          child: IconButton(
+//            icon: Icon(
+//              Icons.menu,
+//              size: 30,
+//              color: foregroundColor,
+//            ),
+//            onPressed: onMenuTap,
+//          ),
+//        ),
       ),
     );
   }

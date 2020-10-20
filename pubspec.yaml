@@ -27,7 +27,7 @@ dependencies:
   cached_network_image: ^2.2.0+1
   provider: ^4.3.1
   flutter_facebook_login: ^1.2.0
-  google_sign_in: ^4.5.1
+  google_sign_in: ^4.5.4
   bubble_bottom_bar: ^1.2.0
   flutter_rating_bar: ^3.0.1+1
   date_range_picker: ^1.0.6
@@ -41,7 +41,7 @@ dependencies:
   bubble_tab_indicator: ^0.1.4
   multi_image_picker: ^4.6.1
   file_picker: ^1.1.1
-  http: ^0.12.1
+  http: ^0.12.0+2
   google_maps_flutter:
   async: ^2.4.1
   flutter_conditional_rendering: ^1.1.1

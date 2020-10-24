@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/sign_in/model/email_sign_in_model.dart';
+import 'package:mo8tarib/app/Screen/sign_in/model/email_sign_in_model.dart';
+import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/servies/auth.dart';
 
 class EmailSignInBloc {
@@ -22,13 +23,15 @@ class EmailSignInBloc {
       String password,
       EmailSignInformType formType,
       bool isLoaded,
-      bool submitted}) {
+      bool submitted,
+      bool isNew}) {
     _model = _model.copyWith(
         email: email,
         password: password,
         formType: formType,
         isLoaded: isLoaded,
-        submitted: submitted);
+        submitted: submitted,
+        isNew: isNew);
     _modelController.add(_model);
   }
 
@@ -41,20 +44,24 @@ class EmailSignInBloc {
           : EmailSignInformType.signIn,
       submitted: false,
       isLoaded: false,
+      isNew: _model.formType == EmailSignInformType.signIn ? false : true,
     );
   }
 
   void updateEmail(String email) => updateWith(email: email);
   void updatePassword(String password) => updateWith(password: password);
 
-  Future<void> submit() async {
+  Future<User> submit() async {
     updateWith(submitted: true, isLoaded: true);
     try {
       if (_model.formType == EmailSignInformType.signIn) {
         await auth.signInWithEmailAndPassword(_model.email, _model.password);
+        updateWith(submitted: true, isLoaded: true, isNew: false);
       } else {
-        await auth.createUserWithEmailAndPassword(
+        final user = await auth.createUserWithEmailAndPassword(
             _model.email, _model.password);
+        updateWith(submitted: true, isLoaded: true, isNew: true);
+        return user;
       }
     } catch (e) {
       updateWith(isLoaded: false);

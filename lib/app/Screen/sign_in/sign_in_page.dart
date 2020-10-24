@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -234,14 +235,6 @@ class SignInPage extends StatelessWidget {
                                   _signInWithGoogle(context);
                                 }),
                       SocialIcon(
-                          icon: FontAwesomeIcons.phoneVolume,
-                          color: Colors.yellow,
-                          socialFunction: isLoading
-                              ? null
-                              : () {
-                                  _signInAnonymously(context);
-                                }),
-                      SocialIcon(
                           icon: FontAwesomeIcons.voicemail,
                           color: Colors.yellow,
                           socialFunction: isLoading
@@ -254,70 +247,6 @@ class SignInPage extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
-//                  TextField(
-//                    textAlign: TextAlign.center,
-//                    keyboardType: TextInputType.emailAddress,
-//                    decoration: KTextFieldDecoration.copyWith(
-//                      hintText: localization.translate("Enter your email."),
-//                    ),
-//                    onChanged: (value) {},
-//                  ),
-//                  SizedBox(
-//                    height: 8.0,
-//                  ),
-//                  TextField(
-//                    obscureText: true,
-//                    textAlign: TextAlign.center,
-//                    decoration: KTextFieldDecoration.copyWith(
-//                        hintText:
-//                        localization.translate("Enter your password.")),
-//                    onChanged: (value) {
-//                      //   password = value;
-//                    },
-//                  ),
-//                  SizedBox(
-//                    height: 24.0,
-//                  ),
-//                  Builder(
-//                    builder: (context) {
-//                      return RoundButton(
-//                          colour: foregroundColor,
-//                          title: localization.translate("Log In"),
-//                          onPressed: () {
-//                            //  submit();
-//                            //login(context);
-//                          });
-//                    },
-//                  ),
-//                  RawMaterialButton(
-//                    onPressed: () {
-//                      Navigator.pushNamed(context, '/forgetpassword');
-//                    },
-//                    //color: Colors.lightBlue,
-//                    child: Text(
-//                      localization.translate("Forgot password?"),
-//                      style: TextStyle(color: backgroundColor2),
-//                    ),
-//                  ),
-//                  Row(
-//                    mainAxisAlignment: MainAxisAlignment.center,
-//                    children: <Widget>[
-//                      Text(
-//                        localization.translate("Don't have an account?"),
-//                        style: TextStyle(fontSize: 16),
-//                      ),
-//                      RawMaterialButton(
-//                        onPressed: () {
-//                          Navigator.pushNamed(context, '/signup');
-//                        },
-//                        child: Text(
-//                          localization.translate("Sign up"),
-//                          style:
-//                          TextStyle(fontSize: 18, color: foregroundColor),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
                 ],
               ),
             ),

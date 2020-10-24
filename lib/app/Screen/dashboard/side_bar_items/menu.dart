@@ -8,6 +8,7 @@ import 'package:mo8tarib/app/common_widgets/menu_item.dart';
 import 'package:mo8tarib/app/common_widgets/platform_alert_dialog.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/servies/auth.dart';
+import 'package:mo8tarib/servies/data_base.dart';
 import 'package:provider/provider.dart';
 
 class Menu extends StatefulWidget {
@@ -15,9 +16,10 @@ class Menu extends StatefulWidget {
   final Animation<Offset> slideAnimation;
   final int selectedIndex;
   final Function onMenuItemClicked;
+  final User user;
 
   Menu(this.menuScaleAnimation, this.slideAnimation, this.selectedIndex,
-      this.onMenuItemClicked);
+      this.onMenuItemClicked, this.user);
 
   @override
   _MenuState createState() => _MenuState();
@@ -48,6 +50,7 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    print("menu");
     return SlideTransition(
       position: widget.slideAnimation,
       child: ScaleTransition(
@@ -70,12 +73,13 @@ class _MenuState extends State<Menu> {
                         padding: EdgeInsets.only(bottom: 15, left: 15),
                         child: Column(
                           children: <Widget>[
-                            Avatar(photoUrl: user.photoUrl, radius: 55.0),
+                            Avatar(
+                                photoUrl: user.photoUrl ?? " ", radius: 55.0),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              user.displayName,
+                              user.disPlayName ?? "user",
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 20,

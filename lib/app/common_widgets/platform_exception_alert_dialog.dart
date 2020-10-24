@@ -23,7 +23,9 @@ class PlatformExceptionAlertDialog extends PlatformAlertDialog {
   static Map<String, String> _error = {
     ///   • `ERROR_WEAK_PASSWORD` - If the password is not strong enough.
     ///   • `ERROR_INVALID_EMAIL` - If the email address is malformed.
-    ///   • `ERROR_EMAIL_ALREADY_IN_USE` - If the email is already in use by a different account.
+    'ERROR_EMAIL_ALREADY_IN_USE':
+        'the email is already in use by a different account.',
+
     ///   • `ERROR_INVALID_EMAIL` - If the [email] address is malformed.
     'ERROR_WRONG_PASSWORD': 'the password is invaild',
 
@@ -34,7 +36,9 @@ class PlatformExceptionAlertDialog extends PlatformAlertDialog {
     ///
     ///  * `ERROR_INVALID_CREDENTIAL` - If the credential data is malformed or has expired.
     ///  * `ERROR_USER_DISABLED` - If the user has been disabled (for example, in the Firebase console)
-    ///  * `ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL` - If there already exists an account with the email address asserted by Google.
+    'ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL':
+        'there already exists an account with the email address asserted by Google.',
+
     ///       Resolve this case by calling [fetchSignInMethodsForEmail] and then asking the user to sign in using one of them.
     ///       This error will only be thrown if the "One account per email address" setting is enabled in the Firebase console (recommended).
     ///  * `ERROR_OPERATION_NOT_ALLOWED` - Indicates that Google accounts are not enabled.

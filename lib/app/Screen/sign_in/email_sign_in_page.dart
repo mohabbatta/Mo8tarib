@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/sign_in/bloc/email_sign_in_bloc.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/sign_in/model/email_sign_in_model.dart';
+import 'package:mo8tarib/app/Screen/sign_in/add_inf.dart';
+import 'package:mo8tarib/app/Screen/sign_in/bloc/email_sign_in_bloc.dart';
+import 'package:mo8tarib/app/Screen/sign_in/model/email_sign_in_model.dart';
 import 'package:mo8tarib/app/common_widgets/form_raised_button.dart';
 import 'package:mo8tarib/app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:mo8tarib/servies/auth.dart';
@@ -41,10 +42,29 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
     _passwordFocusNode.dispose();
   }
 
-  Future<void> _submit() async {
+//  void _addInfo(BuildContext context) {
+//    Navigator.of(context).push(
+//      MaterialPageRoute(
+//        fullscreenDialog: true,
+//        builder: (context) => Provider<DateBase>(
+//            create: (context) =>DateBase() , child: AddINf()),
+//      ),
+//    );
+//  }
+
+  Future<void> _submit(EmailSignInModel model) async {
     try {
-      await widget.bloc.submit();
-      Navigator.of(context).pop();
+      final user = await widget.bloc.submit();
+      if (model.isNewUser) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (context) => AddINf.create(context, user),
+          ),
+        );
+      } else {
+        Navigator.of(context).pop();
+      }
     } on PlatformException catch (e) {
       PlatformExceptionAlertDialog(
         title: 'SignIn Failed',
@@ -73,7 +93,7 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
       _buildPasswordTextField(model),
       SizedBox(height: 8),
       FormRaisedButton(
-        onPressed: model.canSubmit ? _submit : null,
+        onPressed: () => model.canSubmit ? _submit(model) : null,
         text: model.primaryButtonText,
       ),
       SizedBox(height: 8),
@@ -93,7 +113,9 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
         enabled: model.isLoaded == false,
       ),
       onChanged: widget.bloc.updatePassword,
-      onEditingComplete: _submit,
+      onEditingComplete: () {
+        _submit(model);
+      },
       focusNode: _passwordFocusNode,
       obscureText: true,
       textInputAction: TextInputAction.done,

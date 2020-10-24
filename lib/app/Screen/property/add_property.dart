@@ -1,9 +1,11 @@
 import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:mo8tarib/app/Screen/property/pending_proprty.dart';
+import 'package:mo8tarib/app/Screen/property/property_model.dart';
+import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/allHomeComponent/imageFlatWidget.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
 import 'package:mo8tarib/app/common_widgets/search_components.dart';
@@ -13,6 +15,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:mo8tarib/servies/data_base.dart';
+import 'package:provider/provider.dart';
 
 class AddProperty extends StatefulWidget {
   @override
@@ -20,23 +24,9 @@ class AddProperty extends StatefulWidget {
 }
 
 class _AddPropertyState extends State<AddProperty> {
-  FirebaseUser loggedInUser;
-  final _auth = FirebaseAuth.instance;
-
-  void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser();
-      if (user != null) {
-        loggedInUser = user;
-        print(user.uid);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
   String dropdownTypeValue = 'Any';
   String dropdownCategoryValue = 'Any';
+
   int price = 100;
 
   String description;
@@ -68,8 +58,6 @@ class _AddPropertyState extends State<AddProperty> {
 
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now().add(new Duration(days: 7));
-
-  final _fireStore = Firestore.instance;
 
   List<String> services = [];
 
@@ -139,7 +127,7 @@ class _AddPropertyState extends State<AddProperty> {
     kitchenController = TextEditingController(text: kitchen);
     locationController = TextEditingController(text: locationText);
     genderController = TextEditingController(text: genderText);
-    getCurrentUser();
+    // getCurrentUser();
     super.initState();
   }
 
@@ -153,6 +141,57 @@ class _AddPropertyState extends State<AddProperty> {
     locationController.dispose();
     genderController.dispose();
     super.dispose();
+  }
+
+  String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
+
+  Future<void> addProperty(BuildContext context) async {
+    final user = Provider.of<User>(context, listen: false);
+    final database = Provider.of<Database>(context, listen: false);
+
+    final id = user?.uid;
+    final pid = documentIdFromCurrentDate();
+    final newProperty = Property(
+      pid: pid,
+      uid: id,
+      type: dropdownTypeValue,
+      category: dropdownCategoryValue,
+      gender: genderController.text,
+      kitchen: kitchenController.text,
+      imageUrls: imageUrls,
+      bathRooms: bathroomController.text,
+      description: descriptionController.text,
+      price: price.toString(),
+      rooms: roomsController.text,
+      services: services,
+      size: sizeController.text,
+
+      //          'UID': loggedInUser.uid,
+//          'type': dropdownTypeValue,
+//          'category': dropdownCategoryValue,
+//          'price': price.toString(),
+//          'description': descriptionController.text,
+//          'size': sizeController.text,
+//          'serives': services,
+//          'rooms': roomsController.text,
+//          'bathroom': bathroomController.text,
+//          'kitchen': kitchenController.text,
+//          'Gender': genderController.text,
+//          'timestart': DateFormat('dd/MM/yyyy').format(startDate).toString(),
+//          'timeend': DateFormat('dd/MM/yyyy').format(endDate).toString(),
+//          'government': govText,
+//          'city': cityText,
+//          'address': locationText,
+//          'Location': [currentPosition.latitude, currentPosition.longitude],
+//          'imagesUrl': imageUrls,
+    );
+    await database.setProperty(newProperty);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => PendingProperty(),
+      ),
+    );
   }
 
   @override
@@ -604,56 +643,8 @@ class _AddPropertyState extends State<AddProperty> {
               color: foregroundColor,
               textColor: Colors.white,
               title: 'Add',
-              function: () {
-                addData(context);
-//                print(loggedInUser.uid);
-//                print(dropdownTypeValue);
-//                print(dropdownCategoryValue);
-//                print(dropdownCategoryValue);
-//                print(price.toString());
-//                print(descriptionController.text);
-//                print(sizeController.text);
-//                print(services);
-//                print(roomsController.text);
-//                print(bathroomController.text);
-//                print(kitchenController.text);
-//                print(genderController.text);
-//                print(imageUrls);
-//                print('timestart $startDate');
-//                print('timeend $endDate');
-//                print('gove/// $govText');
-//                print('city// $cityText');
-//                print('address //  $locationText');
-//                print('location// ${currentPosition.latitude.toString()}');
-//                print('location// ${currentPosition.longitude.toString()}');
-
-//                _fireStore.collection('flat').add(
-//                  {
-//                    'UID': loggedInUser.uid,
-//                    'type': dropdownTypeValue,
-//                    'category': dropdownCategoryValue,
-//                    'price': price.toString(),
-//                    'description': descriptionController.text,
-//                    'size': sizeController.text,
-//                    'serives': services,
-//                    'rooms': roomsController.text,
-//                    'bathroom': bathroomController.text,
-//                    'kitchen': kitchenController.text,
-//                    'Gender': genderController.text,
-//                    'timestart':
-//                        DateFormat('dd/MM/yyyy').format(startDate).toString(),
-//                    'timeend':
-//                        DateFormat('dd/MM/yyyy').format(endDate).toString(),
-//                    'government': govText,
-//                    'city': cityText,
-//                    'address': locationText,
-//                    'Location': [
-//                      currentPosition.latitude.toString(),
-//                      currentPosition.longitude.toString()
-//                    ],
-//                    'imagesUrl': imageUrls,
-//                  },
-//                );
+              function: () async {
+                await addProperty(context);
               },
             ),
           ],
@@ -697,38 +688,5 @@ class _AddPropertyState extends State<AddProperty> {
       imageUrls.add(getUrl);
     });
     print(imageUrls);
-  }
-
-  addData(BuildContext context) {
-    try {
-      _fireStore.collection('flat').add(
-        {
-          'UID': loggedInUser.uid,
-          'type': dropdownTypeValue,
-          'category': dropdownCategoryValue,
-          'price': price.toString(),
-          'description': descriptionController.text,
-          'size': sizeController.text,
-          'serives': services,
-          'rooms': roomsController.text,
-          'bathroom': bathroomController.text,
-          'kitchen': kitchenController.text,
-          'Gender': genderController.text,
-          'timestart': DateFormat('dd/MM/yyyy').format(startDate).toString(),
-          'timeend': DateFormat('dd/MM/yyyy').format(endDate).toString(),
-          'government': govText,
-          'city': cityText,
-          'address': locationText,
-          'Location': [currentPosition.latitude, currentPosition.longitude],
-          'imagesUrl': imageUrls,
-        },
-      );
-      final snackBar =
-          SnackBar(content: Text('property added  to pending property'));
-      Scaffold.of(context).showSnackBar(snackBar);
-    } catch (e) {
-      final snackBar = SnackBar(content: Text(e.message));
-      Scaffold.of(context).showSnackBar(snackBar);
-    }
   }
 }

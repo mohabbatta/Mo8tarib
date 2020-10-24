@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as JSON;
+//import 'package:http/http.dart' as http;
+//import 'dart:convert' as JSON;
 
 abstract class AuthBase {
+  bool get isNewUser;
   Stream<User> get onAuthStateChanged;
   Future<User> currentUser();
   Future<User> signInAnonymously();
@@ -26,9 +27,16 @@ class Auth implements AuthBase {
     }
     return User(
       uid: user.uid,
-      displayName: user.displayName,
+      disPlayName:user.displayName,
       photoUrl: user.photoUrl,
+      email: user.email,
     );
+  }
+
+  bool newUser;
+  @override
+  bool get isNewUser {
+    return newUser;
   }
 
   @override
@@ -54,7 +62,6 @@ class Auth implements AuthBase {
     if (googleSignIn.isSignedIn() != null) {
       final googleSignInAccount = await googleSignIn.signIn();
       if (googleSignInAccount != null) {
-        googleSignIn.signInSilently(suppressErrors: false);
         final googleAuth = await googleSignInAccount.authentication;
         if (googleAuth.idToken != null && googleAuth.accessToken != null) {
           final authResult = await _firebaseAuth.signInWithCredential(
@@ -91,7 +98,10 @@ class Auth implements AuthBase {
   Future<User> signInWithFaceBook() async {
     final faceBookLogIn = FacebookLogin();
     final result = await faceBookLogIn.logInWithReadPermissions(
-      ['public_profile', 'email'],
+      [
+        "public_profile",
+        "email",
+      ],
     );
 
     print(result.status);
@@ -105,16 +115,13 @@ class Auth implements AuthBase {
               accessToken: result.accessToken.token,
             ));
 //            final graphResponse = await http.get(
-//                'https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=${result.accessToken}');
+//                'https://graph.facebook.com/v2.12/me?fields=name,picture,email,gender&access_token=${result.accessToken.token}');
 //            final profile = JSON.jsonDecode(graphResponse.body);
-//            print("${profile.toString()}" + "  //////////    ");
+//
+//            print("${profile['email'].toString()}" + "  //////////    ");
 
-            print(authResult.user);
-            if (authResult.additionalUserInfo.isNewUser) {
-              print("yes new user");
-            } else {
-              print("no");
-            }
+            newUser = authResult.additionalUserInfo.isNewUser;
+            print(authResult.user.photoUrl + " firebase user" + "$isNewUser");
             return _userFromFirebase(authResult.user);
           } catch (e) {
             print(e.toString());

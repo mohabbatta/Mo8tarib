@@ -9,7 +9,10 @@ import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/menu.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/my_property.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/profile.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/reservation.dart';
+import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
+import 'package:mo8tarib/servies/data_base.dart';
+import 'package:provider/provider.dart';
 
 class DashBoardLayout extends StatefulWidget {
   @override
@@ -70,37 +73,51 @@ class _DashBoardState extends State<DashBoardLayout>
     Size size = MediaQuery.of(context).size;
     screenWidth = size.width;
     screenHeight = size.height;
-
+    final user = Provider.of<User>(context);
+    final database = Provider.of<Database>(context);
     return BlocProvider(
       create: (context) => NavigationBloc(onMenuTap),
-      child: Material(
-        child: Stack(
-          children: <Widget>[
-            BlocBuilder<NavigationBloc, NavigationStates>(
-              builder: (context, NavigationStates navigationState) {
-                return Menu(menuScaleAnimation, slideAnimation,
-                    findSelectedIndex(navigationState), onMenuItemClicked);
-              },
-            ),
-            HomeBoard(
-              duration: duration,
-              controller: controller,
-              isCollapsed: isCollapsed,
-              onMenuTap: onMenuTap,
-              scaleAnimation: scaleAnimation,
-              screenHeight: screenHeight,
-              screenWidth: screenWidth,
-              // borderRadius: borderRadius,
-              child: BlocBuilder<NavigationBloc, NavigationStates>(builder: (
-                context,
-                NavigationStates navigationState,
-              ) {
-                return navigationState as Widget;
-              }),
-            ),
-          ],
-        ),
-      ),
+      child: StreamBuilder<User>(
+          stream: database.userStream(userId: user.uid),
+          builder: (context, snapshot) {
+            final user = snapshot.data;
+            return Provider<User>.value(
+              value: user,
+              child: Material(
+                child: Stack(
+                  children: <Widget>[
+                    BlocBuilder<NavigationBloc, NavigationStates>(
+                      builder: (context, NavigationStates navigationState) {
+                        return Menu(
+                            menuScaleAnimation,
+                            slideAnimation,
+                            findSelectedIndex(navigationState),
+                            onMenuItemClicked,
+                            user);
+                      },
+                    ),
+                    HomeBoard(
+                      duration: duration,
+                      controller: controller,
+                      isCollapsed: isCollapsed,
+                      onMenuTap: onMenuTap,
+                      scaleAnimation: scaleAnimation,
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      // borderRadius: borderRadius,
+                      child: BlocBuilder<NavigationBloc, NavigationStates>(
+                          builder: (
+                        context,
+                        NavigationStates navigationState,
+                      ) {
+                        return navigationState as Widget;
+                      }),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
     );
   }
 }

@@ -9,6 +9,7 @@ class EmailSignInModel with EmailPasswordValidator {
     this.formType = EmailSignInformType.signIn,
     this.isLoaded = false,
     this.submitted = false,
+    this.isNew = false,
   });
 
   final String email;
@@ -16,11 +17,15 @@ class EmailSignInModel with EmailPasswordValidator {
   final EmailSignInformType formType;
   final bool isLoaded;
   final bool submitted;
-
+  final bool isNew;
   String get primaryButtonText {
     return formType == EmailSignInformType.signIn
         ? 'Sign In'
         : 'Create a new account';
+  }
+
+  bool get isNewUser {
+    return formType == EmailSignInformType.signIn ? false : true;
   }
 
   String get secondButtonText {
@@ -45,17 +50,21 @@ class EmailSignInModel with EmailPasswordValidator {
     return showErrorText ? emailError : null;
   }
 
-  EmailSignInModel copyWith(
-      {String email,
-      String password,
-      EmailSignInformType formType,
-      bool isLoaded,
-      bool submitted}) {
+  EmailSignInModel copyWith({
+    String email,
+    String password,
+    EmailSignInformType formType,
+    bool isLoaded,
+    bool submitted,
+    bool isNew,
+  }) {
     return EmailSignInModel(
-        email: email ?? this.email,
-        password: password ?? this.password,
-        formType: formType ?? this.formType,
-        isLoaded: isLoaded ?? this.isLoaded,
-        submitted: submitted ?? this.submitted);
+      email: email ?? this.email,
+      password: password ?? this.password,
+      formType: formType ?? this.formType,
+      isLoaded: isLoaded ?? this.isLoaded,
+      submitted: submitted ?? this.submitted,
+      isNew: isNew ?? this.isNew,
+    );
   }
 }

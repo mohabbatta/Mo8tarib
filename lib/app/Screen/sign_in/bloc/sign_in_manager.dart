@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
-import 'package:mo8tarib/servies/auth.dart';
+import 'package:mo8tarib/services/auth.dart';
 
 class SignInManager {
   SignInManager({@required this.isLoading, @required this.auth});

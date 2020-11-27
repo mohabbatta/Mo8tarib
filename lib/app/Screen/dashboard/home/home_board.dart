@@ -9,8 +9,6 @@ class HomeBoard extends StatelessWidget {
   final Function onMenuTap;
   final Widget child;
 
-  //final BorderRadiusGeometry borderRadius;
-
   const HomeBoard({
     Key key,
     this.isCollapsed,
@@ -21,7 +19,6 @@ class HomeBoard extends StatelessWidget {
     this.scaleAnimation,
     this.onMenuTap,
     this.child,
-    //this.borderRadius
   }) : super(key: key);
 
   @override
@@ -36,7 +33,6 @@ class HomeBoard extends StatelessWidget {
         scale: scaleAnimation,
         child: Material(
           animationDuration: duration,
-          //borderRadius: borderRadius,
           elevation: 4,
           child: child,
         ),

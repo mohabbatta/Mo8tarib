@@ -37,7 +37,7 @@ class _MyPropertyState extends State<MyProperty>
 //    );
 //  }
 //}
-  List<Widget> containers = [AddProperty(), PendingProperty()];
+  List<Widget> containers = [AddProperty.create(), PendingProperty()];
 
   final List<Tab> tabs = <Tab>[
     new Tab(text: "Add Property"),

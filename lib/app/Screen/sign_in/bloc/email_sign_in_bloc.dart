@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/email_sign_in_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
-import 'package:mo8tarib/servies/auth.dart';
+import 'package:mo8tarib/services/auth.dart';
 
 class EmailSignInBloc {
   EmailSignInBloc({@required this.auth});

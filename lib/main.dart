@@ -3,11 +3,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mo8tarib/app/model/languageControler.dart';
 import 'package:mo8tarib/landing_page.dart';
 import 'package:mo8tarib/localization.dart';
-import 'package:mo8tarib/servies/auth.dart';
+import 'package:mo8tarib/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
+
 //
 //class MyApp extends StatefulWidget {
 //  static void setLocale(BuildContext context, Locale locale) {
@@ -113,7 +114,7 @@ void main() => runApp(MyApp());
 //    }
 //  }
 //}
-
+///
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

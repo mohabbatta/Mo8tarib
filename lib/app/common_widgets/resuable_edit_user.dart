@@ -25,16 +25,10 @@ class ReusableEditUser extends StatelessWidget {
             child: Directionality(
               textDirection: TextDirection.rtl,
               child: TextField(
-                onEditingComplete: () {
-                  print(controller);
-                },
                 style: TextStyle(
                   fontSize: 20,
                 ),
-
                 controller: controller,
-
-//                textAlign: TextAlign.end,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: hint,

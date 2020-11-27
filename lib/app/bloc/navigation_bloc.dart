@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/side_bar_items/about.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/side_bar_items/connect_us.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/side_bar_items/home1.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/side_bar_items/my_property.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/side_bar_items/profile.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/side_bar_items/reservation.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/about.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/connect_us.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/home_dash.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/my_property.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/profile.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/reservation.dart';
+import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 
 enum NavigationEvents {
   DashBoardClickEvent,
@@ -29,7 +30,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         yield HomeDas(onMenuTap);
         break;
       case NavigationEvents.ProfileClickEvent:
-        yield Profile(onMenuTap);
+        yield Profile(
+          onMenuTap,
+        );
         break;
       case NavigationEvents.FlatClickEvent:
         yield MyProperty(

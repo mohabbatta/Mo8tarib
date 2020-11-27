@@ -4,7 +4,7 @@ import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:mo8tarib/app/common_widgets/allHomeComponent/AvatarWidget.dart';
+import 'package:mo8tarib/app/common_widgets/avatar.dart';
 import 'package:mo8tarib/app/common_widgets/search_components.dart';
 
 import 'package:mo8tarib/global.dart';
@@ -131,15 +131,7 @@ class _RentState extends State<Rent> {
                                   Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
-                                    child: AvatarWidget(
-                                        radius: 20,
-                                        image:
-                                            //AssetImage('images/person.png')
-                                            userDocument['url'] != ''
-                                                ? NetworkImage(
-                                                    "${userDocument['url']}")
-                                                : AssetImage(
-                                                    'images/person.png')),
+//                                    child: Avatar(radius: 20,photoUrl: ,),
                                   ),
                                   Expanded(
                                     child: Column(

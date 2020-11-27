@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/Screen/sign_in/sign_in_page.dart';
-import 'package:mo8tarib/servies/auth.dart';
-import 'package:mo8tarib/servies/data_base.dart';
+import 'package:mo8tarib/services/auth.dart';
+import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatelessWidget {

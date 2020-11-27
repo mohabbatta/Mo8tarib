@@ -27,7 +27,7 @@ class Auth implements AuthBase {
     }
     return User(
       uid: user.uid,
-      disPlayName:user.displayName,
+      disPlayName: user.displayName,
       photoUrl: user.photoUrl,
       email: user.email,
     );
@@ -163,6 +163,7 @@ class Auth implements AuthBase {
       await googleSignIn.signOut();
       final faceBookLogIn = FacebookLogin();
       await faceBookLogIn.logOut();
+
       await _firebaseAuth.signOut();
     } catch (e) {
       print(e.toString());

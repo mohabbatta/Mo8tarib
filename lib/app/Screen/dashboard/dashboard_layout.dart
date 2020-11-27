@@ -1,17 +1,17 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home/home_board.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/about.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/connect_us.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/home1.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/home_board.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/home_dash.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/menu.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/my_property.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/profile.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/reservation.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
-import 'package:mo8tarib/servies/data_base.dart';
+import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardLayout extends StatefulWidget {
@@ -28,9 +28,6 @@ class _DashBoardState extends State<DashBoardLayout>
   Animation<double> scaleAnimation;
   Animation<double> menuScaleAnimation;
   Animation<Offset> slideAnimation;
-
-  //BorderRadiusGeometry borderRadius;
-
   @override
   void initState() {
     controller = AnimationController(vsync: this, duration: duration);
@@ -38,7 +35,6 @@ class _DashBoardState extends State<DashBoardLayout>
     menuScaleAnimation = Tween<double>(begin: 0, end: 1).animate(controller);
     slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0))
         .animate(controller);
-    // borderRadius = BorderRadius.circular(0);
     super.initState();
   }
 
@@ -55,7 +51,6 @@ class _DashBoardState extends State<DashBoardLayout>
       else
         controller.reverse();
       isCollapsed = !isCollapsed;
-      // borderRadius = BorderRadius.circular(40);
     });
   }
 
@@ -63,9 +58,7 @@ class _DashBoardState extends State<DashBoardLayout>
     setState(() {
       controller.reverse();
     });
-
     isCollapsed = !isCollapsed;
-    // borderRadius = BorderRadius.circular(0);
   }
 
   @override
@@ -73,30 +66,30 @@ class _DashBoardState extends State<DashBoardLayout>
     Size size = MediaQuery.of(context).size;
     screenWidth = size.width;
     screenHeight = size.height;
-    final user = Provider.of<User>(context);
     final database = Provider.of<Database>(context);
-    return BlocProvider(
-      create: (context) => NavigationBloc(onMenuTap),
-      child: StreamBuilder<User>(
-          stream: database.userStream(userId: user.uid),
-          builder: (context, snapshot) {
-            final user = snapshot.data;
-            return Provider<User>.value(
-              value: user,
-              child: Material(
-                child: Stack(
-                  children: <Widget>[
-                    BlocBuilder<NavigationBloc, NavigationStates>(
-                      builder: (context, NavigationStates navigationState) {
-                        return Menu(
-                            menuScaleAnimation,
-                            slideAnimation,
-                            findSelectedIndex(navigationState),
-                            onMenuItemClicked,
-                            user);
-                      },
-                    ),
-                    HomeBoard(
+    return StreamBuilder<User>(
+        stream: database.userStream(userId: "K7oInVEFWEUwWOPGzgwXddjMTaE2"),
+        // initialData: user,
+        builder: (context, snapshot) {
+          final user = snapshot.data;
+          return BlocProvider(
+            create: (context) => NavigationBloc(onMenuTap),
+            child: Material(
+              child: Stack(
+                children: <Widget>[
+                  BlocBuilder<NavigationBloc, NavigationStates>(
+                    builder: (context, NavigationStates navigationState) {
+                      return Menu(
+                          menuScaleAnimation,
+                          slideAnimation,
+                          findSelectedIndex(navigationState),
+                          onMenuItemClicked,
+                          user);
+                    },
+                  ),
+                  Provider<User>.value(
+                    value: user,
+                    child: HomeBoard(
                       duration: duration,
                       controller: controller,
                       isCollapsed: isCollapsed,
@@ -104,21 +97,17 @@ class _DashBoardState extends State<DashBoardLayout>
                       scaleAnimation: scaleAnimation,
                       screenHeight: screenHeight,
                       screenWidth: screenWidth,
-                      // borderRadius: borderRadius,
                       child: BlocBuilder<NavigationBloc, NavigationStates>(
-                          builder: (
-                        context,
-                        NavigationStates navigationState,
-                      ) {
+                          builder: (context, NavigationStates navigationState) {
                         return navigationState as Widget;
                       }),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          }),
-    );
+            ),
+          );
+        });
   }
 }
 

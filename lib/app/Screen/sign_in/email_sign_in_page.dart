@@ -4,7 +4,7 @@ import 'package:mo8tarib/app/Screen/sign_in/bloc/email_sign_in_bloc.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/email_sign_in_model.dart';
 import 'package:mo8tarib/app/common_widgets/form_raised_button.dart';
 import 'package:mo8tarib/app/common_widgets/platform_exception_alert_dialog.dart';
-import 'package:mo8tarib/servies/auth.dart';
+import 'package:mo8tarib/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 

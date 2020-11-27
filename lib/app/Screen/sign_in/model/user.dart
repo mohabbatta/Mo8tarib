@@ -22,15 +22,14 @@ class User {
 
   factory User.fromMap(Map<dynamic, dynamic> value, String id) {
     return User(
-      uid: id,
-      disPlayName: value['disPlayName'],
-      age: value['age'],
-      address: value['address'],
-      email: value['email'],
-      gender: value['gender'],
-      phone: value['phone'],
-      photoUrl: value['photoUrl']
-    );
+        uid: id,
+        disPlayName: value['disPlayName'],
+        age: value['age'],
+        address: value['address'],
+        email: value['email'],
+        gender: value['gender'],
+        phone: value['phone'],
+        photoUrl: value['photoUrl']);
   }
 
   Map<dynamic, dynamic> toMap() {

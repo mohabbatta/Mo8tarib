@@ -8,7 +8,7 @@ import 'package:mo8tarib/app/Screen/sign_in/email_sign_in.dart';
 import 'package:mo8tarib/app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:mo8tarib/app/common_widgets/social_icon.dart';
 import 'package:mo8tarib/localization.dart';
-import 'package:mo8tarib/servies/auth.dart';
+import 'package:mo8tarib/services/auth.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {

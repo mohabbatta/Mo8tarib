@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:geolocator/geolocator.dart';
 
 class Property {
   Property({
@@ -10,42 +12,44 @@ class Property {
     this.description,
     this.size,
     this.services,
-    this.rooms,
-    this.bathRooms,
-    this.kitchen,
     this.gender,
     this.imageUrls,
+    this.endDate,
+    this.startDate,
+    this.address,
+    this.position,
   });
   final String uid;
   final String pid;
   final String type;
   final String category;
-  final String price;
+  final String gender;
   final String description;
   final String size;
-  final List<String> services;
-  final String rooms;
-  final String bathRooms;
-  final String kitchen;
-  final String gender;
-  final List<String> imageUrls;
+  final int price;
+  final String address;
+  final GeoPoint position;
+  final String startDate;
+  final String endDate;
+  final List services;
+  final List imageUrls;
 
   factory Property.fromMap(Map<dynamic, dynamic> value, String id) {
     return Property(
-      pid: id,
-      uid: value['uid'],
-      type: value['type'],
-      category: value['category'],
-      price: value['price'],
-      description: value['description'],
-      size: value['size'],
-      services: value['services'],
-      rooms: value['room'],
-      bathRooms: value['bathRooms'],
-      kitchen: value['kitchen'],
-      gender: value['gender'],
-      imageUrls: value['imageUrls'],
-    );
+        pid: id,
+        uid: value['uid'],
+        type: value['type'],
+        category: value['category'],
+        price: value['price'],
+        description: value['description'],
+        size: value['size'],
+        services: value['services'],
+        gender: value['gender'],
+        imageUrls: value['imageUrls'],
+        endDate: value['endDate'],
+        startDate: value['startDate'],
+        address: value['address'],
+        position: value['position']);
   }
 
   Map<dynamic, dynamic> toMap() {
@@ -57,11 +61,12 @@ class Property {
       'description': description,
       'size': size,
       'services': services,
-      'rooms': rooms,
-      'bathRooms': bathRooms,
-      'kitchen': kitchen,
       'gender': gender,
-      'imageUrls': imageUrls
+      'imageUrls': imageUrls,
+      'startDate': startDate,
+      'endDate': endDate,
+      'address': address,
+      'position': position,
     };
   }
 }

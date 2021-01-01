@@ -15,11 +15,31 @@ class FireStoreService {
     await reference.setData(data);
   }
 
+  Future<DocumentReference> setDataSnap({
+    @required String path,
+    @required Map<String, dynamic> data,
+  }) async {
+    final reference = Firestore.instance.document(path);
+    print("$path : $data");
+    await reference.setData(data);
+    return reference;
+  }
+
   Stream<T> documentStream<T>({
     @required String path,
     @required T builder(Map<String, dynamic> data, String documentID),
   }) {
     final DocumentReference reference = Firestore.instance.document(path);
+    final Stream<DocumentSnapshot> snapshots = reference.snapshots();
+    return snapshots
+        .map((snapshot) => builder(snapshot.data, snapshot.documentID));
+  }
+
+  Stream<T> documentReferenceStream<T>({
+    @required DocumentReference path,
+    @required T builder(Map<String, dynamic> data, String documentID),
+  }) {
+    final DocumentReference reference = path;
     final Stream<DocumentSnapshot> snapshots = reference.snapshots();
     return snapshots
         .map((snapshot) => builder(snapshot.data, snapshot.documentID));

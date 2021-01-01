@@ -5,4 +5,6 @@ class APIPath {
   static String usersAll() => 'mohab_users/';
   static String post() => 'mohab_posts/';
   static String chatRoom() => 'mohab_messages/';
+  static String setChatRoom(String id) => 'mohab_messages/$id';
+  static String chat(String chatID) => 'mohab_messages/$chatID/chats';
 }

@@ -15,6 +15,9 @@ import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardLayout extends StatefulWidget {
+  final String uid;
+
+  const DashBoardLayout({Key key, this.uid}) : super(key: key);
   @override
   _DashBoardState createState() => _DashBoardState();
 }
@@ -68,8 +71,7 @@ class _DashBoardState extends State<DashBoardLayout>
     screenHeight = size.height;
     final database = Provider.of<Database>(context);
     return StreamBuilder<User>(
-        stream: database.userStream(userId: "K7oInVEFWEUwWOPGzgwXddjMTaE2"),
-        // initialData: user,
+        stream: database.userStream(userId: widget.uid),
         builder: (context, snapshot) {
           final user = snapshot.data;
           return BlocProvider(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/GoHome.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/home/chat/allChats.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/home/chat/chat_rooms.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home/chat/chat_rooms.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/map_marker.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/search.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
@@ -37,30 +36,11 @@ class _HomeDasState extends State<HomeDas> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,
-        title: Text(
-          "Moغtrab",
-          style: TextStyle(
-            color: foregroundColor,
-          ),
-        ),
+        title: Text("Moغtrab", style: TextStyle(color: foregroundColor)),
         leading: IconButton(
-          icon: Icon(
-            Icons.menu,
-            size: 30,
-            color: foregroundColor,
-          ),
+          icon: Icon(Icons.menu, size: 30, color: foregroundColor),
           onPressed: widget.onMenuTap,
         ),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(
-                Icons.search,
-                color: foregroundColor,
-              ),
-              onPressed: () {
-                showSearch(context: context, delegate: DataSearch());
-              })
-        ],
       ),
 //      floatingActionButton: FloatingActionButton(
 //        onPressed: () {},
@@ -132,7 +112,7 @@ class _HomeDasState extends State<HomeDas> {
               ? MapMarker()
               : (currentIndex == 2)
                   ? Search()
-                  : ChatRooms(),
+                  : ChatRooms.create(context),
     );
   }
 }

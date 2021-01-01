@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 class User {
   User({
     @required this.uid,
-    this.disPlayName,
+    this.disPlayName = "name",
     this.photoUrl,
     this.age,
     this.address,

@@ -3,21 +3,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ChatRoom {
   final String chatId;
   final List users;
-  final CollectionReference chat;
-
-  ChatRoom({this.chat, this.chatId, this.users});
+  final DocumentReference lastMessage;
+  ChatRoom({this.chatId, this.users, this.lastMessage});
 
   factory ChatRoom.fromMap(Map<dynamic, dynamic> value, String id) {
     return ChatRoom(
-      chatId: id,
-      chat: value['chat'],
-      users: value['users'],
-    );
+        chatId: id, users: value['users'], lastMessage: value['lastMessage']);
   }
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'chats': chat,
+      'chatID': chatId,
       'users': users,
+      'lastMessage': lastMessage,
     };
   }
 }

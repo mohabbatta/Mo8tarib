@@ -49,6 +49,8 @@ dependencies:
   date_format: ^1.0.8
   multi_select_flutter: ^3.1.2
   rxdart: ^0.22.1
+  jiffy: ^3.0.1
+
 
 
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:mo8tarib/app/Screen/dashboard/carousel_with_indecator.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/go_home_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/post_details.dart';
 import 'package:mo8tarib/app/Screen/property/property_model.dart';
 import 'package:mo8tarib/app/Screen/rent.dart';
@@ -13,10 +14,12 @@ import 'package:mo8tarib/global.dart';
 
 class Post extends StatelessWidget {
   final GoHomeModel goHomeModel;
+  final PostModel postModel;
   final Property property;
   final User user;
 
-  const Post({Key key, this.goHomeModel, this.property, this.user})
+  const Post(
+      {Key key, this.goHomeModel, this.property, this.user, this.postModel})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -64,8 +67,9 @@ class Post extends StatelessWidget {
                               Text('${user.disPlayName}',
                                   style:
                                       TextStyle(color: color1, fontSize: 18)),
-                              Text(
-                                  'since ${new DateFormat.yMMMd().format(goHomeModel.time.toDate())}  m',
+                              Text(Jiffy(postModel.time.toDate()).fromNow(),
+
+                                  // 'since ${new DateFormat.yMMMd().format(postModel.time.toDate())}  m',
                                   style:
                                       TextStyle(color: color1, fontSize: 15)),
                             ],
@@ -183,9 +187,11 @@ class Post extends StatelessWidget {
                                         MaterialPageRoute(
                                           builder: (context) => Rent(
                                             flatDocId:
-                                                '${goHomeModel.propertyReference}',
+                                                goHomeModel.propertyReference ??
+                                                    postModel.flatId,
                                             userDocId:
-                                                '${goHomeModel.userReference}',
+                                                goHomeModel.userReference ??
+                                                    postModel.userId,
                                           ),
                                         ));
                                   },

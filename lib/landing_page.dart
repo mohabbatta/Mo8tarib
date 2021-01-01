@@ -13,23 +13,26 @@ class LandingPage extends StatelessWidget {
     return StreamBuilder(
         stream: authBase.onAuthStateChanged,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            User user = snapshot.data;
-            if (user == null) {
-              return SignInPage.create(context);
-            }
-            return Provider<User>.value(
-              value: user,
-              child: Provider<Database>(
+          if (snapshot.data != null) {
+            if (snapshot.hasData) {
+              User user = snapshot.data;
+              if (user == null) {
+                return SignInPage.create(context);
+              }
+              return Provider<Database>(
                   create: (_) => FireStoreDatabase(uid: user.uid),
-                  child: DashBoardLayout()),
-            );
+                  child: DashBoardLayout(
+                    uid: user.uid,
+                  ));
+            } else {
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
           } else {
-            return Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
+            return SignInPage.create(context);
           }
         });
   }

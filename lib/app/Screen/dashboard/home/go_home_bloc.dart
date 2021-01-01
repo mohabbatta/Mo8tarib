@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/Screen/property/add_propert_model.dart';
 import 'package:mo8tarib/app/Screen/property/property_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/data_base.dart';
-import 'package:rxdart/rxdart.dart';
 
 import 'go_home_model.dart';
 
@@ -45,11 +43,4 @@ class GoHomeBloc {
 //    database.userStream(userId: uid);
 //  }
 
-  static List<EntryPost> _entriesJobsCombiner(
-      List<Property> properties, List<User> users) {
-    return properties.map((property) {
-      final user = users.firstWhere((user) => user.uid == property.uid);
-      return EntryPost(property, user);
-    }).toList();
-  }
 }

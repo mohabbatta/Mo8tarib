@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:mo8tarib/app/Screen/dashboard/home/chat/chat_room_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home/chat/model/chat_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home/chat/model/chat_room_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/go_home_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/property/property_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/api_path.dart';
@@ -10,12 +13,17 @@ abstract class Database {
   Future<void> setUser(User user);
   Stream<User> userStream({@required String userId});
   Future<void> setProperty(Property property);
+  Future<void> addChatRoom({String id, ChatRoom room});
   Stream<List<Property>> propertiesStream({User user});
   Stream<List<User>> usersStream({User user});
   Stream<List<GoHomeModel>> postStream();
   Stream<Property> propertyStream({String propertyId});
   Stream<List<ChatRoom>> chatRoomsStream({String userID});
-  Stream<User> userX({@required String userId});
+  Stream<List<ChatRoom>> chatRoom({String one, String two});
+  Stream<List<Chat>> chatStream({String chatID});
+  Stream<Chat> lastMessage({DocumentReference path});
+  Stream<List<PostModel>> postsStream({String userId});
+  Stream<List<PostModel>> likePostsStream({String userId});
 }
 
 class FireStoreDatabase implements Database {
@@ -31,7 +39,7 @@ class FireStoreDatabase implements Database {
       );
   @override
   Stream<User> userStream({@required String userId}) => _service.documentStream(
-        path: APIPath.users(uid),
+        path: APIPath.users(userId),
         builder: (data, documentId) => User.fromMap(data, documentId),
       );
 
@@ -92,8 +100,55 @@ class FireStoreDatabase implements Database {
       );
 
   @override
-  Stream<User> userX({String userId}) => _service.documentStream(
-        path: APIPath.users(uid),
-        builder: (data, documentId) => User.fromMap(data, documentId),
+  Stream<List<ChatRoom>> chatRoom({String one, String two}) =>
+      _service.collectionStream<ChatRoom>(
+        path: APIPath.chatRoom(),
+        queryBuilder: one != null && two != null
+            ? (query) => query.where('users', arrayContains: [two, one])
+            : null,
+        builder: (data, documentID) => ChatRoom.fromMap(data, documentID),
+        // sort: (lhs, rhs) => rhs.startDate.compareTo(lhs.startDate),
+      );
+  @override
+  Stream<List<Chat>> chatStream({String chatID}) =>
+      _service.collectionStream<Chat>(
+        path: APIPath.chat(chatID),
+        builder: (data, documentID) => Chat.fromMap(data),
+      );
+
+  @override
+  Stream<Chat> lastMessage({DocumentReference path}) =>
+      _service.documentReferenceStream(
+        path: path,
+        builder: (data, documentId) => Chat.fromMap(data),
+      );
+
+  @override
+  Future<DocumentReference> addChatRoom({String id, ChatRoom room}) async =>
+      await _service.setDataSnap(
+        path: APIPath.setChatRoom(id),
+        data: room.toMap(),
+      );
+
+  @override
+  Stream<List<PostModel>> postsStream({String userId}) =>
+      _service.collectionStream<PostModel>(
+        path: APIPath.post(),
+        queryBuilder: userId != null
+            ? (query) => query.where('user_id', isEqualTo: userId)
+            : null,
+        builder: (data, documentID) => PostModel.fromMap(data, documentID),
+        // sort: (lhs, rhs) => rhs.startDate.compareTo(lhs.startDate),
+      );
+
+  @override
+  Stream<List<PostModel>> likePostsStream({String userId}) =>
+      _service.collectionStream<PostModel>(
+        path: APIPath.post(),
+        queryBuilder: userId != null
+            ? (query) => query.where('likes', arrayContains: userId)
+            : null,
+        builder: (data, documentID) => PostModel.fromMap(data, documentID),
+        // sort: (lhs, rhs) => rhs.startDate.compareTo(lhs.startDate),
       );
 }

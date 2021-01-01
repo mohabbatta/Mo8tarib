@@ -81,7 +81,7 @@ class _MenuState extends State<Menu> {
                               height: 5,
                             ),
                             Text(
-                              widget.user.disPlayName ?? "name",
+                              widget.user?.disPlayName ?? "name",
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 20,

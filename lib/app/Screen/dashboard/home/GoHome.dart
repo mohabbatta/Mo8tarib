@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/go_home_bloc.dart';
-import 'package:mo8tarib/app/Screen/dashboard/home/go_home_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/post.dart';
+import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/property/property_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/data_base.dart';
@@ -34,7 +34,7 @@ class GoHome extends StatefulWidget {
 class _GoHomeState extends State<GoHome> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<GoHomeModel>>(
+    return StreamBuilder<List<PostModel>>(
       stream: widget.database.postStream(),
       builder: (context, allPost) {
         if (allPost.hasData) {
@@ -47,18 +47,18 @@ class _GoHomeState extends State<GoHome> {
               shrinkWrap: true,
               itemCount: allPost.data.length,
               itemBuilder: (context, index) => StreamBuilder<Property>(
-                    stream: widget.database.propertyStream(
-                        propertyId: allPost.data[index].propertyReference),
+                    stream: widget.database
+                        .propertyStream(propertyId: allPost.data[index].flatId),
                     builder: (context, data) {
                       if (data.hasData) {
                         print(data.data);
                         return StreamBuilder<User>(
-                            stream: widget.database.userStream(
-                                userId: allPost.data[index].userReference),
+                            stream: widget.database
+                                .userStream(userId: allPost.data[index].userId),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 return Post(
-                                  goHomeModel: allPost.data[index],
+                                  postModel: allPost.data[index],
                                   user: snapshot.data,
                                   property: data.data,
                                 );

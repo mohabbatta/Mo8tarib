@@ -3,7 +3,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:mo8tarib/app/Screen/dashboard/carousel_with_indecator.dart';
-import 'package:mo8tarib/app/Screen/dashboard/home/go_home_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/post_details.dart';
 import 'package:mo8tarib/app/Screen/property/property_model.dart';
@@ -11,18 +10,28 @@ import 'package:mo8tarib/app/Screen/rent.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/avatar.dart';
 import 'package:mo8tarib/global.dart';
+import 'package:mo8tarib/services/data_base.dart';
+import 'package:provider/provider.dart';
 
-class Post extends StatelessWidget {
-  final GoHomeModel goHomeModel;
+class Post extends StatefulWidget {
   final PostModel postModel;
   final Property property;
   final User user;
 
-  const Post(
-      {Key key, this.goHomeModel, this.property, this.user, this.postModel})
+  const Post({Key key, this.property, this.user, this.postModel})
       : super(key: key);
+
+  @override
+  _PostState createState() => _PostState();
+}
+
+class _PostState extends State<Post> {
+  bool like = false;
+
   @override
   Widget build(BuildContext context) {
+    final database = Provider.of<Database>(context);
+    final user = Provider.of<User>(context);
     return AspectRatio(
         aspectRatio: 0.8,
         child: GestureDetector(
@@ -31,10 +40,8 @@ class Post extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => PostDetails(
-//                    flatDocId: '${goHomeModel.propertyReference}',
-//                    userDocId: '${goHomeModel.userReference}',
-                    property: property,
-                    user: user,
+                    property: widget.property,
+                    user: widget.user,
                   ),
                 ));
             print('go to details');
@@ -50,13 +57,9 @@ class Post extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-//                        AvatarWidget(
-//                          radius: 20,
-//                          image: user.photoUrl,
-//                        ),
                         Avatar(
                           radius: 20,
-                          photoUrl: user.photoUrl,
+                          photoUrl: widget.user.photoUrl,
                         ),
                         //  SizedBox(width: size.width * .03),
                         Padding(
@@ -64,10 +67,12 @@ class Post extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('${user.disPlayName}',
+                              Text('${widget.user.disPlayName}',
                                   style:
                                       TextStyle(color: color1, fontSize: 18)),
-                              Text(Jiffy(postModel.time.toDate()).fromNow(),
+                              Text(
+                                  Jiffy(widget.postModel.time.toDate())
+                                      .fromNow(),
 
                                   // 'since ${new DateFormat.yMMMd().format(postModel.time.toDate())}  m',
                                   style:
@@ -77,8 +82,23 @@ class Post extends StatelessWidget {
                         ),
                         Expanded(child: SizedBox()),
                         IconButton(
-                          icon: Icon(Icons.favorite_border),
-                          onPressed: () {},
+                          icon: like
+                              ? Icon(Icons.favorite)
+                              : Icon(Icons.favorite_border),
+                          onPressed: () async {
+                            setState(() {
+                              like = !like;
+                            });
+                            if (like) {
+                              await database.addLike(
+                                  userId: user.uid,
+                                  postId: widget.postModel.postId);
+                            } else {
+                              await database.removeLike(
+                                  userId: user.uid,
+                                  postId: widget.postModel.postId);
+                            }
+                          },
                         )
                       ],
                     ),
@@ -86,12 +106,14 @@ class Post extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: CarouselWithIndicatorDemo(
-                          imgList: property.imageUrls.cast<String>().toList()),
+                          imgList: widget.property.imageUrls
+                              .cast<String>()
+                              .toList()),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2),
                       child: Text(
-                        "${property.category}",
+                        "${widget.property.category}",
                         style: TextStyle(fontSize: 25),
                       ),
                     ),
@@ -114,7 +136,7 @@ class Post extends StatelessWidget {
                                     Expanded(
                                       child: Text(
                                         // "Cairo",
-                                        "${property.address}",
+                                        "${widget.property.address}",
                                         style: TextStyle(fontSize: 16),
                                       ),
                                     )
@@ -142,7 +164,7 @@ class Post extends StatelessWidget {
                                     ),
                                     SizedBox(width: 5),
                                     Text(
-                                      "${property.size}M",
+                                      "${widget.property.size}M",
                                       style: TextStyle(fontSize: 18),
                                     )
                                   ],
@@ -174,7 +196,7 @@ class Post extends StatelessWidget {
                             child: Column(
                               children: <Widget>[
                                 Text('price', style: TextStyle(fontSize: 20)),
-                                Text('${property.price.toString()}\$',
+                                Text('${widget.property.price.toString()}\$',
                                     style: TextStyle(fontSize: 30)),
                                 RaisedButton(
                                   shape: RoundedRectangleBorder(
@@ -186,12 +208,8 @@ class Post extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => Rent(
-                                            flatDocId:
-                                                goHomeModel.propertyReference ??
-                                                    postModel.flatId,
-                                            userDocId:
-                                                goHomeModel.userReference ??
-                                                    postModel.userId,
+                                            flatDocId: widget.postModel.flatId,
+                                            userDocId: widget.postModel.userId,
                                           ),
                                         ));
                                   },

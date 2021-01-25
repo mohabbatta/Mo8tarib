@@ -1,20 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/property/add_propert_model.dart';
-import 'package:mo8tarib/app/Screen/property/property_model.dart';
-import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/data_base.dart';
-
-import 'go_home_model.dart';
 
 class GoHomeBloc {
   GoHomeBloc({@required this.database});
 
   final Database database;
-  final StreamController<List<GoHomeModel>> _modelController =
-      StreamController<List<GoHomeModel>>();
-  Stream<List<GoHomeModel>> get modelStream => _modelController.stream;
+  final StreamController<List<PostModel>> _modelController =
+      StreamController<List<PostModel>>();
+  Stream<List<PostModel>> get modelStream => _modelController.stream;
   AddPropertyModel _model = AddPropertyModel();
 
   void dispose() {

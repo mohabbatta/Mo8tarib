@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/Screen/dashboard/side_bar_items/search_result.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/common_widgets/search_components.dart';
+import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/search_result.dart';
+import 'package:mo8tarib/app/common_widgets/search_components.dart';
 
 import 'package:mo8tarib/global.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;

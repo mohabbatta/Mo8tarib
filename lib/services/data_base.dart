@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/chat/model/chat_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/chat/model/chat_room_model.dart';
-import 'package:mo8tarib/app/Screen/dashboard/home/go_home_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/property/property_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
@@ -16,13 +15,15 @@ abstract class Database {
   Future<void> addChatRoom({String id, ChatRoom room});
   Stream<List<Property>> propertiesStream({User user});
   Stream<List<User>> usersStream({User user});
-  Stream<List<GoHomeModel>> postStream();
+  Stream<List<PostModel>> postStream();
   Stream<Property> propertyStream({String propertyId});
   Stream<List<ChatRoom>> chatRoomsStream({String userID});
   Stream<List<ChatRoom>> chatRoom({String one, String two});
   Stream<List<Chat>> chatStream({String chatID});
   Stream<Chat> lastMessage({DocumentReference path});
   Stream<List<PostModel>> postsStream({String userId});
+  Future<void> addLike({String postId, String userId});
+  Future<void> removeLike({String postId, String userId});
   Stream<List<PostModel>> likePostsStream({String userId});
 }
 
@@ -81,10 +82,9 @@ class FireStoreDatabase implements Database {
       );
 
   @override
-  Stream<List<GoHomeModel>> postStream() =>
-      _service.collectionStream<GoHomeModel>(
+  Stream<List<PostModel>> postStream() => _service.collectionStream<PostModel>(
         path: APIPath.post(),
-        builder: (data, documentID) => GoHomeModel.fromMap(data, documentID),
+        builder: (data, documentID) => PostModel.fromMap(data, documentID),
         // sort: (lhs, rhs) => rhs.startDate.compareTo(lhs.startDate),
       );
 
@@ -151,4 +151,24 @@ class FireStoreDatabase implements Database {
         builder: (data, documentID) => PostModel.fromMap(data, documentID),
         // sort: (lhs, rhs) => rhs.startDate.compareTo(lhs.startDate),
       );
+
+  @override
+  Future<void> addLike({String postId, String userId}) async {
+    await Firestore.instance
+        .collection('mohab_posts')
+        .document(postId)
+        .updateData({
+      "likes": FieldValue.arrayUnion([userId])
+    });
+  }
+
+  @override
+  Future<void> removeLike({String postId, String userId}) async {
+    await Firestore.instance
+        .collection('mohab_posts')
+        .document(postId)
+        .updateData({
+      "likes": FieldValue.arrayRemove([userId])
+    });
+  }
 }

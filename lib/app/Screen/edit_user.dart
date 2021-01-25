@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
-import 'file:///C:/Users/Digital/AndroidStudioProjects/Mo8tarib/lib/app/common_widgets/resuable_edit_user.dart';
+import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:firebase_storage/firebase_storage.dart';

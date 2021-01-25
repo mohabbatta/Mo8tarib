@@ -37,7 +37,6 @@ class MyLikes extends StatelessWidget {
                               if (snapshot.hasData) {
                                 return Post(
                                   postModel: allPost.data[index],
-                                  goHomeModel: null,
                                   user: snapshot.data,
                                   property: data.data,
                                 );

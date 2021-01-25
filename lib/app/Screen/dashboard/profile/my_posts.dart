@@ -32,7 +32,6 @@ class MyPosts extends StatelessWidget {
                         print(data.data);
                         return Post(
                           postModel: allPost.data[index],
-                          goHomeModel: null,
                           user: user,
                           property: data.data,
                         );

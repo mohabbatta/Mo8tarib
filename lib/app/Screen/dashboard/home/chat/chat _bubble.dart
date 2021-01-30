@@ -19,8 +19,8 @@ class ChatBubble extends StatelessWidget {
   }) : super(key: key);
 
   final String chatId;
-  final User senderUser;
-  final User receiverUser;
+  final MyUser senderUser;
+  final MyUser receiverUser;
   final Database database;
   final DocumentReference lastMessage;
 

@@ -10,7 +10,7 @@ class MyLikes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context);
-    final user = Provider.of<User>(context);
+    final user = Provider.of<MyUser>(context);
     return StreamBuilder<List<PostModel>>(
       stream: database.likePostsStream(userId: user.uid),
       builder: (context, allPost) {
@@ -30,7 +30,7 @@ class MyLikes extends StatelessWidget {
                     builder: (context, data) {
                       if (data.hasData) {
                         print(data.data);
-                        return StreamBuilder<User>(
+                        return StreamBuilder<MyUser>(
                             stream: database.userStream(
                                 userId: allPost.data[index].userId),
                             builder: (context, snapshot) {

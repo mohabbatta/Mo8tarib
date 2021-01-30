@@ -9,12 +9,12 @@ import 'package:mo8tarib/services/api_path.dart';
 import 'package:mo8tarib/services/firestore_servies.dart';
 
 abstract class Database {
-  Future<void> setUser(User user);
-  Stream<User> userStream({@required String userId});
+  Future<void> setUser(MyUser user);
+  Stream<MyUser> userStream({@required String userId});
   Future<void> setProperty(Property property);
   Future<void> addChatRoom({String id, ChatRoom room});
-  Stream<List<Property>> propertiesStream({User user});
-  Stream<List<User>> usersStream({User user});
+  Stream<List<Property>> propertiesStream({MyUser user});
+  Stream<List<MyUser>> usersStream({MyUser user});
   Stream<List<PostModel>> postStream();
   Stream<Property> propertyStream({String propertyId});
   Stream<List<ChatRoom>> chatRoomsStream({String userID});
@@ -34,14 +34,14 @@ class FireStoreDatabase implements Database {
   final _service = FireStoreService.instance;
 
   @override
-  Future<void> setUser(User user) async => await _service.setData(
+  Future<void> setUser(MyUser user) async => await _service.setData(
         path: APIPath.users(uid),
         data: user.toMap(),
       );
   @override
-  Stream<User> userStream({@required String userId}) => _service.documentStream(
+  Stream<MyUser> userStream({@required String userId}) => _service.documentStream(
         path: APIPath.users(userId),
-        builder: (data, documentId) => User.fromMap(data, documentId),
+        builder: (data, documentId) => MyUser.fromMap(data, documentId),
       );
 
   @override
@@ -60,7 +60,7 @@ class FireStoreDatabase implements Database {
       );
 
   @override
-  Stream<List<Property>> propertiesStream({User user}) =>
+  Stream<List<Property>> propertiesStream({MyUser user}) =>
       _service.collectionStream<Property>(
         path: APIPath.properties(),
         queryBuilder: user != null
@@ -71,13 +71,13 @@ class FireStoreDatabase implements Database {
       );
 
   @override
-  Stream<List<User>> usersStream({User user}) =>
-      _service.collectionStream<User>(
+  Stream<List<MyUser>> usersStream({MyUser user}) =>
+      _service.collectionStream<MyUser>(
         path: APIPath.usersAll(),
         queryBuilder: user != null
             ? (query) => query.where('uid', isEqualTo: user.uid)
             : null,
-        builder: (data, documentID) => User.fromMap(data, documentID),
+        builder: (data, documentID) => MyUser.fromMap(data, documentID),
         // sort: (lhs, rhs) => rhs.startDate.compareTo(lhs.startDate),
       );
 
@@ -154,20 +154,20 @@ class FireStoreDatabase implements Database {
 
   @override
   Future<void> addLike({String postId, String userId}) async {
-    await Firestore.instance
+    await FirebaseFirestore.instance
         .collection('mohab_posts')
-        .document(postId)
-        .updateData({
+        .doc(postId)
+        .update({
       "likes": FieldValue.arrayUnion([userId])
     });
   }
 
   @override
   Future<void> removeLike({String postId, String userId}) async {
-    await Firestore.instance
+    await FirebaseFirestore.instance
         .collection('mohab_posts')
-        .document(postId)
-        .updateData({
+        .doc(postId)
+        .update({
       "likes": FieldValue.arrayRemove([userId])
     });
   }

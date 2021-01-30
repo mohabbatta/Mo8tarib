@@ -61,9 +61,9 @@ class _RentState extends State<Rent> {
         primarySwatch: Colors.blue,
       ),
       home: StreamBuilder<DocumentSnapshot>(
-          stream: Firestore.instance
+          stream: FirebaseFirestore.instance
               .collection('flat')
-              .document(widget.flatDocId)
+              .doc(widget.flatDocId)
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
@@ -101,9 +101,9 @@ class _RentState extends State<Rent> {
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: StreamBuilder<DocumentSnapshot>(
-                      stream: Firestore.instance
+                      stream: FirebaseFirestore.instance
                           .collection('user')
-                          .document(widget.userDocId)
+                          .doc(widget.userDocId)
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {

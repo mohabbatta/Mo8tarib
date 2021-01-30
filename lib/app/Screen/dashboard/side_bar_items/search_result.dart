@@ -15,14 +15,14 @@ class SearchResult extends StatefulWidget {
 }
 
 class _SearchResultState extends State<SearchResult> {
-  final _fireStore = Firestore.instance;
+  final _fireStore = FirebaseFirestore.instance;
   final List<String> find = [];
-  FirebaseUser loggedInUser;
+  User loggedInUser;
   final _auth = FirebaseAuth.instance;
 
   void getCurrentUser() async {
     try {
-      final user = await _auth.currentUser();
+      final user =  _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
         print(user.email);
@@ -66,18 +66,18 @@ class _SearchResultState extends State<SearchResult> {
         builder: (context, snapshot) {
           //propertiesList.clear();
           if (snapshot.hasData) {
-            final properties = snapshot.data.documents;
+            final properties = snapshot.data.docs;
             for (var property in properties) {
-              final UID = property.documentID;
+              final UID = property.id;
               int i = 0;
               for (int i = 0; i < widget.result.length; i++) {
                 if (UID == widget.result[i]) {
-                  final price = property.data['price'];
-                  final address = property.data['address'];
-                  final url = property.data['imagesUrl'];
-                  final description = property.data['description'];
-                  final type = property.data['type'];
-                  final category = property.data['category'];
+                  final price = property['price'];
+                  final address = property['address'];
+                  final url = property['imagesUrl'];
+                  final description = property['description'];
+                  final type = property['type'];
+                  final category = property['category'];
 
                   var pro = Property(
                     pid: 'xx',

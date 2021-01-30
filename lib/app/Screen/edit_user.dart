@@ -17,8 +17,8 @@ class EditUser extends StatefulWidget {
 }
 
 class _EditUserState extends State<EditUser> {
-  final _fireStore = Firestore.instance;
-  FirebaseUser loggedInUser;
+  final _fireStore = FirebaseFirestore.instance;
+  User loggedInUser;
   final _auth = FirebaseAuth.instance;
 
   DocumentSnapshot _currentDocument;
@@ -26,14 +26,14 @@ class _EditUserState extends State<EditUser> {
   _updateData(TextEditingController controller) async {
     await _fireStore
         .collection('info')
-        .document(_currentDocument.documentID)
-        .updateData({'age': controller.text});
+        .doc(_currentDocument.id)
+        .update({'age': controller.text});
   }
   //  _currentDocument.reference.updateData({'age': value});
 
   void getCurrentUser() async {
     try {
-      final user = await _auth.currentUser();
+      final user =  _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
         print(user.email);
@@ -147,15 +147,15 @@ class _EditUserState extends State<EditUser> {
                 builder: (context) => FlatButton(
                   onPressed: () {
                     _currentDocument.reference
-                        .updateData({'name.first': firstNameController.text});
+                        .update({'name.first': firstNameController.text});
                     _currentDocument.reference
-                        .updateData({'name.mid': midNameController.text});
+                        .update({'name.mid': midNameController.text});
                     _currentDocument.reference
-                        .updateData({'name.last': lastNameController.text});
+                        .update({'name.last': lastNameController.text});
                     _currentDocument.reference
-                        .updateData({'age': ageController.text});
+                        .update({'age': ageController.text});
                     _currentDocument.reference
-                        .updateData({'phone': phoneController.text});
+                        .update({'phone': phoneController.text});
 //                    _fireStore.collection('user').add(
 //                      {
 //                        'name': {
@@ -339,34 +339,34 @@ class _EditUserState extends State<EditUser> {
       image = imageUP;
     });
   }
-
+///TODO update storage
   void uploadImage(context) async {
-    ///pick image from gallery
-    var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      image = imageUP;
-    });
-
-    ///upload image to storage
-    try {
-      StorageReference storageRef =
-          FirebaseStorage.instance.ref().child('users');
-      StorageReference ref = storageRef.child(basename(image.path));
-      StorageUploadTask storageUploadTask = ref.putFile(image);
-      StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text('success'),
-      ));
-      String getUrl = await taskSnapshot.ref.getDownloadURL();
-      print('url $getUrl');
-      setState(() {
-        url = getUrl;
-      });
-    } catch (ex) {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text(ex.message),
-      ));
-    }
+    // ///pick image from gallery
+    // var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
+    // setState(() {
+    //   image = imageUP;
+    // });
+    //
+    // ///upload image to storage
+    // try {
+    //   StorageReference storageRef =
+    //       FirebaseStorage.instance.ref().child('users');
+    //   StorageReference ref = storageRef.child(basename(image.path));
+    //   StorageUploadTask storageUploadTask = ref.putFile(image);
+    //   StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;
+    //   Scaffold.of(context).showSnackBar(SnackBar(
+    //     content: Text('success'),
+    //   ));
+    //   String getUrl = await taskSnapshot.ref.getDownloadURL();
+    //   print('url $getUrl');
+    //   setState(() {
+    //     url = getUrl;
+    //   });
+    // } catch (ex) {
+    //   Scaffold.of(context).showSnackBar(SnackBar(
+    //     content: Text(ex.message),
+    //   ));
+    // }
   }
 
   void loadImage(String url1) async {
@@ -396,7 +396,7 @@ class _EditUserState extends State<EditUser> {
         .collection('user')
         .where("email", isEqualTo: loggedInUser.email)
         .snapshots()
-        .listen((data) => data.documents.forEach((doc) {
+        .listen((data) => data.docs.forEach((doc) {
               setState(() {
                 _currentDocument = doc;
                 url = doc['url'];

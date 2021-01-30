@@ -10,7 +10,7 @@ class MyPosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context);
-    final user = Provider.of<User>(context);
+    final user = Provider.of<MyUser>(context);
     return StreamBuilder<List<PostModel>>(
       stream: database.postsStream(userId: user.uid),
       builder: (context, allPost) {

@@ -10,7 +10,7 @@ class MapMarker extends StatefulWidget {
 }
 
 class _MapMarkerState extends State<MapMarker> {
-  final _fireStore = Firestore.instance;
+  final _fireStore = FirebaseFirestore.instance;
 
   GoogleMapController _controller;
   List<Marker> allMarkers = [];
@@ -126,13 +126,13 @@ class _MapMarkerState extends State<MapMarker> {
           builder: (context, snapshot) {
             coffeeShops.clear();
             if (snapshot.hasData) {
-              final flats = snapshot.data.documents;
+              final flats = snapshot.data.docs;
               for (var flat in flats) {
-                final price = flat.data['price'];
-                final address = flat.data['address'];
-                final url = flat.data['imagesUrl'];
-                final description = flat.data['description'];
-                final arr = flat.data['Location'];
+                final price = flat['price'];
+                final address = flat['address'];
+                final url = flat['imagesUrl'];
+                final description = flat['description'];
+                final arr = flat['Location'];
                 final locationCoord = LatLng(arr[0], arr[1]),
                     cof = Coffee(
                         price: price,

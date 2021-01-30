@@ -10,7 +10,7 @@ class SignInManager {
   final ValueNotifier<bool> isLoading;
   //to disable other buttons when process of the signIn Method
 
-  Future<User> _signIn(Future<User> Function() signInMethod) async {
+  Future<MyUser> _signIn(Future<MyUser> Function() signInMethod) async {
     try {
       isLoading.value = true;
       return await signInMethod();
@@ -20,9 +20,9 @@ class SignInManager {
     }
   }
 
-  Future<User> signInAnonymously() async =>
+  Future<MyUser> signInAnonymously() async =>
       await _signIn(auth.signInAnonymously);
-  Future<User> signInWithGoogle() async => await _signIn(auth.signInWithGoogle);
-  Future<User> signInWithFaceBook() async =>
+  Future<MyUser> signInWithGoogle() async => await _signIn(auth.signInWithGoogle);
+  Future<MyUser> signInWithFaceBook() async =>
       await _signIn(auth.signInWithFaceBook);
 }

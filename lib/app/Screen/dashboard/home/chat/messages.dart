@@ -9,8 +9,8 @@ import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/services/data_base.dart';
 
 class Messages extends StatefulWidget {
-  final User senderUser;
-  final User receiverUser;
+  final MyUser senderUser;
+  final MyUser receiverUser;
   final Database database;
   final String chatId;
 
@@ -34,9 +34,9 @@ class _MessagesState extends State<Messages> {
         idd = id;
       });
 
-      await Firestore.instance
+      await FirebaseFirestore.instance
           .collection('mohab_messages')
-          .document(id)
+          .doc(id)
           .collection('chats')
           .add({
         'body': message,
@@ -48,9 +48,9 @@ class _MessagesState extends State<Messages> {
         widget.database.addChatRoom(room: room, id: id);
       }).catchError(FlutterError.onError);
     } else {
-      Firestore.instance
+      FirebaseFirestore.instance
           .collection('mohab_messages')
-          .document(id)
+          .doc(id)
           .collection('chats')
           .add({
         'body': message,

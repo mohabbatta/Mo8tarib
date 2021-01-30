@@ -14,8 +14,8 @@ import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class AddINf extends StatefulWidget {
-  static Widget create(BuildContext context, User user) {
-    return Provider<User>.value(
+  static Widget create(BuildContext context, MyUser user) {
+    return Provider<MyUser>.value(
       value: user,
       child: Provider<Database>(
         create: (_) => FireStoreDatabase(uid: user.uid),
@@ -83,11 +83,11 @@ class _AddINfState extends State<AddINf> {
   String currentAddress;
 
   Future<void> _saveUser(BuildContext context) async {
-    final user = Provider.of<User>(context, listen: false);
+    final user = Provider.of<MyUser>(context, listen: false);
     final database = Provider.of<Database>(context, listen: false);
 
     final id = user?.uid;
-    final newUser = User(
+    final newUser = MyUser(
       uid: id,
       disPlayName: " ${firstNameController.text} ${lastNameController.text} ",
       email: user.email,
@@ -283,36 +283,36 @@ class _AddINfState extends State<AddINf> {
       ),
     );
   }
-
+///TODO update Storage
   void uploadImage(context) async {
     ///pick image from gallery
-    var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      image = imageUP;
-    });
-
-    ///upload image to storage
-    try {
-      StorageReference storageRef =
-          FirebaseStorage.instance.ref().child('users');
-      StorageReference ref = storageRef.child(basename(image.path));
-      StorageUploadTask storageUploadTask = ref.putFile(image);
-      StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text('success'),
-      ));
-      String getUrl = await taskSnapshot.ref.getDownloadURL();
-      print(getUrl);
-      print('url $getUrl');
-      setState(() {
-        url = getUrl;
-      });
-      print(url);
-    } catch (ex) {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        content: Text(ex.message),
-      ));
-    }
+    // var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
+    // setState(() {
+    //   image = imageUP;
+    // });
+    //
+    // ///upload image to storage
+    // try {
+    //   StorageReference storageRef =
+    //       FirebaseStorage.instance.ref().child('users');
+    //   StorageReference ref = storageRef.child(basename(image.path));
+    //   StorageUploadTask storageUploadTask = ref.putFile(image);
+    //   StorageTaskSnapshot taskSnapshot = await storageUploadTask.onComplete;
+    //   Scaffold.of(context).showSnackBar(SnackBar(
+    //     content: Text('success'),
+    //   ));
+    //   String getUrl = await taskSnapshot.ref.getDownloadURL();
+    //   print(getUrl);
+    //   print('url $getUrl');
+    //   setState(() {
+    //     url = getUrl;
+    //   });
+    //   print(url);
+    // } catch (ex) {
+    //   Scaffold.of(context).showSnackBar(SnackBar(
+    //     content: Text(ex.message),
+    //   ));
+    // }
   }
 
 //  void loadImage(String url1) async {

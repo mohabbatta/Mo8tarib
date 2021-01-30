@@ -9,14 +9,14 @@ import 'package:provider/provider.dart';
 
 class ChatRooms extends StatefulWidget {
   final Database database;
-  final User user;
+  final MyUser user;
   final BuildContext context;
   const ChatRooms({Key key, this.database, this.user, this.context})
       : super(key: key);
 
   static Widget create(BuildContext context) {
     final database = Provider.of<Database>(context);
-    final user = Provider.of<User>(context);
+    final user = Provider.of<MyUser>(context);
     return ChatRooms(
       database: database,
       user: user,
@@ -60,7 +60,7 @@ class _ChatRoomsState extends State<ChatRooms> {
                     .where((element) => element != widget.user.uid)
                     .toString();
                 id = id.substring(1, id.length - 1);
-                return StreamBuilder<User>(
+                return StreamBuilder<MyUser>(
                     stream: widget.database.userStream(userId: id),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {

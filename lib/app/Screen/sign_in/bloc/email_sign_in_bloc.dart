@@ -51,7 +51,7 @@ class EmailSignInBloc {
   void updateEmail(String email) => updateWith(email: email);
   void updatePassword(String password) => updateWith(password: password);
 
-  Future<User> submit() async {
+  Future<MyUser> submit() async {
     updateWith(submitted: true, isLoaded: true);
     try {
       if (_model.formType == EmailSignInformType.signIn) {

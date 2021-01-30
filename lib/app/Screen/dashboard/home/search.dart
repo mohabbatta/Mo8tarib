@@ -17,7 +17,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  final _fireStore = Firestore.instance;
+  final _fireStore = FirebaseFirestore.instance;
 
   String type;
   String category;
@@ -538,9 +538,9 @@ class _SearchState extends State<Search> {
         .where("category", isEqualTo: category)
         .snapshots()
         .listen(
-          (data) => data.documents.forEach((doc) {
-            print(doc.documentID);
-            result.add(doc.documentID);
+          (data) => data.docs.forEach((doc) {
+            print(doc.id);
+            result.add(doc.id);
             print(result);
           }),
         );

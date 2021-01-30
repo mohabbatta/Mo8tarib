@@ -15,7 +15,7 @@ class Menu extends StatefulWidget {
   final Animation<Offset> slideAnimation;
   final int selectedIndex;
   final Function onMenuItemClicked;
-  final User user;
+  final MyUser user;
 
   Menu(
     this.menuScaleAnimation,

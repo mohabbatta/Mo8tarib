@@ -65,7 +65,7 @@ class _PendingPropertyState extends State<PendingProperty> {
   @override
   Widget build(BuildContext context) {
     final dataBase = Provider.of<Database>(context);
-    final user = Provider.of<User>(context);
+    final user = Provider.of<MyUser>(context);
     return StreamBuilder<List<Property>>(
       stream: dataBase.propertiesStream(user: user),
       builder: (context, snapshot) {
@@ -119,15 +119,15 @@ class _PendingPropertyState extends State<PendingProperty> {
                                               onPressed: () async {
                                                 final DocumentReference
                                                     reference1 =
-                                                    Firestore.instance.document(
+                                                FirebaseFirestore.instance.doc(
                                                         APIPath.properties() +
                                                             list[index].pid);
                                                 final DocumentReference
                                                     reference2 =
-                                                    Firestore.instance.document(
+                                                FirebaseFirestore.instance.doc(
                                                         APIPath.usersAll() +
                                                             list[index].uid);
-                                                Firestore.instance
+                                                FirebaseFirestore.instance
                                                     .collection('mohab_posts')
                                                     .add(
                                                   {

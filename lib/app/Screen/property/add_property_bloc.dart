@@ -150,27 +150,27 @@ class AddPropertyBloc {
     _paths.forEach((fileName, filePath) => {upload(fileName, filePath)});
     updateWith(isLoading: false);
   }
-
+///TODO update storage
   upload(fileName, filePath) async {
-    _extension = fileName.toString().split('.').last;
-    StorageReference storageRef =
-        FirebaseStorage.instance.ref().child(fileName);
-    final StorageUploadTask uploadTask = storageRef.putFile(
-      File(filePath),
-      StorageMetadata(
-        contentType: '$FileType.image/$_extension',
-      ),
-    );
-    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-    String getUrl = await taskSnapshot.ref.getDownloadURL();
-    urls.add(getUrl);
-    updateImageList(urls);
+    // _extension = fileName.toString().split('.').last;
+    // StorageReference storageRef =
+    //     FirebaseStorage.instance.ref().child(fileName);
+    // final StorageUploadTask uploadTask = storageRef.putFile(
+    //   File(filePath),
+    //   StorageMetadata(
+    //     contentType: '$FileType.image/$_extension',
+    //   ),
+    // );
+    // StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    // String getUrl = await taskSnapshot.ref.getDownloadURL();
+    // urls.add(getUrl);
+    // updateImageList(urls);
   }
 
   String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 
   Future<void> addProperty(BuildContext context, AddPropertyModel model) async {
-    final user = Provider.of<User>(context, listen: false);
+    final user = Provider.of<MyUser>(context, listen: false);
     final database = Provider.of<Database>(context, listen: false);
     final id = user?.uid;
     final pid = documentIdFromCurrentDate();

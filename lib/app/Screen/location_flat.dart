@@ -22,9 +22,9 @@ class _LocationFlatState extends State<LocationFlat> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
-        stream: Firestore.instance
+        stream: FirebaseFirestore.instance
             .collection('flat')
-            .document(widget.docId)
+            .doc(widget.docId)
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {

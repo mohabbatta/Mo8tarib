@@ -8,27 +8,27 @@ import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 
 abstract class AuthBase {
   bool get isNewUser;
-  Stream<User> get onAuthStateChanged;
-  Future<User> currentUser();
-  Future<User> signInAnonymously();
-  Future<User> signInWithGoogle();
-  Future<User> signInWithFaceBook();
-  Future<User> signInWithEmailAndPassword(String email, String password);
-  Future<User> createUserWithEmailAndPassword(String email, String password);
+  Stream<MyUser> get onAuthStateChanged;
+  Future<MyUser> currentUser();
+  Future<MyUser> signInAnonymously();
+  Future<MyUser> signInWithGoogle();
+  Future<MyUser> signInWithFaceBook();
+  Future<MyUser> signInWithEmailAndPassword(String email, String password);
+  Future<MyUser> createUserWithEmailAndPassword(String email, String password);
   Future<void> signOut();
 }
 
 class Auth implements AuthBase {
   final _firebaseAuth = FirebaseAuth.instance;
 
-  User _userFromFirebase(FirebaseUser user) {
+  MyUser _userFromFirebase(User user) {
     if (user == null) {
       return null;
     }
-    return User(
+    return MyUser(
       uid: user.uid,
       disPlayName: user.displayName,
-      photoUrl: user.photoUrl,
+      photoUrl: user.photoURL,
       email: user.email,
     );
   }
@@ -40,24 +40,24 @@ class Auth implements AuthBase {
   }
 
   @override
-  Stream<User> get onAuthStateChanged {
-    return _firebaseAuth.onAuthStateChanged.map(_userFromFirebase);
+  Stream<MyUser> get onAuthStateChanged {
+    return _firebaseAuth.authStateChanges().map(_userFromFirebase);
   }
 
   @override
-  Future<User> currentUser() async {
-    final user = await _firebaseAuth.currentUser();
+  Future<MyUser> currentUser() async {
+    final user =  _firebaseAuth.currentUser;
     return _userFromFirebase(user);
   }
 
   @override
-  Future<User> signInAnonymously() async {
+  Future<MyUser> signInAnonymously() async {
     final authResult = await _firebaseAuth.signInAnonymously();
     return _userFromFirebase(authResult.user);
   }
 
   @override
-  Future<User> signInWithGoogle() async {
+  Future<MyUser> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
     if (googleSignIn.isSignedIn() != null) {
       final googleSignInAccount = await googleSignIn.signIn();
@@ -65,7 +65,7 @@ class Auth implements AuthBase {
         final googleAuth = await googleSignInAccount.authentication;
         if (googleAuth.idToken != null && googleAuth.accessToken != null) {
           final authResult = await _firebaseAuth.signInWithCredential(
-              GoogleAuthProvider.getCredential(
+              GoogleAuthProvider.credential(
                   idToken: googleAuth.idToken,
                   accessToken: googleAuth.accessToken));
           if (authResult.additionalUserInfo.isNewUser) {
@@ -95,7 +95,7 @@ class Auth implements AuthBase {
   }
 
   @override
-  Future<User> signInWithFaceBook() async {
+  Future<MyUser> signInWithFaceBook() async {
     final faceBookLogIn = FacebookLogin();
     final result = await faceBookLogIn.logInWithReadPermissions(
       [
@@ -111,8 +111,8 @@ class Auth implements AuthBase {
           print(result.accessToken.userId);
           try {
             final authResult = await _firebaseAuth
-                .signInWithCredential(FacebookAuthProvider.getCredential(
-              accessToken: result.accessToken.token,
+                .signInWithCredential(FacebookAuthProvider.credential(
+     result.accessToken.token,
             ));
 //            final graphResponse = await http.get(
 //                'https://graph.facebook.com/v2.12/me?fields=name,picture,email,gender&access_token=${result.accessToken.token}');
@@ -121,7 +121,7 @@ class Auth implements AuthBase {
 //            print("${profile['email'].toString()}" + "  //////////    ");
 
             newUser = authResult.additionalUserInfo.isNewUser;
-            print(authResult.user.photoUrl + " firebase user" + "$isNewUser");
+            print(authResult.user.photoURL + " firebase user" + "$isNewUser");
             return _userFromFirebase(authResult.user);
           } catch (e) {
             print(e.toString());
@@ -142,14 +142,14 @@ class Auth implements AuthBase {
   }
 
   @override
-  Future<User> signInWithEmailAndPassword(String email, String password) async {
+  Future<MyUser> signInWithEmailAndPassword(String email, String password) async {
     final authResult = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
     return _userFromFirebase(authResult.user);
   }
 
   @override
-  Future<User> createUserWithEmailAndPassword(
+  Future<MyUser> createUserWithEmailAndPassword(
       String email, String password) async {
     final authResult = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);

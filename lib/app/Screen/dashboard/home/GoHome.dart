@@ -52,7 +52,7 @@ class _GoHomeState extends State<GoHome> {
                     builder: (context, data) {
                       if (data.hasData) {
                         print(data.data);
-                        return StreamBuilder<User>(
+                        return StreamBuilder<MyUser>(
                             stream: widget.database
                                 .userStream(userId: allPost.data[index].userId),
                             builder: (context, snapshot) {

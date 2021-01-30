@@ -15,7 +15,7 @@ class LandingPage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.data != null) {
             if (snapshot.hasData) {
-              User user = snapshot.data;
+              MyUser user = snapshot.data;
               if (user == null) {
                 return SignInPage.create(context);
               }

@@ -8,7 +8,7 @@ import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/services/data_base.dart';
 
 class SearchUsers extends StatefulWidget {
-  final User user;
+  final MyUser user;
   final Database database;
   final List<ChatRoom> list;
 
@@ -22,7 +22,7 @@ class SearchUsers extends StatefulWidget {
 class _SearchUsersState extends State<SearchUsers> {
   TextEditingController _searchController = TextEditingController();
 
-  List<User> _allResults = [];
+  List<MyUser> _allResults = [];
   List _resultsList = [];
   @override
   void initState() {
@@ -69,12 +69,12 @@ class _SearchUsersState extends State<SearchUsers> {
 
   void getData() async {
     print('xxxxxxxxxxxxxxxxxxxxxx');
-    Firestore.instance
+    FirebaseFirestore.instance
         .collection('mohab_users')
         .snapshots()
-        .listen((data) => data.documents.forEach((doc) {
+        .listen((data) => data.docs.forEach((doc) {
               setState(() {
-                _allResults.add(User.fromMap(doc.data, doc.documentID));
+                _allResults.add(MyUser.fromMap(doc.data(), doc.id));
               });
             }));
     searchResultsList();

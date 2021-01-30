@@ -16,7 +16,7 @@ import 'package:provider/provider.dart';
 class Post extends StatefulWidget {
   final PostModel postModel;
   final Property property;
-  final User user;
+  final MyUser user;
 
   const Post({Key key, this.property, this.user, this.postModel})
       : super(key: key);
@@ -31,7 +31,7 @@ class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context);
-    final user = Provider.of<User>(context);
+    final user = Provider.of<MyUser>(context);
     return AspectRatio(
         aspectRatio: 0.8,
         child: GestureDetector(
@@ -169,7 +169,7 @@ class _PostState extends State<Post> {
                                     )
                                   ],
                                 ),
-                                RatingBar(
+                                RatingBar.builder(
                                   initialRating: 3,
                                   minRating: 1,
                                   direction: Axis.horizontal,

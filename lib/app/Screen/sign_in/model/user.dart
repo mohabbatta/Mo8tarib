@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-
-class User {
-  User({
+//rename user to myuser bcs firebase change to you user
+class MyUser {
+  MyUser({
     @required this.uid,
     this.disPlayName = "name",
     this.photoUrl,
@@ -20,8 +20,8 @@ class User {
   final String gender;
   final String phone;
 
-  factory User.fromMap(Map<dynamic, dynamic> value, String id) {
-    return User(
+  factory MyUser.fromMap(Map<dynamic, dynamic> value, String id) {
+    return MyUser(
         uid: id,
         disPlayName: value['disPlayName'],
         age: value['age'],

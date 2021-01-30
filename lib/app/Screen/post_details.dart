@@ -13,7 +13,7 @@ import 'package:mo8tarib/global.dart';
 
 class PostDetails extends StatefulWidget {
   final Property property;
-  final User user;
+  final MyUser user;
   const PostDetails({Key key, this.property, this.user}) : super(key: key);
 
   @override
@@ -256,7 +256,7 @@ class _PostDetailsState extends State<PostDetails> {
                               ),
                               Row(
                                 children: [
-                                  RatingBar(
+                                  RatingBar.builder(
                                     initialRating: 3,
                                     minRating: 1,
                                     direction: Axis.horizontal,

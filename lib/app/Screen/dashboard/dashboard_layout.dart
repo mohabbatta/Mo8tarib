@@ -70,7 +70,7 @@ class _DashBoardState extends State<DashBoardLayout>
     screenWidth = size.width;
     screenHeight = size.height;
     final database = Provider.of<Database>(context);
-    return StreamBuilder<User>(
+    return StreamBuilder<MyUser>(
         stream: database.userStream(userId: widget.uid),
         builder: (context, snapshot) {
           final user = snapshot.data;
@@ -89,7 +89,7 @@ class _DashBoardState extends State<DashBoardLayout>
                           user);
                     },
                   ),
-                  Provider<User>.value(
+                  Provider<MyUser>.value(
                     value: user,
                     child: HomeBoard(
                       duration: duration,

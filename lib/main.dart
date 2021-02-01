@@ -6,7 +6,7 @@ import 'package:mo8tarib/landing_page.dart';
 import 'package:mo8tarib/localization.dart';
 import 'package:mo8tarib/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -130,6 +130,7 @@ class MyApp extends StatelessWidget {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
+          print(snapshot.error.toString());
           return MaterialApp(home: Scaffold(body: Container(child: Center(child: Text('something error'),),)));
         }
 

@@ -1,11 +1,11 @@
 import 'dart:ui';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'language.dart';
 
 class languageControler {
   Future<Locale> SetLocale(String langCode) async {
-    SharedPreferences _shard = await SharedPreferences.getInstance();
-    await _shard.setString("langCode", langCode);
+    // SharedPreferences _shard = await SharedPreferences.getInstance();
+    // await _shard.setString("langCode", langCode);
 
     return _locale(langCode);
   }
@@ -29,8 +29,8 @@ class languageControler {
   }
 
   Future<Locale> getLocale() async {
-    SharedPreferences _shard = await SharedPreferences.getInstance();
-    String langCode = _shard.getString("langCode") ?? "en";
-    return _locale(langCode);
+    // SharedPreferences _shard = await SharedPreferences.getInstance();
+    // String langCode = _shard.getString("langCode") ?? "en";
+    // return _locale(langCode);
   }
 }

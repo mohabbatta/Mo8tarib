@@ -135,11 +135,11 @@ class AddPropertyBloc {
   List<String> urls = <String>[];
   Map<String, String> _paths;
   String _extension;
-
+///TODO update filepicker
   void openFileExplorer() async {
     updateWith(isLoading: true);
     try {
-      _paths = await FilePicker.getMultiFilePath(type: FileType.image);
+      _paths = (await FilePicker.platform.pickFiles(type: FileType.image)) as Map<String, String>;
       uploadToFirebase();
     } on PlatformException catch (e) {
       print("Unsupported operation" + e.toString());

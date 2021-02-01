@@ -160,6 +160,8 @@ class SignInPage extends StatelessWidget {
     } on PlatformException catch (e) {
       if (e.code != 'ERROR_ABORTED_BY_USER') {
         _showSignInError(context, e);
+      }else if(e.code != 'ERROR'){
+        _showSignInError(context, e);
       }
     }
   }

@@ -97,7 +97,7 @@ class Auth implements AuthBase {
   @override
   Future<MyUser> signInWithFaceBook() async {
     final faceBookLogIn = FacebookLogin();
-    final result = await faceBookLogIn.logInWithReadPermissions(
+    final result = await faceBookLogIn.logIn(
       [
         "public_profile",
         "email",
@@ -108,20 +108,18 @@ class Auth implements AuthBase {
     switch (result.status) {
       case FacebookLoginStatus.loggedIn:
         if (result.accessToken != null) {
-          print(result.accessToken.userId);
+          //print(result.accessToken);
           try {
             final authResult = await _firebaseAuth
                 .signInWithCredential(FacebookAuthProvider.credential(
      result.accessToken.token,
             ));
-//            final graphResponse = await http.get(
-//                'https://graph.facebook.com/v2.12/me?fields=name,picture,email,gender&access_token=${result.accessToken.token}');
-//            final profile = JSON.jsonDecode(graphResponse.body);
-//
-//            print("${profile['email'].toString()}" + "  //////////    ");
-
-            newUser = authResult.additionalUserInfo.isNewUser;
-            print(authResult.user.photoURL + " firebase user" + "$isNewUser");
+            print('//auth res ${authResult.user.displayName}');
+            print('//auth res ${authResult.user.email}');
+            print('//auth res ${authResult.user.uid}');
+            print('//auth res ${authResult.additionalUserInfo.profile['picture']['data']['url']}');
+            //newUser = authResult.additionalUserInfo.isNewUser;
+           // print(authResult.additionalUserInfo.profile['picture']['url'] + " firebase user" + "${authResult.additionalUserInfo.profile}");
             return _userFromFirebase(authResult.user);
           } catch (e) {
             print(e.toString());
@@ -133,11 +131,17 @@ class Auth implements AuthBase {
         }
         break;
       case FacebookLoginStatus.cancelledByUser:
-        print("cancelld by user");
-        break;
+        throw PlatformException(
+            code: 'ERROR_ABORTED_BY_USER',
+            message: 'sign in aborted by user');
+        // print("cancelld by user");
+        // break;
       case FacebookLoginStatus.error:
-        print("error");
-        break;
+        throw PlatformException(
+            code: 'ERROR',
+            message: 'error');
+        // print("error");
+        // break;
     }
   }
 

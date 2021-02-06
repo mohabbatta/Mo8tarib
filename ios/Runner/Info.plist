@@ -41,14 +41,26 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    
+    
     <key>CFBundleURLTypes</key>
     <array>
-      <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb798505010919284</string>
-      </array>
-      </dict>
+        <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb798505010919284</string>
+        </array>
+        </dict>
+        
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.756690069447-heksoch3ev0oq9lp26kh7i6jnv7hjund</string>
+            </array>
+        </dict>
+        
     </array>
     <key>FacebookAppID</key>
     <string>798505010919284</string>
@@ -72,5 +84,8 @@
       <string>fbauth2</string>
       <string>fbshareextension</string>
     </array>
+    
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs access to location when open.</string>
 </dict>
 </plist>

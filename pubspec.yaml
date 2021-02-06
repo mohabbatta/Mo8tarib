@@ -28,7 +28,7 @@ dependencies:
 #  cached_network_image: ^2.2.0+1
   provider: ^4.3.1
   flutter_facebook_login: ^3.0.0
-  google_sign_in: ^4.5.4
+  google_sign_in: ^4.5.9
   bubble_bottom_bar: ^1.2.0
   flutter_rating_bar: ^3.0.1+1
   date_range_picker: ^1.0.6

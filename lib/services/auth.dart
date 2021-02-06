@@ -59,17 +59,17 @@ class Auth implements AuthBase {
   @override
   Future<MyUser> signInWithGoogle() async {
     final googleSignIn = GoogleSignIn();
-    if (googleSignIn.isSignedIn() != null) {
       final googleSignInAccount = await googleSignIn.signIn();
       if (googleSignInAccount != null) {
         final googleAuth = await googleSignInAccount.authentication;
-        if (googleAuth.idToken != null && googleAuth.accessToken != null) {
+        if (googleAuth.accessToken != null&&googleAuth.idToken != null ) {
           final authResult = await _firebaseAuth.signInWithCredential(
               GoogleAuthProvider.credential(
                   idToken: googleAuth.idToken,
                   accessToken: googleAuth.accessToken));
           if (authResult.additionalUserInfo.isNewUser) {
             print("yes new user");
+            return _userFromFirebase(authResult.user);
             //User logging in for the first time
             // Redirect user to tutorial
           } else {
@@ -89,60 +89,64 @@ class Auth implements AuthBase {
           message: 'SIGN IN ABOURTED BY USER ',
         );
       }
-    } else {
-      print("yes it is");
     }
-  }
+
+
 
   @override
   Future<MyUser> signInWithFaceBook() async {
-    final faceBookLogIn = FacebookLogin();
-    final result = await faceBookLogIn.logIn(
-      [
-        "public_profile",
-        "email",
-      ],
-    );
+    try{
+      final faceBookLogIn = FacebookLogin();
+      final result = await faceBookLogIn.logIn(
+        [
+          "public_profile",
+         // "email",
+        ],
+      );
 
-    print(result.status);
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        if (result.accessToken != null) {
-          //print(result.accessToken);
-          try {
-            final authResult = await _firebaseAuth
-                .signInWithCredential(FacebookAuthProvider.credential(
-     result.accessToken.token,
-            ));
-            print('//auth res ${authResult.user.displayName}');
-            print('//auth res ${authResult.user.email}');
-            print('//auth res ${authResult.user.uid}');
-            print('//auth res ${authResult.additionalUserInfo.profile['picture']['data']['url']}');
-            //newUser = authResult.additionalUserInfo.isNewUser;
-           // print(authResult.additionalUserInfo.profile['picture']['url'] + " firebase user" + "${authResult.additionalUserInfo.profile}");
-            return _userFromFirebase(authResult.user);
-          } catch (e) {
-            print(e.toString());
+      print(result.status);
+      switch (result.status) {
+        case FacebookLoginStatus.loggedIn:
+          if (result.accessToken != null) {
+            //print(result.accessToken);
+            try {
+              final authResult = await _firebaseAuth
+                  .signInWithCredential(FacebookAuthProvider.credential(
+                result.accessToken.token,
+              ));
+              print('//auth res ${authResult.user.displayName}');
+              print('//auth res ${authResult.user.email}');
+              print('//auth res ${authResult.user.uid}');
+              print('//auth res ${authResult.additionalUserInfo.profile['picture']['data']['url']}');
+              //newUser = authResult.additionalUserInfo.isNewUser;
+              // print(authResult.additionalUserInfo.profile['picture']['url'] + " firebase user" + "${authResult.additionalUserInfo.profile}");
+              return _userFromFirebase(authResult.user);
+            } catch (e) {
+              print(e.toString());
+            }
+          } else {
+            throw PlatformException(
+                code: 'ERROR_ABORTED_BY_USER',
+                message: 'sign in aborted by user');
           }
-        } else {
+          break;
+        case FacebookLoginStatus.cancelledByUser:
           throw PlatformException(
               code: 'ERROR_ABORTED_BY_USER',
               message: 'sign in aborted by user');
-        }
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        throw PlatformException(
-            code: 'ERROR_ABORTED_BY_USER',
-            message: 'sign in aborted by user');
-        // print("cancelld by user");
-        // break;
-      case FacebookLoginStatus.error:
-        throw PlatformException(
-            code: 'ERROR',
-            message: 'error');
-        // print("error");
-        // break;
+      // print("cancelld by user");
+      // break;
+        case FacebookLoginStatus.error:
+          throw PlatformException(
+              code: 'ERROR',
+              message: 'error');
+      // print("error");
+      // break;
+      }
+    }catch(e){
+      print(e.toString());
     }
+
   }
 
   @override

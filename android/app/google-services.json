@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "756690069447-7hr0f5il0m5uloqhn3ofo4ajcknheemv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mo8tarib",
+            "certificate_hash": "c68e226aab5ee2f2b494cfa83f9418596e0f6146"
+          }
+        },
+        {
           "client_id": "756690069447-cqicquolv1p7vsm6rqbbnii4clk7g4f5.apps.googleusercontent.com",
           "client_type": 3
         }

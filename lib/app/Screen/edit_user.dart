@@ -8,8 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/localization.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:path/path.dart';
 
 class EditUser extends StatefulWidget {
   @override

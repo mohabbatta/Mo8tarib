@@ -68,10 +68,10 @@ class _SearchResultState extends State<SearchResult> {
           if (snapshot.hasData) {
             final properties = snapshot.data.docs;
             for (var property in properties) {
-              final UID = property.id;
+              final uID = property.id;
               int i = 0;
               for (int i = 0; i < widget.result.length; i++) {
-                if (UID == widget.result[i]) {
+                if (uID == widget.result[i]) {
                   final price = property['price'];
                   final address = property['address'];
                   final url = property['imagesUrl'];

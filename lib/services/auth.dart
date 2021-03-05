@@ -3,11 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
-//import 'package:http/http.dart' as http;
-//import 'dart:convert' as JSON;
-
 abstract class AuthBase {
   bool get isNewUser;
+  set isNewUser(bool isNewUser);
   Stream<MyUser> get onAuthStateChanged;
   Future<MyUser> currentUser();
   Future<MyUser> signInAnonymously();
@@ -33,11 +31,8 @@ class Auth implements AuthBase {
     );
   }
 
-  bool newUser;
   @override
-  bool get isNewUser {
-    return newUser;
-  }
+  bool isNewUser;
 
   @override
   Stream<MyUser> get onAuthStateChanged {
@@ -67,16 +62,8 @@ class Auth implements AuthBase {
               GoogleAuthProvider.credential(
                   idToken: googleAuth.idToken,
                   accessToken: googleAuth.accessToken));
-          if (authResult.additionalUserInfo.isNewUser) {
-            print("yes new user");
-            return _userFromFirebase(authResult.user);
-            //User logging in for the first time
-            // Redirect user to tutorial
-          } else {
-            print("no");
-            return _userFromFirebase(authResult.user);
-            //Show user profile
-          }
+           isNewUser = authResult.additionalUserInfo.isNewUser;
+          return _userFromFirebase(authResult.user);
         } else {
           throw PlatformException(
             code: 'ERROR_MISSING_GOOGLE_AUTH',
@@ -92,62 +79,25 @@ class Auth implements AuthBase {
     }
 
 
-
   @override
   Future<MyUser> signInWithFaceBook() async {
-    try{
-      final faceBookLogIn = FacebookLogin();
-      final result = await faceBookLogIn.logIn(
-        [
-          "public_profile",
-         // "email",
-        ],
-      );
-
-      print(result.status);
-      switch (result.status) {
-        case FacebookLoginStatus.loggedIn:
-          if (result.accessToken != null) {
-            //print(result.accessToken);
-            try {
-              final authResult = await _firebaseAuth
-                  .signInWithCredential(FacebookAuthProvider.credential(
-                result.accessToken.token,
-              ));
-              print('//auth res ${authResult.user.displayName}');
-              print('//auth res ${authResult.user.email}');
-              print('//auth res ${authResult.user.uid}');
-              print('//auth res ${authResult.additionalUserInfo.profile['picture']['data']['url']}');
-              //newUser = authResult.additionalUserInfo.isNewUser;
-              // print(authResult.additionalUserInfo.profile['picture']['url'] + " firebase user" + "${authResult.additionalUserInfo.profile}");
-              return _userFromFirebase(authResult.user);
-            } catch (e) {
-              print(e.toString());
-            }
-          } else {
-            throw PlatformException(
-                code: 'ERROR_ABORTED_BY_USER',
-                message: 'sign in aborted by user');
-          }
-          break;
-        case FacebookLoginStatus.cancelledByUser:
-          throw PlatformException(
-              code: 'ERROR_ABORTED_BY_USER',
-              message: 'sign in aborted by user');
-      // print("cancelld by user");
-      // break;
-        case FacebookLoginStatus.error:
-          throw PlatformException(
-              code: 'ERROR',
-              message: 'error');
-      // print("error");
-      // break;
-      }
-    }catch(e){
-      print(e.toString());
+    final faceBookLogIn = FacebookLogin();
+    final result = await faceBookLogIn.logIn(
+      ['public_profile'],
+    );
+    if (result.accessToken != null) {
+      final authResult = await _firebaseAuth
+          .signInWithCredential(FacebookAuthProvider.credential(
+         result.accessToken.token,
+      ));
+      isNewUser = authResult.additionalUserInfo.isNewUser;
+      return _userFromFirebase(authResult.user);
+    } else {
+      throw PlatformException(
+          code: 'ERROR_ABORTED_BY_USER', message: 'sign in aborted by user');
     }
-
   }
+
 
   @override
   Future<MyUser> signInWithEmailAndPassword(String email, String password) async {
@@ -177,4 +127,6 @@ class Auth implements AuthBase {
       print(e.toString());
     }
   }
+
+
 }

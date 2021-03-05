@@ -1,19 +1,18 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:mo8tarib/app/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:mo8tarib/landing_page.dart';
 import 'package:mo8tarib/services/data_base.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class AddINf extends StatefulWidget {
+
   static Widget create(BuildContext context, MyUser user) {
     return Provider<MyUser>.value(
       value: user,
@@ -98,12 +97,17 @@ class _AddINfState extends State<AddINf> {
       address: locationText,
     );
     await database.setUser(newUser);
-    Navigator.of(context).push(
+    Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (context) => LandingPage(),
+        builder: (context) => Provider<Database>(
+            create: (_) => FireStoreDatabase(uid: user.uid),
+            child: DashBoardLayout(
+              uid: user.uid,
+            )),
       ),
     );
+
   }
 
   Future<bool> _onBackPressed(BuildContext context) {

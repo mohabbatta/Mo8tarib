@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/app/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/app/Screen/sign_in/add_inf.dart';
 import 'package:mo8tarib/app/Screen/sign_in/bloc/email_sign_in_bloc.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/email_sign_in_model.dart';
 import 'package:mo8tarib/app/common_widgets/form_raised_button.dart';
 import 'package:mo8tarib/app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:mo8tarib/services/auth.dart';
+import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
@@ -63,7 +65,14 @@ class _EmailSignInPageState extends State<EmailSignInPage> {
           ),
         );
       } else {
-        Navigator.of(context).pop();
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (context) => Provider<Database>(
+              create: (_) => FireStoreDatabase(uid: user.uid),
+              child: DashBoardLayout(
+                uid: user.uid,
+              )),
+        );
       }
     } on PlatformException catch (e) {
       PlatformExceptionAlertDialog(

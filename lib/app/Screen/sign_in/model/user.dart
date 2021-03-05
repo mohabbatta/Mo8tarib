@@ -10,6 +10,7 @@ class MyUser {
     this.email,
     this.gender,
     this.phone,
+    this.isNewUser,
   });
   final String uid;
   final String disPlayName;
@@ -19,6 +20,7 @@ class MyUser {
   final String email;
   final String gender;
   final String phone;
+  final bool isNewUser; //get it from user firebase not stream
 
   factory MyUser.fromMap(Map<dynamic, dynamic> value, String id) {
     return MyUser(

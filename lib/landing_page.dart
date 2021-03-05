@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/Screen/dashboard/dashboard_layout.dart';
+import 'package:mo8tarib/app/Screen/sign_in/add_inf.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/Screen/sign_in/sign_in_page.dart';
 import 'package:mo8tarib/services/auth.dart';
@@ -13,26 +14,27 @@ class LandingPage extends StatelessWidget {
     return StreamBuilder(
         stream: authBase.onAuthStateChanged,
         builder: (context, snapshot) {
-          if (snapshot.data != null) {
-            if (snapshot.hasData) {
-              MyUser user = snapshot.data;
-              if (user == null) {
-                return SignInPage.create(context);
-              }
-              return Provider<Database>(
-                  create: (_) => FireStoreDatabase(uid: user.uid),
-                  child: DashBoardLayout(
-                    uid: user.uid,
-                  ));
-            } else {
-              return Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
+          if (snapshot.connectionState == ConnectionState.active) {
+            MyUser user = snapshot.data;
+            if (user == null) {
+              return SignInPage.create(context);
             }
+            if (authBase.isNewUser!= null && authBase.isNewUser) {
+              print(authBase.isNewUser);
+              return AddINf.create(context, user);
+            }
+            print( authBase.isNewUser);
+            return Provider<Database>(
+                create: (_) => FireStoreDatabase(uid: user.uid),
+                child: DashBoardLayout(
+                  uid: user.uid,
+                ));
           } else {
-            return SignInPage.create(context);
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           }
         });
   }

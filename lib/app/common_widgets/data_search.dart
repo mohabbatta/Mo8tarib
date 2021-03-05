@@ -14,7 +14,6 @@ class DataSearch extends SearchDelegate<String> {
             query = " ";
           })
     ];
-    throw UnimplementedError();
   }
 
   @override
@@ -25,7 +24,6 @@ class DataSearch extends SearchDelegate<String> {
         onPressed: () {
           close(context, null);
         });
-    throw UnimplementedError();
   }
 
   @override
@@ -60,6 +58,5 @@ class DataSearch extends SearchDelegate<String> {
               ]))),
       itemCount: suggest.length,
     );
-    throw UnimplementedError();
   }
 }

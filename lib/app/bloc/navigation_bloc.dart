@@ -5,7 +5,6 @@ import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/home_dash.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/my_property.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/profile.dart';
 import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/reservation.dart';
-import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 
 enum NavigationEvents {
   DashBoardClickEvent,

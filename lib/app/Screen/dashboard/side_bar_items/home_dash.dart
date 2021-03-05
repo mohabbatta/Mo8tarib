@@ -4,7 +4,6 @@ import 'package:mo8tarib/app/Screen/dashboard/home/chat/chat_rooms.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/map_marker.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home/search.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
-import 'package:mo8tarib/app/common_widgets/data_search.dart';
 import 'package:mo8tarib/global.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 

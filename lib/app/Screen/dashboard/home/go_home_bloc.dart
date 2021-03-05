@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
-import 'package:mo8tarib/app/Screen/property/add_propert_model.dart';
 import 'package:mo8tarib/services/data_base.dart';
 
 class GoHomeBloc {
@@ -12,7 +11,7 @@ class GoHomeBloc {
   final StreamController<List<PostModel>> _modelController =
       StreamController<List<PostModel>>();
   Stream<List<PostModel>> get modelStream => _modelController.stream;
-  AddPropertyModel _model = AddPropertyModel();
+  // AddPropertyModel _model = AddPropertyModel();
 
   void dispose() {
     _modelController.close();

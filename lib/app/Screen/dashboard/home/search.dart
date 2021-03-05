@@ -34,7 +34,7 @@ class _SearchState extends State<Search> {
   Color goAnBackButton = Colors.white;
   Color studentButton = Colors.white;
 
-  DocumentSnapshot _currentDocument;
+  // DocumentSnapshot _currentDocument;
 
   void updateColorType(int x) {
     if (x == 1) {

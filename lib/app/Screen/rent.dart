@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
-import 'package:mo8tarib/app/common_widgets/avatar.dart';
+
 import 'package:mo8tarib/app/common_widgets/search_components.dart';
 
 import 'package:mo8tarib/global.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
-import 'package:date_format/date_format.dart';
+
 import 'package:mo8tarib/localization.dart';
 
 class Rent extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:mo8tarib/app/Screen/dashboard/home/chat/model/chat_model.dart';
-import 'package:mo8tarib/app/Screen/dashboard/home/chat/model/chat_room_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home_layout/chat/model/chat_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home_layout/chat/model/chat_room_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
-import 'package:mo8tarib/app/Screen/property/property_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/property/property_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/api_path.dart';
 import 'package:mo8tarib/services/firestore_servies.dart';

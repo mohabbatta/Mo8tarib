@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/common_widgets/allHomeComponent/BottomNavItem.dart';
-import 'package:mo8tarib/global.dart';
+import 'package:mo8tarib/constants/global.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({

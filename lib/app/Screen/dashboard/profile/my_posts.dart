@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mo8tarib/app/Screen/dashboard/home/post.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home_layout/home/post.dart';
 import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
-import 'package:mo8tarib/app/Screen/property/property_model.dart';
+import 'package:mo8tarib/app/Screen/dashboard/property/property_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';

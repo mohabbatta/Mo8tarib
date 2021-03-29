@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mo8tarib/global.dart';
+import 'package:mo8tarib/constants/global.dart';
 
 class BottomNavItem extends StatelessWidget {
   final IconData icon;

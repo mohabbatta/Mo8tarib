@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mo8tarib/global.dart';
+import 'package:mo8tarib/constants/global.dart';
 
 class CustomDropDown extends StatelessWidget {
   final String nameText;

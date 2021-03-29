@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:mo8tarib/app/Screen/sign_in/bloc/sign_in_manager.dart';
 import 'package:mo8tarib/app/Screen/sign_in/email_sign_in_page.dart';
 import 'package:mo8tarib/app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:mo8tarib/app/common_widgets/social_icon.dart';
-import 'package:mo8tarib/global.dart';
-import 'package:mo8tarib/localization.dart';
+import 'package:mo8tarib/helper/localization.dart';
 import 'package:mo8tarib/services/auth.dart';
 import 'package:provider/provider.dart';
 

@@ -1,16 +1,18 @@
 import 'package:bloc/bloc.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/about.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/connect_us.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/home_dash.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/my_property.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/profile.dart';
-import 'package:mo8tarib/app/Screen/dashboard/side_bar_items/reservation.dart';
+import 'package:mo8tarib/app/Screen/dashboard/about_us/about_us.dart';
+import 'package:mo8tarib/app/Screen/dashboard/connect_us/connect_us.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home_layout/home_layout.dart';
+import 'package:mo8tarib/app/Screen/dashboard/property/my_property.dart';
+import 'package:mo8tarib/app/Screen/dashboard/profile/profile.dart';
+import 'package:mo8tarib/app/Screen/dashboard/rservation/reservation.dart';
+import 'package:mo8tarib/app/Screen/dashboard/settings/setting_page.dart';
 
 enum NavigationEvents {
   DashBoardClickEvent,
   ProfileClickEvent,
   FlatClickEvent,
   ReservationClickEvent,
+  SettingClickEvent,
   AboutClickEvent,
   ConnectUsEvent
 }
@@ -20,13 +22,13 @@ abstract class NavigationStates {}
 class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
   final Function onMenuTap;
 
-  NavigationBloc(this.onMenuTap) : super(HomeDas(onMenuTap));
+  NavigationBloc(this.onMenuTap) : super(HomeLayout(onMenuTap));
 
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
     switch (event) {
       case NavigationEvents.DashBoardClickEvent:
-        yield HomeDas(onMenuTap);
+        yield HomeLayout(onMenuTap);
         break;
       case NavigationEvents.ProfileClickEvent:
         yield Profile(
@@ -43,8 +45,13 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
           onMenuTap: onMenuTap,
         );
         break;
+      case NavigationEvents.SettingClickEvent:
+        yield SettingPage(
+          onMenuTap: onMenuTap,
+        );
+        break;
       case NavigationEvents.AboutClickEvent:
-        yield About(
+        yield AboutUs(
           onMenuTap: onMenuTap,
         );
         break;

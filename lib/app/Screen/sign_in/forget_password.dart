@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/common_widgets/rounded_button.dart';
-import 'package:mo8tarib/global.dart';
-import 'package:mo8tarib/localization.dart';
+import 'package:mo8tarib/constants/global.dart';
+import 'package:mo8tarib/helper/localization.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class ForgetPassword extends StatefulWidget {

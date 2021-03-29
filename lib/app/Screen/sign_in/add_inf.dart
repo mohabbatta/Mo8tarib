@@ -6,8 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:mo8tarib/app/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
-import 'package:mo8tarib/global.dart';
-import 'package:mo8tarib/landing_page.dart';
+import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
 

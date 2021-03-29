@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/app/Screen/dashboard/home_layout/home/home_bloc.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home_layout/home/post.dart';
 import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/property/property_model.dart';
@@ -6,16 +7,37 @@ import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
 
-class MyLikes extends StatelessWidget {
+class Home extends StatefulWidget {
+  Home({this.goHomeBloc, this.database});
+  final HomeBloc goHomeBloc;
+  final Database database;
+
+  static Widget create(BuildContext context) {
+    final database = Provider.of<Database>(context);
+    return Provider<HomeBloc>(
+      create: (_) => HomeBloc(database: database),
+      child: Consumer<HomeBloc>(
+          builder: (context, goHomeBloc, _) => Home(
+                goHomeBloc: goHomeBloc,
+                database: database,
+              )),
+      dispose: (context, goHomeBloc) => goHomeBloc.dispose(),
+    );
+  }
+
+  /// go home bloc مش مستخدم
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    final database = Provider.of<Database>(context);
-    final user = Provider.of<MyUser>(context);
     return StreamBuilder<List<PostModel>>(
-      stream: database.likePostsStream(userId: user.uid),
+      stream: widget.database.postStream(),
       builder: (context, allPost) {
         if (allPost.hasData) {
-          print(allPost.data.length);
           return ListView.separated(
               separatorBuilder: (context, index) => SizedBox(
                     height: 8,
@@ -25,14 +47,14 @@ class MyLikes extends StatelessWidget {
               shrinkWrap: true,
               itemCount: allPost.data.length,
               itemBuilder: (context, index) => StreamBuilder<Property>(
-                    stream: database.propertyStream(
-                        propertyId: allPost.data[index].flatId),
+                    stream: widget.database
+                        .propertyStream(propertyId: allPost.data[index].flatId),
                     builder: (context, data) {
                       if (data.hasData) {
                         print(data.data);
                         return StreamBuilder<MyUser>(
-                            stream: database.userStream(
-                                userId: allPost.data[index].userId),
+                            stream: widget.database
+                                .userStream(userId: allPost.data[index].userId),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 return Post(

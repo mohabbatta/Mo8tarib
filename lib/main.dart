@@ -43,8 +43,9 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(primaryColor: Colors.white),
             darkTheme: ThemeData(
               brightness: Brightness.dark,
-              bottomNavigationBarTheme:
-              BottomNavigationBarThemeData(backgroundColor: Colors.black54)
+
+              //backgroundColor: Colors.black12
+             // bottomAppBarColor: Colors.black12
             ),
             home: FutureBuilder(
               // Initialize FlutterFire:

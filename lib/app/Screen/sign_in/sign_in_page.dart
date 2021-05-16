@@ -5,6 +5,7 @@ import 'package:mo8tarib/app/Screen/sign_in/bloc/sign_in_manager.dart';
 import 'package:mo8tarib/app/Screen/sign_in/email_sign_in_page.dart';
 import 'package:mo8tarib/app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:mo8tarib/app/common_widgets/social_icon.dart';
+import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/helper/localization.dart';
 import 'package:mo8tarib/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -108,13 +109,13 @@ class _SignInPageState extends State<SignInPage> with TickerProviderStateMixin {
                 child: Center(
                     child: Image.asset(
                       'images/a1.png',
-                      color: Colors.indigo,
+                      color: foregroundColor,
                       width: 120,
                       height: 120,
                     )),
               ),
               Text(
-                "Mo8trab",
+                AppLocalizations.of(context).translate("Mo8tarib"),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 50, fontFamily: "Pacifico"),
               ),
@@ -124,7 +125,7 @@ class _SignInPageState extends State<SignInPage> with TickerProviderStateMixin {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Join us",
+                  AppLocalizations.of(context).translate("Join us"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontFamily: "VareaRound"),
                 ),
@@ -161,14 +162,14 @@ class _SignInPageState extends State<SignInPage> with TickerProviderStateMixin {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  "Or",
+                  AppLocalizations.of(context).translate("Or"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontFamily: "VareaRound"),
                 ),
               ),
               Card(
                 child: EmailSignInPage.create(context),
-                color: Colors.white.withOpacity(1),
+                //color: Colors.white.withOpacity(1),
               )
             ],
           ),

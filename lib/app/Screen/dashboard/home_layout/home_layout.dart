@@ -32,6 +32,8 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var brightness = MediaQuery.of(context).platformBrightness;
+    bool darkModeOn = brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -103,6 +105,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               ),
               title: Text(AppLocalizations.of(context).translate('Messages')))
         ],
+        backgroundColor: darkModeOn?Colors.black12:Colors.white  ,
       ),
       body: (currentIndex == 0)
           ? Home.create(context)

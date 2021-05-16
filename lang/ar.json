@@ -32,12 +32,26 @@
   "Logout": "خروج",
   "Add Information": "اضافه معلومات",
   "Reset Password": "تعديل كلمه المرور",
-  "My Property": "املاكي",
+  "My Property": "عقاراتي",
   "Gender": "الجنس",
   "choose language": "اختر لغه",
   "Settings": "الاعدادات",
   "Discover": "اكتشف",
   "Search":"ابحث",
   "Messages": "الرسائل",
-  "Mo8tarib": "مغترب"
+  "Mo8tarib": "مغترب",
+  "Join us": "انضم لنا",
+  "Or": "او",
+  "Add Property": "اضافه عقار",
+  "Type": "النوع",
+  "Category": "الفئه",
+  "Price daily": "سعر الليله",
+  "Description": "الوصف",
+  "Size": "المساحة",
+  "Address":"العنوان",
+  "Services": "الخدمات",
+  "Add Pictures": "اضافه صور",
+  "Add": "اضافه",
+  "Choose date": "اختر الفترة"
+
 }

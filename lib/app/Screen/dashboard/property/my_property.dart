@@ -5,6 +5,7 @@ import 'package:mo8tarib/app/Screen/dashboard/property/pending_proprty.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
 
 import 'package:mo8tarib/constants/global.dart';
+import 'package:mo8tarib/helper/localization.dart';
 
 class MyProperty extends StatefulWidget with NavigationStates {
   final Function onMenuTap;
@@ -17,39 +18,15 @@ class MyProperty extends StatefulWidget with NavigationStates {
 
 class _MyPropertyState extends State<MyProperty>
     with SingleTickerProviderStateMixin {
-//  @override
-//  Widget build(BuildContext context) {
-//    return Container(
-//      decoration: BoxDecoration(
-//        //borderRadius: BorderRadius.all(Radius.circular(30)),
-//        color: Colors.deepOrange,
-//      ),
-//      child: Center(
-//        child: IconButton(
-//          icon: Icon(
-//            Icons.menu,
-//            size: 30,
-//            color: foregroundColor,
-//          ),
-//          onPressed: widget.onMenuTap,
-//        ),
-//      ),
-//    );
-//  }
-//}
-  List<Widget> containers = [AddProperty.create(), PendingProperty()];
 
-  final List<Tab> tabs = <Tab>[
-    new Tab(text: "Add Property"),
-    new Tab(text: "Pending Property"),
-  ];
+  List<Widget> containers = [AddProperty.create(), PendingProperty()];
 
   TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = new TabController(vsync: this, length: tabs.length);
+    _tabController = new TabController(vsync: this, length: 2);
   }
 
   @override
@@ -64,7 +41,7 @@ class _MyPropertyState extends State<MyProperty>
       appBar: new AppBar(
         centerTitle: true,
         title: Text(
-          "Moغtrab",
+          AppLocalizations.of(context).translate("Mo8tarib"),
           style: TextStyle(
             color: foregroundColor,
           ),
@@ -87,7 +64,10 @@ class _MyPropertyState extends State<MyProperty>
             indicatorColor: foregroundColor,
             tabBarIndicatorSize: TabBarIndicatorSize.tab,
           ),
-          tabs: tabs,
+          tabs: [
+            new Tab(text: AppLocalizations.of(context).translate("Add Property")),
+            new Tab(text:AppLocalizations.of(context).translate("My Property")),
+          ],
           controller: _tabController,
         ),
       ),

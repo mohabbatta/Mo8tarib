@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mo8tarib/app/Screen/sign_in/edit_user.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
 import 'package:mo8tarib/app/common_widgets/avatar.dart';
@@ -93,7 +94,10 @@ class _MenuState extends State<Menu> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.pushNamed(context, '/edituser');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => EditUser()),
+                                );
                               },
                               child: Text(
                                 AppLocalizations.of(context).translate("Edit Profile"),

@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mo8tarib/app/common_widgets/search_components.dart';
 
 import 'package:mo8tarib/constants/global.dart';
-import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
+// import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 
 
 class Rent extends StatefulWidget {
@@ -29,22 +29,22 @@ class _RentState extends State<Rent> {
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now().add(new Duration(days: 7));
 
-  Future displayDateRange(BuildContext context) async {
-    final List<DateTime> picked = await DateRagePicker.showDatePicker(
-      context: context,
-      initialFirstDate: startDate,
-      initialLastDate: endDate,
-      firstDate: new DateTime(DateTime.now().year - 5),
-      lastDate: new DateTime(DateTime.now().year + 5),
-    );
-    if (picked != null && picked.length == 2) {
-      print(picked);
-      setState(() {
-        startDate = picked[0];
-        endDate = picked[1];
-      });
-    }
-  }
+  // Future displayDateRange(BuildContext context) async {
+  //   final List<DateTime> picked = await DateRagePicker.showDatePicker(
+  //     context: context,
+  //     initialFirstDate: startDate,
+  //     initialLastDate: endDate,
+  //     firstDate: new DateTime(DateTime.now().year - 5),
+  //     lastDate: new DateTime(DateTime.now().year + 5),
+  //   );
+  //   if (picked != null && picked.length == 2) {
+  //     print(picked);
+  //     setState(() {
+  //       startDate = picked[0];
+  //       endDate = picked[1];
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +174,7 @@ class _RentState extends State<Rent> {
                                         ButtonTheme(
                                           child: RaisedButton.icon(
                                             onPressed: () async {
-                                              await displayDateRange(context);
+                                              // await displayDateRange(context);
                                             },
                                             icon: Icon(
                                               FontAwesomeIcons.calendarAlt,

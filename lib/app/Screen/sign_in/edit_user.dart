@@ -97,27 +97,24 @@ class _EditUserState extends State<EditUser> {
   Widget build(BuildContext context) {
     var localization = AppLocalizations.of(context);
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: Text(
-            localization.translate("Edit Profile"),
-            style: TextStyle(
-              color: foregroundColor,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          localization.translate("Edit Profile"),
+          style: TextStyle(
+            color: foregroundColor,
           ),
-          leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                size: 30,
-                color: foregroundColor,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/home');
-              }),
-          actions: <Widget>[
+        ),
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              size: 32,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        actions: <Widget>[
 //            Padding(
 //              padding: const EdgeInsets.all(16.0),
 //              child: Theme(
@@ -136,24 +133,24 @@ class _EditUserState extends State<EditUser> {
 //                ),
 //              ),
 //            )
-            Theme(
-              data: ThemeData(
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-              ),
-              child: Builder(
-                builder: (context) => FlatButton(
-                  onPressed: () {
-                    _currentDocument.reference
-                        .update({'name.first': firstNameController.text});
-                    _currentDocument.reference
-                        .update({'name.mid': midNameController.text});
-                    _currentDocument.reference
-                        .update({'name.last': lastNameController.text});
-                    _currentDocument.reference
-                        .update({'age': ageController.text});
-                    _currentDocument.reference
-                        .update({'phone': phoneController.text});
+          Theme(
+            data: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: Builder(
+              builder: (context) => FlatButton(
+                onPressed: () {
+                  _currentDocument.reference
+                      .update({'name.first': firstNameController.text});
+                  _currentDocument.reference
+                      .update({'name.mid': midNameController.text});
+                  _currentDocument.reference
+                      .update({'name.last': lastNameController.text});
+                  _currentDocument.reference
+                      .update({'age': ageController.text});
+                  _currentDocument.reference
+                      .update({'phone': phoneController.text});
 //                    _fireStore.collection('user').add(
 //                      {
 //                        'name': {
@@ -172,52 +169,51 @@ class _EditUserState extends State<EditUser> {
 //                    );
 
 //                    Navigator.pushNamed(context, '/home');
-                  },
-                  child: Text(
-                    'Update',
-                    style: TextStyle(fontSize: 22),
-                  ),
-                  color: Colors.white,
-                  textColor: foregroundColor,
-                  disabledColor: Colors.white,
-                  disabledTextColor: Colors.black.withOpacity(0.3),
+                },
+                child: Text(
+                  'Update',
+                  style: TextStyle(fontSize: 22),
                 ),
+             //   color: Colors.white,
+                textColor: foregroundColor,
+           //     disabledColor: Colors.white,
+                disabledTextColor: Colors.black.withOpacity(0.3),
               ),
             ),
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: CircleAvatar(
-                    backgroundImage: image1,
-                    //backgroundImage: image == null ? null : FileImage(image),
-                    //AssetImage('images/avater.png'),
-                    radius: 60,
-                  ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: CircleAvatar(
+                  backgroundImage: image1,
+                  //backgroundImage: image == null ? null : FileImage(image),
+                  //AssetImage('images/avater.png'),
+                  radius: 60,
                 ),
-                Theme(
-                  data: ThemeData(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                  ),
-                  child: Builder(
-                    builder: (context) => FlatButton(
-                      onPressed: () {
-                        uploadImage(context);
-                      },
-                      child: Text(
-                        localization.translate("Change profile photo"),
-                        style: TextStyle(color: foregroundColor),
-                      ),
-                      color: Colors.white,
+              ),
+              Theme(
+                data: ThemeData(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                ),
+                child: Builder(
+                  builder: (context) => FlatButton(
+                    onPressed: () {
+                      uploadImage(context);
+                    },
+                    child: Text(
+                      localization.translate("Change profile photo"),
+                      style: TextStyle(color: foregroundColor),
                     ),
                   ),
                 ),
+              ),
 
 //                Builder(
 //                  builder: (context){
@@ -230,70 +226,70 @@ class _EditUserState extends State<EditUser> {
 //                  ),}
 //                ),
 
-                SizedBox(child: Divider(color: Colors.black)),
-                ReusableEditUser(
-                  controller: firstNameController,
-                  hint: localization.translate("First Name"),
-                  textFieldName: localization.translate("First Name"),
-                  getText: (value) {
-                    firstNameText = value;
-                  },
-                ),
-                SizedBox(child: Divider(color: Colors.black)),
-                ReusableEditUser(
-                  controller: midNameController,
-                  hint: localization.translate("Mid Name"),
-                  textFieldName: localization.translate("Mid Name"),
-                  getText: (value) {
-                    midNameText = value;
-                  },
-                ),
-                SizedBox(child: Divider(color: Colors.black)),
-                ReusableEditUser(
-                  controller: lastNameController,
-                  hint: localization.translate("Last Name"),
-                  textFieldName: localization.translate("Last Name"),
-                  getText: (value) {
-                    lastNameText = value;
-                  },
-                ),
-                SizedBox(child: Divider(color: Colors.black)),
-                ReusableEditUser(
-                  controller: ageController,
-                  hint: localization.translate("Age"),
-                  textFieldName: localization.translate("Age"),
-                  getText: (value) {
-                    ageText = value;
-                    //  _updateData(ageController);
-                  },
-                ),
-                SizedBox(child: Divider(color: Colors.black)),
-                ReusableEditUser(
-                  controller: emailController,
-                  hint: localization.translate("Email"),
-                  textFieldName: localization.translate("Email"),
-                  getText: (value) {
-                    emailText = value;
-                  },
-                ),
-                SizedBox(child: Divider(color: Colors.black)),
-                ReusableEditUser(
-                  controller: phoneController,
-                  hint: localization.translate("phone"),
-                  textFieldName: localization.translate("phone"),
-                  getText: (value) {
-                    phoneText = value;
-                  },
-                ),
-                SizedBox(child: Divider(color: Colors.black)),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'location',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
+              SizedBox(child: Divider(color: Colors.black)),
+              ReusableEditUser(
+                controller: firstNameController,
+                hint: localization.translate("First Name"),
+                textFieldName: localization.translate("First Name"),
+                getText: (value) {
+                  firstNameText = value;
+                },
+              ),
+              SizedBox(child: Divider(color: Colors.black)),
+              ReusableEditUser(
+                controller: midNameController,
+                hint: localization.translate("Mid Name"),
+                textFieldName: localization.translate("Mid Name"),
+                getText: (value) {
+                  midNameText = value;
+                },
+              ),
+              SizedBox(child: Divider(color: Colors.black)),
+              ReusableEditUser(
+                controller: lastNameController,
+                hint: localization.translate("Last Name"),
+                textFieldName: localization.translate("Last Name"),
+                getText: (value) {
+                  lastNameText = value;
+                },
+              ),
+              SizedBox(child: Divider(color: Colors.black)),
+              ReusableEditUser(
+                controller: ageController,
+                hint: localization.translate("Age"),
+                textFieldName: localization.translate("Age"),
+                getText: (value) {
+                  ageText = value;
+                  //  _updateData(ageController);
+                },
+              ),
+              SizedBox(child: Divider(color: Colors.black)),
+              ReusableEditUser(
+                controller: emailController,
+                hint: localization.translate("Email"),
+                textFieldName: localization.translate("Email"),
+                getText: (value) {
+                  emailText = value;
+                },
+              ),
+              SizedBox(child: Divider(color: Colors.black)),
+              ReusableEditUser(
+                controller: phoneController,
+                hint: localization.translate("phone"),
+                textFieldName: localization.translate("phone"),
+                getText: (value) {
+                  phoneText = value;
+                },
+              ),
+              SizedBox(child: Divider(color: Colors.black)),
+              Row(
+                children: <Widget>[
+                  Text(
+                    'location',
+                    style: TextStyle(
+                      fontSize: 18,
                     ),
+                  ),
 //                    Expanded(
 //                      child: TextField(
 //                        style: TextStyle(
@@ -306,24 +302,23 @@ class _EditUserState extends State<EditUser> {
 //                        // onChanged: getText,
 //                      ),
 //                    ),
-                    Expanded(
-                      child: Text(
-                        locationText,
-                        textAlign: TextAlign.center,
-                      ),
+                  Expanded(
+                    child: Text(
+                      locationText,
+                      textAlign: TextAlign.center,
                     ),
-                    IconButton(
-                        icon: Icon(
-                          Icons.location_on,
-                          color: foregroundColor,
-                        ),
-                        onPressed: () {}
-                        //getCurrentLocation()
-                        )
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  IconButton(
+                      icon: Icon(
+                        Icons.location_on,
+                        color: foregroundColor,
+                      ),
+                      onPressed: () {}
+                      //getCurrentLocation()
+                      )
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -332,10 +327,10 @@ class _EditUserState extends State<EditUser> {
 
   ///
   void pickImage() async {
-    var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      image = imageUP;
-    });
+    // var imageUP = await ImagePicker.pickImage(source: ImageSource.gallery);
+    // setState(() {
+    //   image = imageUP;
+    // });
   }
 ///TODO update storage
   void uploadImage(context) async {

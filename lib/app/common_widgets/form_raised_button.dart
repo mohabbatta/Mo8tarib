@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/common_widgets/custom_raised_button.dart';
+import 'package:mo8tarib/constants/global.dart';
 
 class FormRaisedButton extends CustomRaisedButton {
   FormRaisedButton({
@@ -15,7 +16,7 @@ class FormRaisedButton extends CustomRaisedButton {
             ),
           ),
           height: 44.0,
-          color: Colors.indigo,
+          color: foregroundColor,
           onPressed: onPressed,
         );
 }

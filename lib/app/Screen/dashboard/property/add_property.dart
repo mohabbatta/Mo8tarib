@@ -7,6 +7,7 @@ import 'package:mo8tarib/app/common_widgets/allHomeComponent/imageFlatWidget.dar
 import 'package:mo8tarib/app/common_widgets/custom_drob_down.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
 import 'package:mo8tarib/constants/global.dart';
+import 'package:mo8tarib/helper/localization.dart';
 import 'package:provider/provider.dart';
 
 class AddProperty extends StatefulWidget {
@@ -83,14 +84,14 @@ class _AddPropertyState extends State<AddProperty> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             CustomDropDown(
-              nameText: "Type",
+              nameText: AppLocalizations.of(context).translate("Type"),
               value: model.typeValue,
               getValue: widget.bloc.updateTypeValue,
               arrItems: ['Any', 'House', 'room'],
             ),
             SizedBox(height: 10),
             CustomDropDown(
-                nameText: "Category",
+                nameText:AppLocalizations.of(context).translate("Category") ,
                 value: model.categoryValue,
                 getValue: widget.bloc.updateCategoryValue,
                 arrItems: [
@@ -102,7 +103,7 @@ class _AddPropertyState extends State<AddProperty> {
                 ]),
             SizedBox(height: 10),
             CustomDropDown(
-              nameText: "Gender",
+              nameText:AppLocalizations.of(context).translate("Gender") ,
               value: model.genderValue,
               getValue: widget.bloc.updateGenderValue,
               arrItems: ['Any', 'Men', 'Women'],
@@ -116,7 +117,7 @@ class _AddPropertyState extends State<AddProperty> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text("Price daily",
+                        Text(AppLocalizations.of(context).translate("Price daily"),
                             style: TextStyle(
                                 fontSize: 24, fontFamily: 'VarelaRound')),
                         Text(model.price.toString() + " \$ ",
@@ -142,22 +143,22 @@ class _AddPropertyState extends State<AddProperty> {
             SizedBox(height: 10),
             ReusableEditUser(
                 controller: descriptionController,
-                hint: 'description',
-                textFieldName: "description",
+                hint:AppLocalizations.of(context).translate("Description") ,
+                textFieldName:AppLocalizations.of(context).translate("Description") ,
                 getText: widget.bloc.updateDescription),
             SizedBox(height: 10),
             ReusableEditUser(
                 controller: sizeController,
-                hint: 'size',
-                textFieldName: "size",
+                hint:AppLocalizations.of(context).translate("Size") ,
+                textFieldName:AppLocalizations.of(context).translate("Size"),
                 getText: widget.bloc.updateSize),
             Row(
               children: <Widget>[
                 Expanded(
                   child: ReusableEditUser(
                     controller: addressController,
-                    hint: 'Address',
-                    textFieldName: 'Address',
+                    hint: AppLocalizations.of(context).translate("Address"),
+                    textFieldName: AppLocalizations.of(context).translate("Address"),
                     getText: widget.bloc.updateAddress,
                   ),
                 ),
@@ -174,7 +175,7 @@ class _AddPropertyState extends State<AddProperty> {
             ),
             SizedBox(height: 10),
             MultiSelect(
-              name: 'Services',
+              name: AppLocalizations.of(context).translate("Services"),
               items: widget.bloc.items,
               selectItems: model.services,
               onConfirm: widget.bloc.updateSelectedList,
@@ -195,7 +196,7 @@ class _AddPropertyState extends State<AddProperty> {
                   widget.bloc.openFileExplorer();
                 },
                 child: Text(
-                  'Add Picters',
+                  AppLocalizations.of(context).translate("Add Pictures") ,
                   // localization.translate("Change profile photo"),
                   style: TextStyle(color: foregroundColor),
                 ),
@@ -234,7 +235,7 @@ class _AddPropertyState extends State<AddProperty> {
       elevation: 10,
       child: !model.isLoading
           ? Text(
-              'add',
+        AppLocalizations.of(context).translate("Add"),
               style: TextStyle(fontFamily: 'VarelaRound', color: Colors.white),
             )
           : CircularProgressIndicator(

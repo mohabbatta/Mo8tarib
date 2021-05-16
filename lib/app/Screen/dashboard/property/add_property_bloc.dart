@@ -11,7 +11,7 @@ import 'package:mo8tarib/app/Screen/dashboard/property/service.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
-import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
+// import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:provider/provider.dart';
 
 class AddPropertyBloc {
@@ -117,17 +117,17 @@ class AddPropertyBloc {
 
   ///
   Future displayDateRange(BuildContext context) async {
-    final List<DateTime> picked = await DateRagePicker.showDatePicker(
-      context: context,
-      initialFirstDate: _model.startDateTime(),
-      initialLastDate: _model.endDateTime(),
-      firstDate: new DateTime(DateTime.now().year - 5),
-      lastDate: new DateTime(DateTime.now().year + 5),
-    );
-    if (picked != null && picked.length == 2) {
-      print(picked);
-      updateWith(startDate: picked[0], endDate: picked[1]);
-    }
+    // final List<DateTime> picked = await DateRagePicker.showDatePicker(
+    //   context: context,
+    //   initialFirstDate: _model.startDateTime(),
+    //   initialLastDate: _model.endDateTime(),
+    //   firstDate: new DateTime(DateTime.now().year - 5),
+    //   lastDate: new DateTime(DateTime.now().year + 5),
+    // );
+    // if (picked != null && picked.length == 2) {
+    //   print(picked);
+    //   updateWith(startDate: picked[0], endDate: picked[1]);
+    // }
   }
 
   ///

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_field.dart';
 import 'package:multi_select_flutter/chip_display/multi_select_chip_display.dart';
@@ -31,7 +32,7 @@ class MultiSelect extends StatelessWidget {
           buttonText: Text(name),
           title: Text(name),
           items: items,
-          selectedColor: foregroundColor,
+          selectedColor: ColorConstants.primaryColor,
           selectedItemsTextStyle: TextStyle(color: Colors.white),
           onConfirm: onConfirm
 //              (values) {
@@ -39,7 +40,7 @@ class MultiSelect extends StatelessWidget {
 //          }
           ,
           chipDisplay: MultiSelectChipDisplay(
-              chipColor: foregroundColor,
+              chipColor: ColorConstants.primaryColor,
               textStyle: TextStyle(color: Colors.white),
               onTap: onTap
 //                (value) {

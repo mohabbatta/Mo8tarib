@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/helper/localization.dart';
 
@@ -103,7 +104,7 @@ class _EditUserState extends State<EditUser> {
         title: Text(
           localization.translate("Edit Profile"),
           style: TextStyle(
-            color: foregroundColor,
+            color: ColorConstants.primaryColor,
           ),
         ),
         leading: IconButton(
@@ -175,7 +176,7 @@ class _EditUserState extends State<EditUser> {
                   style: TextStyle(fontSize: 22),
                 ),
              //   color: Colors.white,
-                textColor: foregroundColor,
+                textColor: ColorConstants.primaryColor,
            //     disabledColor: Colors.white,
                 disabledTextColor: Colors.black.withOpacity(0.3),
               ),
@@ -209,7 +210,7 @@ class _EditUserState extends State<EditUser> {
                     },
                     child: Text(
                       localization.translate("Change profile photo"),
-                      style: TextStyle(color: foregroundColor),
+                      style: TextStyle(color: ColorConstants.primaryColor),
                     ),
                   ),
                 ),
@@ -311,7 +312,7 @@ class _EditUserState extends State<EditUser> {
                   IconButton(
                       icon: Icon(
                         Icons.location_on,
-                        color: foregroundColor,
+                        color: ColorConstants.primaryColor,
                       ),
                       onPressed: () {}
                       //getCurrentLocation()

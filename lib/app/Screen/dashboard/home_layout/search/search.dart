@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home_layout/search/search_result.dart';
 import 'package:mo8tarib/app/common_widgets/search_components.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 
 import 'package:mo8tarib/constants/global.dart';
 // import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
@@ -39,7 +40,7 @@ class _SearchState extends State<Search> {
   void updateColorType(int x) {
     if (x == 1) {
       if (anyButton == inactive) {
-        anyButton = foregroundColor;
+        anyButton = ColorConstants.primaryColor;
         houseButton = inactive;
         flatButton = inactive;
         roomButton = inactive;
@@ -48,7 +49,7 @@ class _SearchState extends State<Search> {
       }
     } else if (x == 2) {
       if (houseButton == inactive) {
-        houseButton = foregroundColor;
+        houseButton = ColorConstants.primaryColor;
         anyButton = inactive;
         flatButton = inactive;
         roomButton = inactive;
@@ -57,7 +58,7 @@ class _SearchState extends State<Search> {
       }
     } else if (x == 3) {
       if (flatButton == inactive) {
-        flatButton = foregroundColor;
+        flatButton = ColorConstants.primaryColor;
         houseButton = inactive;
         anyButton = inactive;
         roomButton = inactive;
@@ -66,7 +67,7 @@ class _SearchState extends State<Search> {
       }
     } else {
       if (roomButton == inactive) {
-        roomButton = foregroundColor;
+        roomButton = ColorConstants.primaryColor;
         houseButton = inactive;
         flatButton = inactive;
         anyButton = inactive;
@@ -79,7 +80,7 @@ class _SearchState extends State<Search> {
   void updateColorCategory(int x) {
     if (x == 1) {
       if (generalButton == inactive) {
-        generalButton = foregroundColor;
+        generalButton = ColorConstants.primaryColor;
         summerButton = inactive;
         goAnBackButton = inactive;
         studentButton = inactive;
@@ -88,7 +89,7 @@ class _SearchState extends State<Search> {
       }
     } else if (x == 2) {
       if (summerButton == inactive) {
-        summerButton = foregroundColor;
+        summerButton = ColorConstants.primaryColor;
         generalButton = inactive;
         goAnBackButton = inactive;
         studentButton = inactive;
@@ -97,7 +98,7 @@ class _SearchState extends State<Search> {
       }
     } else if (x == 3) {
       if (goAnBackButton == inactive) {
-        goAnBackButton = foregroundColor;
+        goAnBackButton = ColorConstants.primaryColor;
         generalButton = inactive;
         summerButton = inactive;
         studentButton = inactive;
@@ -106,7 +107,7 @@ class _SearchState extends State<Search> {
       }
     } else {
       if (studentButton == inactive) {
-        studentButton = foregroundColor;
+        studentButton = ColorConstants.primaryColor;
         generalButton = inactive;
         summerButton = inactive;
         goAnBackButton = inactive;
@@ -335,8 +336,8 @@ class _SearchState extends State<Search> {
                               min: 100,
                               max: 5000,
                               divisions: 9000,
-                              activeColor: foregroundColor,
-                              inactiveColor: backgroundColor1.withOpacity(0.3),
+                              activeColor: ColorConstants.primaryColor,
+                              inactiveColor: ColorConstants.black.withOpacity(0.3),
                               values: priceValues,
                               labels: priceLabels,
                               onChanged: (value) {
@@ -378,8 +379,8 @@ class _SearchState extends State<Search> {
                               min: 10,
                               max: 1000,
                               divisions: 9000,
-                              activeColor: foregroundColor,
-                              inactiveColor: backgroundColor1.withOpacity(0.3),
+                              activeColor: ColorConstants.primaryColor,
+                              inactiveColor: ColorConstants.black.withOpacity(0.3),
                               values: sizeValues,
                               labels: sizeLabels,
                               onChanged: (value) {
@@ -501,7 +502,7 @@ class _SearchState extends State<Search> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: SearchRaisedButton(
                         title: 'Find',
-                        color: foregroundColor,
+                        color: ColorConstants.primaryColor,
                         textColor: Colors.white,
                         function: () async {
                           List<String> result = [];

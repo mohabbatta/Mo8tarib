@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mo8tarib/app/Screen/on_boarding/started_page.dart';
+import 'package:mo8tarib/helper/shared_helper.dart';
 import 'package:mo8tarib/landing_page.dart';
 import 'package:mo8tarib/helper/localization.dart';
 import 'package:mo8tarib/services/app_language.dart';
@@ -9,6 +11,7 @@ import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedHelper.init();
   AppLanguage appLanguage = AppLanguage();
   await appLanguage.fetchLocale();
   runApp(MyApp(
@@ -23,14 +26,15 @@ class MyApp extends StatelessWidget {
   MyApp({this.appLanguage});
   @override
   Widget build(BuildContext context) {
+    var onBoarding = SharedHelper.getBool(key: SharedAPi.onBoarding);
     return ChangeNotifierProvider<AppLanguage>(
-      create: (_)=>appLanguage,
+      create: (_) => appLanguage,
       child: Consumer<AppLanguage>(
-        builder: (context,model,child){
+        builder: (context, model, child) {
           print(model.appLocal);
           return MaterialApp(
             locale: model.appLocal,
-          supportedLocales: [
+            supportedLocales: [
               Locale('en', 'US'),
               Locale('ar', ''),
             ],
@@ -40,12 +44,15 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
             ],
             title: 'Mo8trab',
-            theme: ThemeData(primaryColor: Colors.white),
+            theme: ThemeData(
+              primaryColor: Colors.white,
+              scaffoldBackgroundColor: Colors.white
+            ),
             darkTheme: ThemeData(
               brightness: Brightness.dark,
 
               //backgroundColor: Colors.black12
-             // bottomAppBarColor: Colors.black12
+              // bottomAppBarColor: Colors.black12
             ),
             home: FutureBuilder(
               // Initialize FlutterFire:
@@ -56,19 +63,24 @@ class MyApp extends StatelessWidget {
                   print(snapshot.error.toString());
                   return Scaffold(
                       body: Container(
-                        child: Center(
-                          child: Text('something error'),
-                        ),
-                      ));
+                    child: Center(
+                      child: Text('something error'),
+                    ),
+                  ));
                 }
 
                 // Once complete, show your application
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return  Provider<AuthBase>(
-                    create: (context) => Auth(),
-                    child: LandingPage(),
-                  );
+                  print("onBoarding $onBoarding");
+                  if(onBoarding == null || !onBoarding){
+                   return StartedPage();
+                  }else{
+                    return Provider<AuthBase>(
+                      create: (context) => Auth(),
+                      child: LandingPage(),
+                    );
 
+                  }
                 }
 
                 // Otherwise, show something whilst waiting for initialization to complete

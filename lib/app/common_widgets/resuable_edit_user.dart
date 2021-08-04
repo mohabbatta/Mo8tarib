@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class ReusableEditUser extends StatelessWidget {
@@ -32,7 +33,7 @@ class ReusableEditUser extends StatelessWidget {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: hint,
-                    hintStyle: TextStyle(color: foregroundColor)),
+                    hintStyle: TextStyle(color: ColorConstants.primaryColor)),
                 onChanged: getText,
               ),
             ),

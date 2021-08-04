@@ -4,6 +4,7 @@ import 'package:mo8tarib/app/Screen/dashboard/home_layout/discover/map_marker.da
 import 'package:mo8tarib/app/Screen/dashboard/home_layout/home/Home.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home_layout/search/search.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:mo8tarib/helper/localization.dart';
@@ -37,9 +38,9 @@ class _HomeLayoutState extends State<HomeLayout> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(AppLocalizations.of(context).translate('Mo8tarib'), style: TextStyle(color: foregroundColor)),
+        title: Text(AppLocalizations.of(context).translate('Mo8tarib'), style: TextStyle(color: ColorConstants.primaryColor)),
         leading: IconButton(
-          icon: Icon(Icons.menu, size: 30, color: foregroundColor),
+          icon: Icon(Icons.menu, size: 30, color: ColorConstants.primaryColor),
           onPressed: widget.onMenuTap,
         ),
       ),

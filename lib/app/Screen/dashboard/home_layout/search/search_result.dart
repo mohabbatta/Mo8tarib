@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mo8tarib/app/Screen/dashboard/property/property_model.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class SearchResult extends StatefulWidget {
@@ -48,14 +49,14 @@ class _SearchResultState extends State<SearchResult> {
         title: Text(
           'Result',
           style: TextStyle(
-            color: foregroundColor,
+            color: ColorConstants.primaryColor,
           ),
         ),
         leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
               size: 30,
-              color: foregroundColor,
+              color: ColorConstants.primaryColor,
             ),
             onPressed: () {
               Navigator.pop(context);

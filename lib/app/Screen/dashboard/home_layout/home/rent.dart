@@ -5,6 +5,7 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:mo8tarib/app/common_widgets/search_components.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 
 import 'package:mo8tarib/constants/global.dart';
 // import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
@@ -77,14 +78,14 @@ class _RentState extends State<Rent> {
                 title: Text(
                   'Rent',
                   style: TextStyle(
-                    color: foregroundColor,
+                    color: ColorConstants.primaryColor,
                   ),
                 ),
                 leading: IconButton(
                     icon: Icon(
                       Icons.arrow_back,
                       size: 30,
-                      color: foregroundColor,
+                      color: ColorConstants.primaryColor,
                     ),
                     onPressed: () {
                       Navigator.pop(context);
@@ -138,10 +139,10 @@ class _RentState extends State<Rent> {
                                         Text(
                                             '${userDocument['name']['first']} ${userDocument['name']['last']}',
                                             style: TextStyle(
-                                                color: color1, fontSize: 18)),
+                                                color: ColorConstants.black, fontSize: 18)),
                                         Text('Owner',
                                             style: TextStyle(
-                                                color: color1, fontSize: 18)),
+                                                color: ColorConstants.black, fontSize: 18)),
                                       ],
                                     ),
                                   ),
@@ -250,7 +251,7 @@ class _RentState extends State<Rent> {
                             Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: SearchRaisedButton(
-                                color: foregroundColor,
+                                color: ColorConstants.primaryColor,
                                 title: 'pay',
                                 textColor: Colors.white,
                                 function: () {},

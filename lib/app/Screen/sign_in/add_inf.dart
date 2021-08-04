@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:mo8tarib/app/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
@@ -141,7 +142,7 @@ class _AddINfState extends State<AddINf> {
             title: Text(
               "Add Information",
               style: TextStyle(
-                color: foregroundColor,
+                color: ColorConstants.primaryColor,
               ),
             ),
             actions: <Widget>[
@@ -184,7 +185,7 @@ class _AddINfState extends State<AddINf> {
                         },
                         child: Text(
                           "Change profile photo",
-                          style: TextStyle(color: foregroundColor),
+                          style: TextStyle(color: ColorConstants.primaryColor),
                         ),
                         color: Colors.white,
                       ),
@@ -271,7 +272,7 @@ class _AddINfState extends State<AddINf> {
                       IconButton(
                           icon: Icon(
                             Icons.location_on,
-                            color: foregroundColor,
+                            color: ColorConstants.primaryColor,
                           ),
                           onPressed: () {
                             //getCurrentLocation();

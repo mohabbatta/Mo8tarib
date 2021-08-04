@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class MassageBubble extends StatelessWidget {
@@ -17,7 +18,7 @@ class MassageBubble extends StatelessWidget {
         children: <Widget>[
           Text(
             sender,
-            style: TextStyle(fontSize: 12.0, color: color2),
+            style: TextStyle(fontSize: 12.0, color: ColorConstants.primaryColor),
           ),
           Material(
             borderRadius: isMe
@@ -30,7 +31,7 @@ class MassageBubble extends StatelessWidget {
                     bottomLeft: Radius.circular(30.0),
                     bottomRight: Radius.circular(30.0)),
             elevation: 5.0,
-            color: isMe ? color2 : Colors.white,
+            color: isMe ? ColorConstants.primaryColor : Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Text(

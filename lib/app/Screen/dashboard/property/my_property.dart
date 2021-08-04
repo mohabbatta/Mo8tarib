@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/Screen/dashboard/property/add_property.dart';
 import 'package:mo8tarib/app/Screen/dashboard/property/pending_proprty.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/helper/localization.dart';
@@ -43,14 +44,14 @@ class _MyPropertyState extends State<MyProperty>
         title: Text(
           AppLocalizations.of(context).translate("Mo8tarib"),
           style: TextStyle(
-            color: foregroundColor,
+            color: ColorConstants.primaryColor,
           ),
         ),
         leading: IconButton(
           icon: Icon(
             Icons.menu,
             size: 30,
-            color: foregroundColor,
+            color: ColorConstants.primaryColor,
           ),
           onPressed: widget.onMenuTap,
         ),
@@ -61,7 +62,7 @@ class _MyPropertyState extends State<MyProperty>
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: new BubbleTabIndicator(
             indicatorHeight: 40,
-            indicatorColor: foregroundColor,
+            indicatorColor: ColorConstants.primaryColor,
             tabBarIndicatorSize: TabBarIndicatorSize.tab,
           ),
           tabs: [

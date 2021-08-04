@@ -3,13 +3,17 @@ import 'package:mo8tarib/app/Screen/dashboard/dashboard_layout.dart';
 import 'package:mo8tarib/app/Screen/sign_in/add_inf.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/Screen/sign_in/sign_in_page.dart';
+import 'package:mo8tarib/helper/shared_helper.dart';
 import 'package:mo8tarib/services/auth.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    print(SharedHelper.sharedPreferences.hashCode);
+
     final authBase = Provider.of<AuthBase>(context, listen: false);
     return StreamBuilder(
         stream: authBase.onAuthStateChanged,

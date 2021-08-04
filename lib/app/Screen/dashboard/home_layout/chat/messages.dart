@@ -5,6 +5,7 @@ import 'package:mo8tarib/app/Screen/dashboard/home_layout/chat/model/chat_model.
 import 'package:mo8tarib/app/Screen/dashboard/home_layout/chat/model/chat_room_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/avatar.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/services/data_base.dart';
 
@@ -67,7 +68,7 @@ class _MessagesState extends State<Messages> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: foregroundColor,
+          color: ColorConstants.primaryColor,
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -78,7 +79,7 @@ class _MessagesState extends State<Messages> {
             Expanded(
               child: Text(
                 widget.receiverUser.disPlayName,
-                style: TextStyle(color: foregroundColor),
+                style: TextStyle(color: ColorConstants.primaryColor),
               ),
             ),
           ],

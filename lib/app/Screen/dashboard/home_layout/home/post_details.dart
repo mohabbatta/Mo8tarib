@@ -9,6 +9,7 @@ import 'package:mo8tarib/app/Screen/dashboard/property/location_flat.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/avatar.dart';
 import 'package:mo8tarib/app/common_widgets/search_components.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class PostDetails extends StatefulWidget {
@@ -37,7 +38,7 @@ class _PostDetailsState extends State<PostDetails> {
                     Navigator.pop(context);
                   }),
               iconTheme: IconThemeData(
-                color: foregroundColor,
+                color: ColorConstants.primaryColor,
               ),
               actions: [
                 Padding(
@@ -84,10 +85,10 @@ class _PostDetailsState extends State<PostDetails> {
                                 children: <Widget>[
                                   Text(widget.user.disPlayName,
                                       style: TextStyle(
-                                          color: color1, fontSize: 18)),
+                                          color: ColorConstants.primaryColor, fontSize: 18)),
                                   Text('Owner',
                                       style: TextStyle(
-                                          color: color1, fontSize: 18)),
+                                          color: ColorConstants.primaryColor, fontSize: 18)),
                                 ],
                               ),
                             ),
@@ -108,7 +109,7 @@ class _PostDetailsState extends State<PostDetails> {
                             Icon(
                               FontAwesomeIcons.mapMarkerAlt,
                               size: 25,
-                              color: foregroundColor,
+                              color: ColorConstants.primaryColor,
                             ),
                             Expanded(
                               child: Padding(
@@ -124,7 +125,7 @@ class _PostDetailsState extends State<PostDetails> {
                             ),
                             IconButton(
                                 icon: Icon(Icons.near_me,
-                                    size: 25, color: foregroundColor),
+                                    size: 25, color: ColorConstants.primaryColor),
                                 onPressed: () {
                                   Navigator.push(
                                       context,
@@ -202,7 +203,7 @@ class _PostDetailsState extends State<PostDetails> {
                                         Icon(
                                           FontAwesomeIcons.wifi,
                                           size: 25,
-                                          color: foregroundColor,
+                                          color: ColorConstants.primaryColor,
                                         ),
                                         SizedBox(
                                           height: 10,
@@ -215,7 +216,7 @@ class _PostDetailsState extends State<PostDetails> {
                                         Icon(
                                           FontAwesomeIcons.carAlt,
                                           size: 25,
-                                          color: foregroundColor,
+                                          color: ColorConstants.primaryColor,
                                         ),
                                         SizedBox(
                                           height: 10,
@@ -228,7 +229,7 @@ class _PostDetailsState extends State<PostDetails> {
                                         Icon(
                                           FontAwesomeIcons.fan,
                                           size: 25,
-                                          color: foregroundColor,
+                                          color: ColorConstants.primaryColor,
                                         ),
                                         SizedBox(
                                           height: 10,
@@ -241,7 +242,7 @@ class _PostDetailsState extends State<PostDetails> {
                                         Icon(
                                           FontAwesomeIcons.dog,
                                           size: 25,
-                                          color: foregroundColor,
+                                          color: ColorConstants.primaryColor,
                                         ),
                                         SizedBox(
                                           height: 10,
@@ -315,7 +316,7 @@ class _PostDetailsState extends State<PostDetails> {
             Expanded(
               child: SearchRaisedButton(
                 title: 'Booking',
-                color: foregroundColor,
+                color: ColorConstants.primaryColor,
                 textColor: Colors.white,
                 function: () {
                   Navigator.push(
@@ -357,7 +358,7 @@ class _PostDetailsState extends State<PostDetails> {
             style: TextStyle(
                 fontFamily: 'VarelaRound',
                 fontSize: 18,
-                color: foregroundColor)),
+                color: ColorConstants.primaryColor)),
       ],
     );
   }

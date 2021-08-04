@@ -9,6 +9,7 @@ import 'package:mo8tarib/app/common_widgets/carousel_with_indecator.dart';
 import 'package:mo8tarib/app/Screen/dashboard/profile/post_model.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/common_widgets/avatar.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
@@ -69,14 +70,14 @@ class _PostState extends State<Post> {
                             children: [
                               Text('${widget.user.disPlayName}',
                                   style:
-                                      TextStyle(color: color1, fontSize: 18)),
+                                      TextStyle(color: ColorConstants.black, fontSize: 18)),
                               Text(
                                   Jiffy(widget.postModel.time.toDate())
                                       .fromNow(),
 
                                   // 'since ${new DateFormat.yMMMd().format(postModel.time.toDate())}  m',
                                   style:
-                                      TextStyle(color: color1, fontSize: 15)),
+                                      TextStyle(color: ColorConstants.black, fontSize: 15)),
                             ],
                           ),
                         ),
@@ -102,7 +103,7 @@ class _PostState extends State<Post> {
                         )
                       ],
                     ),
-                    Divider(color: color1),
+                    Divider(color: ColorConstants.primaryColor),
                     Expanded(
                       flex: 2,
                       child: CarouselWithIndicatorDemo(

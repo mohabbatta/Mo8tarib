@@ -7,6 +7,7 @@ import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
 import 'package:mo8tarib/app/common_widgets/avatar.dart';
 import 'package:mo8tarib/app/common_widgets/menu_item.dart';
 import 'package:mo8tarib/app/common_widgets/platform_alert_dialog.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/helper/localization.dart';
 import 'package:mo8tarib/services/auth.dart';
@@ -89,7 +90,7 @@ class _MenuState extends State<Menu> {
                                 fontSize: 20,
                                 fontFamily: "VarelaRound",
                                 fontWeight: FontWeight.normal,
-                                color: foregroundColor,
+                                color: ColorConstants.primaryColor,
                               ),
                             ),
                             GestureDetector(
@@ -106,7 +107,7 @@ class _MenuState extends State<Menu> {
                                   fontSize: 16,
                                   fontFamily: "VarelaRound",
                                   fontWeight: FontWeight.normal,
-                                  color: foregroundColor,
+                                  color: ColorConstants.primaryColor,
                                 ),
                               ),
                             )

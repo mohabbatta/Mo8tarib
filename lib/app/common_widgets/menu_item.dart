@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class MenuItem extends StatelessWidget {
@@ -23,7 +24,7 @@ class MenuItem extends StatelessWidget {
         children: <Widget>[
           Icon(
             icon,
-            color: foregroundColor,
+            color: ColorConstants.primaryColor,
             size: 25,
           ),
           SizedBox(
@@ -32,7 +33,7 @@ class MenuItem extends StatelessWidget {
           Text(
             itemName,
             style: TextStyle(
-              color: foregroundColor,
+              color: ColorConstants.primaryColor,
               fontSize: 20,
               decoration: TextDecoration.none,
               fontWeight: fontWeight,

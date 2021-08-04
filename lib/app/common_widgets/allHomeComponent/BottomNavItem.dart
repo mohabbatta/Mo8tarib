@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class BottomNavItem extends StatelessWidget {
@@ -23,7 +24,7 @@ class BottomNavItem extends StatelessWidget {
         children: <Widget>[
           Icon(
             icon,
-            color: isActive?color2:Colors.white,
+            color: isActive?ColorConstants.primaryColor:Colors.white,
             size: size.height*.05,
           ),
 //                Text('Home',style: TextStyle(color: color2,fontSize:size.height*.01 )),

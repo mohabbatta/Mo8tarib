@@ -6,6 +6,7 @@ import 'package:mo8tarib/app/Screen/dashboard/property/multi_select.dart';
 import 'package:mo8tarib/app/common_widgets/allHomeComponent/imageFlatWidget.dart';
 import 'package:mo8tarib/app/common_widgets/custom_drob_down.dart';
 import 'package:mo8tarib/app/common_widgets/resuable_edit_user.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/helper/localization.dart';
 import 'package:provider/provider.dart';
@@ -129,7 +130,7 @@ class _AddPropertyState extends State<AddProperty> {
                       height: 15,
                     ),
                     Slider(
-                      activeColor: foregroundColor,
+                      activeColor: ColorConstants.primaryColor,
                       inactiveColor: Colors.black.withOpacity(0.3),
                       value: model.price.toDouble(),
                       min: 0,
@@ -165,7 +166,7 @@ class _AddPropertyState extends State<AddProperty> {
                 IconButton(
                     icon: Icon(
                       Icons.location_on,
-                      color: foregroundColor,
+                      color: ColorConstants.primaryColor,
                     ),
                     onPressed: () async {
                       await widget.bloc.getCurrentLocation();
@@ -198,7 +199,7 @@ class _AddPropertyState extends State<AddProperty> {
                 child: Text(
                   AppLocalizations.of(context).translate("Add Pictures") ,
                   // localization.translate("Change profile photo"),
-                  style: TextStyle(color: foregroundColor),
+                  style: TextStyle(color: ColorConstants.primaryColor),
                 ),
                 color: Colors.white,
               ),
@@ -231,7 +232,7 @@ class _AddPropertyState extends State<AddProperty> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      color: foregroundColor,
+      color: ColorConstants.primaryColor,
       elevation: 10,
       child: !model.isLoading
           ? Text(

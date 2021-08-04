@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/helper/localization.dart';
 import 'package:mo8tarib/services/app_language.dart';
@@ -37,7 +38,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
               height: 90,
               decoration: BoxDecoration(
                 color: appLanguage.appLocal.languageCode == "en"
-                    ? foregroundColor
+                    ? ColorConstants.primaryColor
                     : Colors.white,
                 border: Border(
                   bottom: BorderSide(width: 2.0, color: Colors.black12),
@@ -81,7 +82,7 @@ class _ChooseLanguageState extends State<ChooseLanguage> {
               height: 90,
               decoration: BoxDecoration(
                 color: appLanguage.appLocal.languageCode == "ar"
-                    ? foregroundColor
+                    ? ColorConstants.primaryColor
                     : Colors.white,
                 border: Border(
                   bottom: BorderSide(width: 2.0, color: Colors.black12),

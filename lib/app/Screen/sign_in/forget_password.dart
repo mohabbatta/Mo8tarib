@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/common_widgets/rounded_button.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/helper/localization.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -47,7 +48,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             FlatButton(
               child: Text(
                 'ok',
-                style: TextStyle(color: foregroundColor),
+                style: TextStyle(color: ColorConstants.primaryColor),
               ),
               onPressed: () {
                 if (text == 'please enter Email') {
@@ -75,7 +76,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     return Scaffold(
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
-        color: foregroundColor,
+        color: ColorConstants.primaryColor,
         child: Stack(
           children: <Widget>[
             Container(
@@ -122,7 +123,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       Builder(
                         builder: (context) {
                           return RoundButton(
-                              colour: foregroundColor,
+                              colour: ColorConstants.primaryColor,
                               title: localization.translate("Reset Password"),
                               onPressed: () {
                                 //  submit();

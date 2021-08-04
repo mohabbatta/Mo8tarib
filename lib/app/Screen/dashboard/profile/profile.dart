@@ -4,6 +4,7 @@ import 'package:mo8tarib/app/Screen/dashboard/profile/my_posts.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
 import 'package:mo8tarib/app/bloc/navigation_bloc.dart';
 import 'package:mo8tarib/app/common_widgets/avatar.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                   icon: Icon(
                     Icons.menu,
                     size: 30,
-                    color: foregroundColor,
+                    color: ColorConstants.primaryColor,
                   ),
                   onPressed: widget.onMenuTap,
                 ),

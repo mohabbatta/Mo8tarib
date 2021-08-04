@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class CustomDropDown extends StatelessWidget {
@@ -32,7 +33,7 @@ class CustomDropDown extends StatelessWidget {
               fontSize: 18, fontFamily: 'VarelaRound', color: Colors.black),
           underline: Container(
             height: 2,
-            color: foregroundColor,
+            color: ColorConstants.primaryColor,
           ),
           onChanged: getValue,
           items: arrItems.map<DropdownMenuItem<String>>((String value) {

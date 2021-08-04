@@ -51,8 +51,11 @@
   "Services": "Services",
   "Add Pictures": "Add Pictures",
   "Add": "Add",
-  "Choose date": "Choose date"
-
-
-
+  "Choose date": "Choose date",
+  "leaseAndRentInAnEasyWay": "lease and rent in an easy way",
+  "findARoommateMatchingYourPreference": "find a roommate matching your preference",
+  "vacationResidenceIsNotAProblemNow": "vacation residence is not a problem now",
+  "next": "next",
+  "cancel": "cancel",
+  "start": "start"
 }

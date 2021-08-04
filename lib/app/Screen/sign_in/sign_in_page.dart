@@ -5,7 +5,7 @@ import 'package:mo8tarib/app/Screen/sign_in/bloc/sign_in_manager.dart';
 import 'package:mo8tarib/app/Screen/sign_in/email_sign_in_page.dart';
 import 'package:mo8tarib/app/common_widgets/platform_exception_alert_dialog.dart';
 import 'package:mo8tarib/app/common_widgets/social_icon.dart';
-import 'package:mo8tarib/constants/global.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/helper/localization.dart';
 import 'package:mo8tarib/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -109,7 +109,7 @@ class _SignInPageState extends State<SignInPage> with TickerProviderStateMixin {
                 child: Center(
                     child: Image.asset(
                       'images/a1.png',
-                      color: foregroundColor,
+                      color: ColorConstants.primaryColor,
                       width: 120,
                       height: 120,
                     )),

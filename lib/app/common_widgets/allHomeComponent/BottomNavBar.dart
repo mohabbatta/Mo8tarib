@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mo8tarib/app/common_widgets/allHomeComponent/BottomNavItem.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -16,7 +17,7 @@ class BottomNavBar extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       height: size.height * 0.09,
-      color: color1,
+      color: ColorConstants.black,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[

@@ -3,6 +3,7 @@ import 'package:mo8tarib/app/Screen/dashboard/home_layout/chat/chat%20_bubble.da
 import 'package:mo8tarib/app/Screen/dashboard/home_layout/chat/model/chat_room_model.dart';
 import 'package:mo8tarib/app/Screen/dashboard/home_layout/chat/search_users.dart';
 import 'package:mo8tarib/app/Screen/sign_in/model/user.dart';
+import 'package:mo8tarib/constants/color_constants.dart';
 import 'package:mo8tarib/constants/global.dart';
 import 'package:mo8tarib/services/data_base.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +45,7 @@ class _ChatRoomsState extends State<ChatRooms> {
                       database: widget.database)));
         },
         child: Icon(Icons.add),
-        backgroundColor: foregroundColor,
+        backgroundColor: ColorConstants.primaryColor,
       ),
       body: StreamBuilder<List<ChatRoom>>(
         stream: widget.database.chatRoomsStream(userID: widget.user.uid),
